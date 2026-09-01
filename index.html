@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pup.STABILE // System Console</title>
+    <title>pup.STABILE // Official Portal</title>
     <style>
-        /* CSS RESET & VARS */
+        /* CORE DESIGN VARIABLES */
         :root {
             --neon-green: #00ff66;
             --neon-blue: #00f0ff;
-            --dark-bg: rgba(10, 15, 13, 0.92);
-            --border-color: rgba(0, 255, 102, 0.25);
-            --font-stack: "Courier New", Courier, monospace;
+            --neon-pink: #ff007f;
+            --dark-glass: rgba(10, 15, 13, 0.85);
+            --border-glow: rgba(0, 255, 102, 0.2);
+            --font-mono: "Courier New", Courier, monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         * {
@@ -21,52 +23,232 @@
         }
 
         body {
-            background-color: #050706;
+            background-color: #030504;
             color: #ffffff;
-            font-family: var(--font-stack);
+            font-family: var(--font-sans);
             line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+            padding-bottom: 60px;
         }
 
-        /* ALBUM ART BACKGROUND BLUR */
+        /* AMBIENT ALBUM ART BACKGROUND BLUR */
         .ambient-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* REPLACE WITH THE DIRECT LINK TO YOUR ARTWORK WHEN UPLOADED */
-            background: radial-gradient(circle, rgba(10,15,13,0.7) 0%, rgba(5,7,6,1) 100%), 
-                        url('https://release.landr.com/api/v1/releases/991048977563/cover_art') no-repeat center center/cover;
-            filter: blur(10px) brightness(0.3);
+            background: radial-gradient(circle, rgba(5,7,6,0.65) 0%, rgba(3,5,4,1) 100%), 
+                        url('./album1.jpg') no-repeat center center/cover;
+            filter: blur(40px) brightness(0.2);
             transform: scale(1.1);
-            z-index: -1;
+            z-index: -2;
         }
 
-        /* CONSOLE WRAPPER */
-        .console-container {
-            width: 90%;
-            max-width: 900px;
-            background: var(--dark-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
-            overflow: hidden;
+        /* SITE HEADER & LOGO */
+        header {
+            width: 100%;
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 102, 0.1);
+            background: rgba(3, 5, 4, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-pulse {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-green);
+            animation: pulse 2s infinite;
+        }
+
+        .logo-text {
+            font-family: var(--font-mono);
+            font-weight: 900;
+            letter-spacing: 4px;
+            font-size: 1.4rem;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255,255,255,0.2);
+        }
+
+        /* MAIN WRAPPER */
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(12px);
-            margin: 20px auto;
+            gap: 50px;
         }
 
-        /* TOP WINDOW BAR */
+        /* HERO SECTION: LEAD SINGLE */
+        .hero-section {
+            background: var(--dark-glass);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 40px rgba(0, 255, 102, 0.05);
+        }
+
+        .hero-artwork {
+            width: 300px;
+            height: 300px;
+            border-radius: 8px;
+            border: 1px solid var(--border-glow);
+            background: url('./scars-into-thunder.jpg') no-repeat center center/cover;
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-artwork:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-mono);
+            color: var(--neon-green);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .btn-glowing {
+            display: inline-block;
+            background: var(--neon-green);
+            color: #000000;
+            padding: 16px 36px;
+            font-size: 1rem;
+            font-family: var(--font-mono);
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+        }
+
+        .btn-glowing:hover {
+            background: #ffffff;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* THE TRILOGY SHOWCASE (3 ALBUMS) */
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: rgba(0, 240, 255, 0.15);
+        }
+
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .album-card {
+            background: var(--dark-glass);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .album-card:hover {
+            border-color: var(--border-glow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.08);
+        }
+
+        .album-cover {
+            aspect-ratio: 1;
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #ac-1 { background: url('./album1.jpg') no-repeat center center/cover; }
+        #ac-2 { background: url('./album2.jpg') no-repeat center center/cover; }
+        #ac-3 { background: url('./album3.jpg') no-repeat center center/cover; }
+
+        .album-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .album-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* INTEGRATED CONSOLE SECTION (NOVICE INSTRUCTIONS ADDED) */
+        .console-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .console-container {
+            background: var(--dark-glass);
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.05);
+        }
+
         .console-header {
-            background: rgba(0, 255, 102, 0.05);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(0, 255, 102, 0.03);
+            border-bottom: 1px solid rgba(0, 255, 102, 0.1);
             padding: 12px 20px;
             display: flex;
             justify-content: space-between;
@@ -79,131 +261,74 @@
         }
 
         .dot {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: var(--border-color);
+            background: rgba(0, 255, 102, 0.2);
         }
-
-        .dot.red { background: #ff5f56; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
 
         .window-title {
-            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
             color: var(--neon-green);
-            text-transform: uppercase;
             letter-spacing: 2px;
-            font-weight: bold;
-            text-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
         }
 
-        /* MAIN CONTENT AREA */
         .console-body {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-height: 550px;
+            padding: 20px;
+            height: 300px;
             overflow-y: auto;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
         }
 
-        /* SCROLLBAR STYLING */
         .console-body::-webkit-scrollbar {
-            width: 6px;
-        }
-        .console-body::-webkit-scrollbar-track {
-            background: transparent;
+            width: 4px;
         }
         .console-body::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 3px;
+            background: var(--border-glow);
         }
 
-        /* WELCOME TEXT */
-        .system-banner {
-            border-bottom: 1px dashed rgba(0, 255, 102, 0.15);
-            padding-bottom: 15px;
-            margin-bottom: 10px;
-        }
-
-        .neon-text {
-            color: var(--neon-green);
-            text-shadow: 0 0 5px rgba(0, 255, 102, 0.3);
-        }
-
-        /* SINGLE LAUNCH HERO CARD (VISUAL INTERFACE) */
-        .release-card {
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background: rgba(0, 0, 0, 0.4);
+        .terminal-output {
             display: flex;
-            padding: 15px;
-            gap: 20px;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .command-prompt-line {
+            display: flex;
             align-items: center;
-            margin: 10px 0;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .artwork {
-            width: 110px;
-            height: 110px;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            background: url('https://release.landr.com/api/v1/releases/991048977563/cover_art') no-repeat center center/cover;
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
-            flex-shrink: 0;
-        }
-
-        .release-info {
-            flex-grow: 1;
-        }
-
-        .release-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 5px;
-        }
-
-        .pre-save-btn {
-            display: inline-block;
+        .input-element {
             background: transparent;
-            border: 1px solid var(--neon-green);
-            color: var(--neon-green);
-            padding: 8px 18px;
+            border: none;
+            color: #ffffff;
+            font-family: var(--font-mono);
             font-size: 0.9rem;
-            font-family: var(--font-stack);
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.1);
-            margin-top: 8px;
+            width: 100%;
+            outline: none;
+            caret-color: var(--neon-green);
         }
 
-        .pre-save-btn:hover {
-            background: var(--neon-green);
-            color: #000000;
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
-        }
-
-        /* TOUCH COMMAND BUTTONS FOR MOBILE */
+        /* QUICK ACTION CHIPS */
         .quick-actions {
             display: flex;
-            flex-wrap: wrap;
             gap: 10px;
-            margin: 10px 0;
+            flex-wrap: wrap;
+            margin-top: 10px;
         }
 
         .action-chip {
-            background: rgba(0, 255, 102, 0.05);
+            background: rgba(0, 255, 102, 0.03);
             border: 1px solid rgba(0, 255, 102, 0.15);
-            color: #fff;
-            padding: 6px 12px;
-            border-radius: 20px;
+            color: #ffffff;
+            font-family: var(--font-mono);
             font-size: 0.8rem;
+            padding: 6px 16px;
+            border-radius: 20px;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -211,76 +336,57 @@
         .action-chip:hover {
             border-color: var(--neon-green);
             color: var(--neon-green);
-            background: rgba(0, 255, 102, 0.1);
+            background: rgba(0, 255, 102, 0.08);
         }
 
-        /* TERMINAL INTERACTIVE COMMAND AREA */
-        .terminal-output {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            font-size: 0.95rem;
+        /* ANIMATIONS */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.4; box-shadow: 0 0 15px var(--neon-green); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
-        .history-line {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .command-prompt-line {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .prompt-symbol {
-            color: var(--neon-green);
-        }
-
-        .input-element {
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            font-family: var(--font-stack);
-            font-size: 0.95rem;
-            width: 100%;
-            outline: none;
-            caret-color: var(--neon-green);
-        }
-
-        /* SMARTPHONE & TABLET COMPATIBILITY (ESSENTIAL) */
+        /* SMARTPHONE & TABLET COMPATIBILITY */
         @media (max-width: 768px) {
-            body {
-                align-items: flex-start;
-                padding: 10px;
+            header {
+                padding: 20px 5%;
             }
 
-            .console-container {
-                width: 100%;
-                margin: 10px auto;
-                box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
+            .logo-text {
+                font-size: 1.1rem;
             }
 
-            .release-card {
-                flex-direction: column;
+            main {
+                margin: 20px auto;
+                gap: 40px;
+            }
+
+            .hero-section {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 25px;
                 text-align: center;
-                gap: 12px;
-                padding: 12px;
             }
 
-            .artwork {
-                width: 90px;
-                height: 90px;
+            .hero-artwork {
+                width: 100%;
+                max-width: 260px;
+                height: 260px;
+                margin: 0 auto;
             }
 
-            .pre-save-btn {
+            .btn-glowing {
                 width: 100%;
                 text-align: center;
+            }
+
+            .album-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
             .console-body {
-                padding: 15px;
-                max-height: calc(100vh - 100px);
+                height: 250px;
             }
         }
     </style>
@@ -289,126 +395,158 @@
 
     <div class="ambient-bg"></div>
 
-    <div class="console-container">
-        <!-- WINDOW DECORATION -->
-        <div class="console-header">
-            <div class="window-dots">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
-            </div>
-            <div class="window-title">MAINFRAME // pup.STABILE</div>
+    <header>
+        <div class="logo-container">
+            <div class="logo-pulse"></div>
+            <div class="logo-text">pup.STABILE</div>
         </div>
+        <span style="font-family: var(--font-mono); font-size: 0.75rem; color: rgba(255,255,255,0.4)">TALLINN // EST</span>
+    </header>
 
-        <!-- MAIN CONSOLE SPACE -->
-        <div class="console-body" id="consoleBody">
-            <div class="system-banner">
-                <span class="neon-text">SYSTEM SECURE // BALTIC SANCTUARY ONLINE</span><br>
-                <span>Running core algorithms for pup.STABILE...</span><br>
-                <span>Type 'help' or tap a system terminal node below to query directories.</span>
+    <main>
+        <!-- HERO SECTION: THE LEAD SINGLE -->
+        <section class="hero-section">
+            <div class="hero-artwork"></div>
+            <div class="hero-content">
+                <div class="hero-subtitle">NEW SINGLE // OUT NOW</div>
+                <h2>Scars into Thunder</h2>
+                <p class="hero-desc">An architectural cyber-trance power ballad fusing dark, brooding 80s synthwave with modern Baltic progressive house. Fusing raw analog synths with human recovery.</p>
+                <a href="https://release.landr.com/991048977563" class="btn-glowing" target="_blank">> PRE-SAVE SINGLE</a>
             </div>
+        </section>
 
-            <!-- THE DEBUT RELEASE SPOTLIGHT HERO CARD -->
-            <div class="release-card">
-                <div class="artwork"></div>
-                <div class="release-info">
-                    <div class="release-title">Scars into Thunder</div>
-                    <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 5px;">Lead Single // Sept 15, 2026</p>
-                    <p style="font-size: 0.85rem; color: var(--neon-blue); font-weight: bold;">[ WATERFALL ROLLOUT DETECTED ]</p>
-                    <a href="https://release.landr.com/991048977563" class="pre-save-btn" target="_blank">> ENTER PRE-SAVE PORTAL</a>
+        <!-- THE ALBUM TRILOGY GRAPHICS -->
+        <section>
+            <div class="section-title">THE SYSTEM TRILOGY</div>
+            <div class="album-grid">
+                <!-- Album 1 -->
+                <div class="album-card" onclick="executeCommand('album1')">
+                    <div class="album-cover" id="ac-1"></div>
+                    <div class="album-name">Album 1: System Crash</div>
+                    <div class="album-meta">The Descent // 12 Tracks</div>
+                </div>
+                <!-- Album 2 -->
+                <div class="album-card" onclick="executeCommand('album2')">
+                    <div class="album-cover" id="ac-2"></div>
+                    <div class="album-name">Album 2: System Restore</div>
+                    <div class="album-meta">The Rebuild // 12 Tracks</div>
+                </div>
+                <!-- Album 3 -->
+                <div class="album-card" onclick="executeCommand('album3')">
+                    <div class="album-cover" id="ac-3"></div>
+                    <div class="album-name">Album 3: System Aligned</div>
+                    <div class="album-meta">The Resolution // 12 Tracks</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE INTERACTIVE DEVELOPER CONSOLE -->
+        <section class="console-section">
+            <div class="section-title">MAINFRAME UTILITY [OPTIONAL DEV TOOL]</div>
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: -10px;">Tap a button below or type a custom command directly into the console to extract secret track data.</p>
+            
+            <div class="console-container">
+                <div class="console-header">
+                    <div class="window-dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="window-title">TERMINAL // pup.STABILE</div>
+                </div>
+
+                <div class="console-body" id="consoleBody">
+                    <div class="terminal-output" id="terminalOutput">
+                        <div><span style="color: var(--neon-green)">[SYSTEM SECURE]</span> Terminal active... Type <span style="color: var(--neon-blue)">'help'</span> for instructions.</div>
+                    </div>
+                    <div class="command-prompt-line">
+                        <span style="color: var(--neon-green)">guest@pupstabile:~$</span>
+                        <input type="text" class="input-element" id="cmdInput" autocomplete="off" placeholder="type a command..." autofocus>
+                    </div>
                 </div>
             </div>
 
-            <!-- TOUCH CONTROLS FOR SMARTPHONES -->
-            <p style="font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">Terminal Nodes:</p>
+            <!-- TACTILE INTERACTION FOR SMARTPHONES -->
             <div class="quick-actions">
-                <button class="action-chip" onclick="executeCommand('about')">> about</button>
-                <button class="action-chip" onclick="executeCommand('rollout')">> rollout</button>
+                <button class="action-chip" onclick="executeCommand('help')">> help</button>
+                <button class="action-chip" onclick="executeCommand('bio')">> bio</button>
+                <button class="action-chip" onclick="executeCommand('specs')">> specs</button>
                 <button class="action-chip" onclick="executeCommand('lyrics')">> lyrics</button>
-                <button class="action-chip" onclick="executeCommand('stats')">> stats</button>
                 <button class="action-chip" onclick="executeCommand('clear')">> clear</button>
             </div>
-
-            <!-- TERMINAL LOGS & USER INPUT -->
-            <div class="terminal-output" id="terminalOutput">
-                <!-- Log History Appends Here -->
-            </div>
-
-            <div class="command-prompt-line">
-                <span class="prompt-symbol">pup.STABILE@mainframe:~$</span>
-                <input type="text" class="input-element" id="cmdInput" autocomplete="off" placeholder="type a command..." autofocus>
-            </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <script>
         const cmdInput = document.getElementById('cmdInput');
         const terminalOutput = document.getElementById('terminalOutput');
         const consoleBody = document.getElementById('consoleBody');
 
-        // COMMAND PARSER DATABASE
+        // COMMAND DATABASE
         const COMMANDS = {
             help: `Available commands:<br>
-                   &nbsp;&nbsp;about&nbsp;&nbsp;&nbsp;&nbsp;- The profile bio and aesthetic origins.<br>
-                   &nbsp;&nbsp;rollout&nbsp;&nbsp;- Staggered single dates and waterfall pipeline.<br>
-                   &nbsp;&nbsp;lyrics&nbsp;&nbsp;&nbsp;- Raw metadata & text excerpts from 'Scars into Thunder'.<br>
-                   &nbsp;&nbsp;stats&nbsp;&nbsp;&nbsp;&nbsp;- Technical registration numbers (ISRC, UPC, Catalog ID).<br>
-                   &nbsp;&nbsp;clear&nbsp;&nbsp;&nbsp;&nbsp;- Purge screen buffers.`,
+                   &nbsp;&nbsp;bio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The artist philosophy.<br>
+                   &nbsp;&nbsp;specs&nbsp;&nbsp;&nbsp;&nbsp;- Technical single registration stats.<br>
+                   &nbsp;&nbsp;lyrics&nbsp;&nbsp;&nbsp;- Lyric sheets for Scars into Thunder.<br>
+                   &nbsp;&nbsp;album1&nbsp;&nbsp;&nbsp;- Album 1 narrative synopsis.<br>
+                   &nbsp;&nbsp;album2&nbsp;&nbsp;&nbsp;- Album 2 narrative synopsis.<br>
+                   &nbsp;&nbsp;album3&nbsp;&nbsp;&nbsp;- Album 3 narrative synopsis.<br>
+                   &nbsp;&nbsp;clear&nbsp;&nbsp;&nbsp;&nbsp;- Clear screen buffer.`,
             
-            about: `<span class="neon-text">ARTIST ARCHITECTURE // pup.STABILE</span><br>
-                    Origin: Baltic sanctuary, Tallinn, Estonia.<br>
-                    Moniker defined by architectural cyber-trance, mapping emotional recovery onto software metaphors. Fusing deep-house grids, dark 80s synthwaves, and clean, rare E2-C#4 bass-baritone vocals. The mainframe is fully secure.`,
+            bio: `<span style="color: var(--neon-green)">ARTIST BIO // pup.STABILE</span><br>
+                  Formed in Tallinn, Estonia. pup.STABILE maps highly personal emotional survival onto mechanical and software-based structures. Melodic progressive house and synthwave featuring rare close-mic E2 to C#4 bass-baritone vocals.`,
             
-            rollout: `<span class="neon-text">SYSTEM ROLLOUT TIMELINE (WATERFALL PORTAL)</span><br>
-                      • Sept 15, 2026: 'Scars into Thunder' [Approved]<br>
-                      • Sept 22, 2026: 'Black Cloud (The Filter)' [Waterfall Single 2]<br>
-                      • Sept 29, 2026: 'SYSTEM CRASH (Part 1)' [Full 12-Track LP]`,
-            
-            lyrics: `<span class="neon-text">METADATA SYNOPSIS // SCARS INTO THUNDER</span><br>
-                     Lyricist: Jeremy David Stabile (100% human-authored composition).<br>
-                     Excerpts:<br>
-                     "Am I lucid... or is it a paradox?<br>
-                     A restless mind trapped inside a digital box!"`,
-            
-            stats: `<span class="neon-text">SYSTEM DATABASE // TRACK REGISTRATIONS</span><br>
+            specs: `<span style="color: var(--neon-blue)">REGISTRATION METADATA // SCARS INTO THUNDER</span><br>
                     • Title: Scars into Thunder<br>
                     • UPC: 991048977563<br>
                     • ISRC: CAGOO2698921<br>
                     • Catalog: LR-3244539<br>
-                    • Format: Stereo 24-bit lossless WAV [Apple Music Lossless Approved]`
+                    • Status: Scheduled Release (Sept 15, 2026)`,
+            
+            lyrics: `<span style="color: var(--neon-pink)">METADATA SYNOPSIS // SCARS INTO THUNDER</span><br>
+                     Composition: 100% human-authored lyrics by Jeremy David Stabile.<br>
+                     Chorus Hook:<br>
+                     "Am I lucid... or is it a paradox?<br>
+                     A restless mind trapped inside a digital box!"`,
+            
+            album1: `<span style="color: var(--neon-pink)">ALBUM 1: SYSTEM CRASH (The Descent)</span><br>
+                     A deep sonic plunge into dark synthwave, emotional chaos, and heavy progressive trance. Releasing on September 29, 2026 as Part 1 of the double album. Fuses high-octane 90s euro-trance with heavy narratives.`,
+                     
+            album2: `<span style="color: var(--neon-green)">ALBUM 2: SYSTEM RESTORE (The Rebuild)</span><br>
+                     A clinical, pristine, and engineered rebuild.Ramping from high-voltage 128 BPM electro-house beats into breathtaking Baltic choral arrangements and soaring ASOT-style uplifting trance.`,
+                     
+            album3: `<span style="color: var(--neon-blue)">ALBUM 3: SYSTEM ALIGNED (The Internal Resolution)</span><br>
+                     The ultimate internal peace and alignment. Featuring highly-energetic, sarcastic hyperpop critiques, stadium progressive house love anthems, and breathtaking Baltic progressive trance resolutions.`
         };
 
-        // COMMAND EXECUTION LOGIC
-        function executeCommand(cmdStr) {
-            cmdStr = cmdStr.trim().toLowerCase();
-            if (cmdStr === '') return;
+        function executeCommand(cmd) {
+            cmd = cmd.trim().toLowerCase();
+            if (cmd === '') return;
 
-            // Generate Prompt Output Echo
-            const echoLine = document.createElement('div');
-            echoLine.className = 'history-line';
-            echoLine.innerHTML = `<div class="command-prompt-line"><span class="prompt-symbol">pup.STABILE@mainframe:~$</span><span>${cmdStr}</span></div>`;
-            terminalOutput.appendChild(echoLine);
+            // Log echo line
+            const echo = document.createElement('div');
+            echo.innerHTML = `<span style="color: var(--neon-green)">guest@pupstabile:~$</span> <span style="color: #ffffff">${cmd}</span>`;
+            terminalOutput.appendChild(echo);
 
-            // Execute System Command
-            const outputLine = document.createElement('div');
-            outputLine.className = 'history-line';
+            // Handle logic
+            const response = document.createElement('div');
+            response.style.marginTop = '5px';
+            response.style.marginBottom = '15px';
 
-            if (cmdStr === 'clear') {
+            if (cmd === 'clear') {
                 terminalOutput.innerHTML = '';
-            } else if (COMMANDS[cmdStr]) {
-                outputLine.innerHTML = `<div style="margin-top: 5px; color: #dddddd;">${COMMANDS[cmdStr]}</div>`;
-                terminalOutput.appendChild(outputLine);
+            } else if (COMMANDS[cmd]) {
+                response.innerHTML = COMMANDS[cmd];
+                terminalOutput.appendChild(response);
             } else {
-                outputLine.innerHTML = `<div style="margin-top: 5px; color: #ff5555;">SYSTEM FAULT: Command '${cmdStr}' unrecognized. Type 'help' for instructions.</div>`;
-                terminalOutput.appendChild(outputLine);
+                response.innerHTML = `<span style="color: #ff3366">ERROR: Node '${cmd}' unrecognized. Type 'help' to query instructions.</span>`;
+                terminalOutput.appendChild(response);
             }
 
-            // Auto-scroll screen buffer
             consoleBody.scrollTop = consoleBody.scrollHeight;
             cmdInput.value = '';
         }
 
-        // EVENT LISTENER FOR PHYSICAL ENTER KEY
         cmdInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 executeCommand(cmdInput.value);
