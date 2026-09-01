@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pup.STABILE // System Console</title>
+    <style>
+        /* CSS RESET & VARS */
+        :root {
+            --neon-green: #00ff66;
+            --neon-blue: #00f0ff;
+            --dark-bg: rgba(10, 15, 13, 0.92);
+            --border-color: rgba(0, 255, 102, 0.25);
+            --font-stack: "Courier New", Courier, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #050706;
+            color: #ffffff;
+            font-family: var(--font-stack);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* ALBUM ART BACKGROUND BLUR */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* REPLACE WITH THE DIRECT LINK TO YOUR ARTWORK WHEN UPLOADED */
+            background: radial-gradient(circle, rgba(10,15,13,0.7) 0%, rgba(5,7,6,1) 100%), 
+                        url('https://release.landr.com/api/v1/releases/991048977563/cover_art') no-repeat center center/cover;
+            filter: blur(10px) brightness(0.3);
+            transform: scale(1.1);
+            z-index: -1;
+        }
+
+        /* CONSOLE WRAPPER */
+        .console-container {
+            width: 90%;
+            max-width: 900px;
+            background: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(12px);
+            margin: 20px auto;
+        }
+
+        /* TOP WINDOW BAR */
+        .console-header {
+            background: rgba(0, 255, 102, 0.05);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-color);
+        }
+
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .window-title {
+            font-size: 0.85rem;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
+        }
+
+        /* MAIN CONTENT AREA */
+        .console-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-height: 550px;
+            overflow-y: auto;
+        }
+
+        /* SCROLLBAR STYLING */
+        .console-body::-webkit-scrollbar {
+            width: 6px;
+        }
+        .console-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .console-body::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        /* WELCOME TEXT */
+        .system-banner {
+            border-bottom: 1px dashed rgba(0, 255, 102, 0.15);
+            padding-bottom: 15px;
+            margin-bottom: 10px;
+        }
+
+        .neon-text {
+            color: var(--neon-green);
+            text-shadow: 0 0 5px rgba(0, 255, 102, 0.3);
+        }
+
+        /* SINGLE LAUNCH HERO CARD (VISUAL INTERFACE) */
+        .release-card {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            padding: 15px;
+            gap: 20px;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .artwork {
+            width: 110px;
+            height: 110px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background: url('https://release.landr.com/api/v1/releases/991048977563/cover_art') no-repeat center center/cover;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
+            flex-shrink: 0;
+        }
+
+        .release-info {
+            flex-grow: 1;
+        }
+
+        .release-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .pre-save-btn {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-family: var(--font-stack);
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.1);
+            margin-top: 8px;
+        }
+
+        .pre-save-btn:hover {
+            background: var(--neon-green);
+            color: #000000;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+        }
+
+        /* TOUCH COMMAND BUTTONS FOR MOBILE */
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .action-chip {
+            background: rgba(0, 255, 102, 0.05);
+            border: 1px solid rgba(0, 255, 102, 0.15);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-chip:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            background: rgba(0, 255, 102, 0.1);
+        }
+
+        /* TERMINAL INTERACTIVE COMMAND AREA */
+        .terminal-output {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .history-line {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .command-prompt-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .prompt-symbol {
+            color: var(--neon-green);
+        }
+
+        .input-element {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: var(--font-stack);
+            font-size: 0.95rem;
+            width: 100%;
+            outline: none;
+            caret-color: var(--neon-green);
+        }
+
+        /* SMARTPHONE & TABLET COMPATIBILITY (ESSENTIAL) */
+        @media (max-width: 768px) {
+            body {
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            .console-container {
+                width: 100%;
+                margin: 10px auto;
+                box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
+            }
+
+            .release-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .artwork {
+                width: 90px;
+                height: 90px;
+            }
+
+            .pre-save-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .console-body {
+                padding: 15px;
+                max-height: calc(100vh - 100px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-bg"></div>
+
+    <div class="console-container">
+        <!-- WINDOW DECORATION -->
+        <div class="console-header">
+            <div class="window-dots">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div class="window-title">MAINFRAME // pup.STABILE</div>
+        </div>
+
+        <!-- MAIN CONSOLE SPACE -->
+        <div class="console-body" id="consoleBody">
+            <div class="system-banner">
+                <span class="neon-text">SYSTEM SECURE // BALTIC SANCTUARY ONLINE</span><br>
+                <span>Running core algorithms for pup.STABILE...</span><br>
+                <span>Type 'help' or tap a system terminal node below to query directories.</span>
+            </div>
+
+            <!-- THE DEBUT RELEASE SPOTLIGHT HERO CARD -->
+            <div class="release-card">
+                <div class="artwork"></div>
+                <div class="release-info">
+                    <div class="release-title">Scars into Thunder</div>
+                    <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 5px;">Lead Single // Sept 15, 2026</p>
+                    <p style="font-size: 0.85rem; color: var(--neon-blue); font-weight: bold;">[ WATERFALL ROLLOUT DETECTED ]</p>
+                    <a href="https://release.landr.com/991048977563" class="pre-save-btn" target="_blank">> ENTER PRE-SAVE PORTAL</a>
+                </div>
+            </div>
+
+            <!-- TOUCH CONTROLS FOR SMARTPHONES -->
+            <p style="font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">Terminal Nodes:</p>
+            <div class="quick-actions">
+                <button class="action-chip" onclick="executeCommand('about')">> about</button>
+                <button class="action-chip" onclick="executeCommand('rollout')">> rollout</button>
+                <button class="action-chip" onclick="executeCommand('lyrics')">> lyrics</button>
+                <button class="action-chip" onclick="executeCommand('stats')">> stats</button>
+                <button class="action-chip" onclick="executeCommand('clear')">> clear</button>
+            </div>
+
+            <!-- TERMINAL LOGS & USER INPUT -->
+            <div class="terminal-output" id="terminalOutput">
+                <!-- Log History Appends Here -->
+            </div>
+
+            <div class="command-prompt-line">
+                <span class="prompt-symbol">pup.STABILE@mainframe:~$</span>
+                <input type="text" class="input-element" id="cmdInput" autocomplete="off" placeholder="type a command..." autofocus>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cmdInput = document.getElementById('cmdInput');
+        const terminalOutput = document.getElementById('terminalOutput');
+        const consoleBody = document.getElementById('consoleBody');
+
+        // COMMAND PARSER DATABASE
+        const COMMANDS = {
+            help: `Available commands:<br>
+                   &nbsp;&nbsp;about&nbsp;&nbsp;&nbsp;&nbsp;- The profile bio and aesthetic origins.<br>
+                   &nbsp;&nbsp;rollout&nbsp;&nbsp;- Staggered single dates and waterfall pipeline.<br>
+                   &nbsp;&nbsp;lyrics&nbsp;&nbsp;&nbsp;- Raw metadata & text excerpts from 'Scars into Thunder'.<br>
+                   &nbsp;&nbsp;stats&nbsp;&nbsp;&nbsp;&nbsp;- Technical registration numbers (ISRC, UPC, Catalog ID).<br>
+                   &nbsp;&nbsp;clear&nbsp;&nbsp;&nbsp;&nbsp;- Purge screen buffers.`,
+            
+            about: `<span class="neon-text">ARTIST ARCHITECTURE // pup.STABILE</span><br>
+                    Origin: Baltic sanctuary, Tallinn, Estonia.<br>
+                    Moniker defined by architectural cyber-trance, mapping emotional recovery onto software metaphors. Fusing deep-house grids, dark 80s synthwaves, and clean, rare E2-C#4 bass-baritone vocals. The mainframe is fully secure.`,
+            
+            rollout: `<span class="neon-text">SYSTEM ROLLOUT TIMELINE (WATERFALL PORTAL)</span><br>
+                      • Sept 15, 2026: 'Scars into Thunder' [Approved]<br>
+                      • Sept 22, 2026: 'Black Cloud (The Filter)' [Waterfall Single 2]<br>
+                      • Sept 29, 2026: 'SYSTEM CRASH (Part 1)' [Full 12-Track LP]`,
+            
+            lyrics: `<span class="neon-text">METADATA SYNOPSIS // SCARS INTO THUNDER</span><br>
+                     Lyricist: Jeremy David Stabile (100% human-authored composition).<br>
+                     Excerpts:<br>
+                     "Am I lucid... or is it a paradox?<br>
+                     A restless mind trapped inside a digital box!"`,
+            
+            stats: `<span class="neon-text">SYSTEM DATABASE // TRACK REGISTRATIONS</span><br>
+                    • Title: Scars into Thunder<br>
+                    • UPC: 991048977563<br>
+                    • ISRC: CAGOO2698921<br>
+                    • Catalog: LR-3244539<br>
+                    • Format: Stereo 24-bit lossless WAV [Apple Music Lossless Approved]`
+        };
+
+        // COMMAND EXECUTION LOGIC
+        function executeCommand(cmdStr) {
+            cmdStr = cmdStr.trim().toLowerCase();
+            if (cmdStr === '') return;
+
+            // Generate Prompt Output Echo
+            const echoLine = document.createElement('div');
+            echoLine.className = 'history-line';
+            echoLine.innerHTML = `<div class="command-prompt-line"><span class="prompt-symbol">pup.STABILE@mainframe:~$</span><span>${cmdStr}</span></div>`;
+            terminalOutput.appendChild(echoLine);
+
+            // Execute System Command
+            const outputLine = document.createElement('div');
+            outputLine.className = 'history-line';
+
+            if (cmdStr === 'clear') {
+                terminalOutput.innerHTML = '';
+            } else if (COMMANDS[cmdStr]) {
+                outputLine.innerHTML = `<div style="margin-top: 5px; color: #dddddd;">${COMMANDS[cmdStr]}</div>`;
+                terminalOutput.appendChild(outputLine);
+            } else {
+                outputLine.innerHTML = `<div style="margin-top: 5px; color: #ff5555;">SYSTEM FAULT: Command '${cmdStr}' unrecognized. Type 'help' for instructions.</div>`;
+                terminalOutput.appendChild(outputLine);
+            }
+
+            // Auto-scroll screen buffer
+            consoleBody.scrollTop = consoleBody.scrollHeight;
+            cmdInput.value = '';
+        }
+
+        // EVENT LISTENER FOR PHYSICAL ENTER KEY
+        cmdInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                executeCommand(cmdInput.value);
+            }
+        });
+    </script>
+</body>
+</html>
