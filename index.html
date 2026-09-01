@@ -10,8 +10,8 @@
             --neon-green: #00ff66;
             --neon-blue: #00f0ff;
             --neon-pink: #ff007f;
-            --dark-glass: rgba(10, 15, 13, 0.85);
-            --border-glow: rgba(0, 255, 102, 0.2);
+            --dark-glass: rgba(10, 15, 13, 0.72);
+            --border-glow: rgba(0, 255, 102, 0.15);
             --font-mono: "Courier New", Courier, monospace;
             --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
@@ -29,62 +29,75 @@
             line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
-            padding-bottom: 60px;
+            padding-bottom: 80px;
+            position: relative;
         }
 
-        /* AMBIENT ALBUM ART BACKGROUND BLUR */
-        .ambient-bg {
+        /* HARDWARE-ACCELERATED DIGITAL RAIN CANVAS */
+        #rainCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(5,7,6,0.65) 0%, rgba(3,5,4,1) 100%), 
-                        url('./album1.jpg') no-repeat center center/cover;
-            filter: blur(40px) brightness(0.2);
-            transform: scale(1.1);
             z-index: -2;
+            opacity: 0.12; /* Kept subtle so text remains highly readable on mobile */
+            pointer-events: none;
         }
 
-        /* SITE HEADER & LOGO */
+        /* AMBIENT GLOW BACKDROP */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 102, 0.05) 0%, rgba(3, 5, 4, 0.95) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* SITE HEADER */
         header {
             width: 100%;
-            padding: 30px 5%;
+            padding: 25px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0, 255, 102, 0.1);
-            background: rgba(3, 5, 4, 0.5);
-            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 102, 0.08);
+            background: rgba(3, 5, 4, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 10;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .logo-pulse {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             background-color: var(--neon-green);
             border-radius: 50%;
-            box-shadow: 0 0 10px var(--neon-green);
+            box-shadow: 0 0 12px var(--neon-green);
             animation: pulse 2s infinite;
         }
 
         .logo-text {
             font-family: var(--font-mono);
             font-weight: 900;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             font-size: 1.4rem;
             color: #ffffff;
-            text-shadow: 0 0 8px rgba(255,255,255,0.2);
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
         }
 
         /* MAIN WRAPPER */
         main {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 40px auto;
             padding: 0 20px;
             display: flex;
@@ -92,52 +105,75 @@
             gap: 50px;
         }
 
-        /* HERO SECTION: LEAD SINGLE */
+        /* HERO SECTION: LEAD SINGLE (GLASSMORPHIC) */
         .hero-section {
             background: var(--dark-glass);
             border: 1px solid var(--border-glow);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 40px;
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 280px 1fr;
             gap: 40px;
             align-items: center;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 0 40px rgba(0, 255, 102, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 0 50px rgba(0, 255, 102, 0.03), inset 0 0 20px rgba(255,255,255,0.02);
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(0,255,102,0.05) 0%, rgba(0,240,255,0.05) 100%);
+            pointer-events: none;
         }
 
         .hero-artwork {
-            width: 300px;
-            height: 300px;
-            border-radius: 8px;
-            border: 1px solid var(--border-glow);
+            width: 280px;
+            height: 280px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 102, 0.25);
             background: url('./scars-into-thunder.jpg') no-repeat center center/cover;
-            box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
-            transition: transform 0.3s ease;
+            box-shadow: 0 0 35px rgba(0, 255, 102, 0.2);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 2;
         }
 
         .hero-artwork:hover {
-            transform: scale(1.02);
+            transform: scale(1.03) rotate(0.5deg);
+        }
+
+        .hero-content {
+            z-index: 2;
         }
 
         .hero-content h2 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             margin-bottom: 5px;
+            background: linear-gradient(90deg, #ffffff 0%, #a3ffd0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-subtitle {
             font-family: var(--font-mono);
             color: var(--neon-green);
             font-size: 0.9rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 20px;
+            font-weight: bold;
         }
 
         .hero-desc {
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 1.1rem;
             margin-bottom: 30px;
         }
@@ -154,13 +190,13 @@
             border-radius: 6px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: all 0.25s ease;
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+            transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.3);
         }
 
         .btn-glowing:hover {
             background: #ffffff;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.6);
             transform: translateY(-2px);
         }
 
@@ -168,20 +204,20 @@
         .section-title {
             font-family: var(--font-mono);
             font-size: 1rem;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             text-transform: uppercase;
             color: var(--neon-blue);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         .section-title::after {
             content: '';
             flex-grow: 1;
             height: 1px;
-            background: rgba(0, 240, 255, 0.15);
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.2) 0%, transparent 100%);
         }
 
         .album-grid {
@@ -192,25 +228,33 @@
 
         .album-card {
             background: var(--dark-glass);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 20px;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
 
         .album-card:hover {
-            border-color: var(--border-glow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.08);
+            border-color: rgba(0, 240, 255, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.1);
         }
 
         .album-cover {
             aspect-ratio: 1;
             width: 100%;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: border-color 0.3s;
+        }
+
+        .album-card:hover .album-cover {
+            border-color: var(--neon-blue);
         }
 
         #ac-1 { background: url('./album1.jpg') no-repeat center center/cover; }
@@ -218,17 +262,81 @@
         #ac-3 { background: url('./album3.jpg') no-repeat center center/cover; }
 
         .album-name {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 3px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #ffffff;
         }
 
         .album-meta {
             font-family: var(--font-mono);
             font-size: 0.75rem;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.45);
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* INTEGRATED SECURE CONTACT PORTAL */
+        .contact-section {
+            background: var(--dark-glass);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 16px;
+            padding: 35px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,240,255,0.02) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .contact-title h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 5px;
+        }
+
+        .contact-title p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+        }
+
+        .email-glowing-box {
+            font-family: var(--font-mono);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed var(--neon-blue);
+            padding: 12px 25px;
+            border-radius: 8px;
+            color: var(--neon-blue);
+            font-weight: bold;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+        }
+
+        .email-glowing-box:hover {
+            background: rgba(0, 240, 255, 0.1);
+            border-style: solid;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+            color: #ffffff;
+            transform: scale(1.02);
         }
 
         /* INTEGRATED CONSOLE SECTION (NOVICE INSTRUCTIONS ADDED) */
@@ -241,15 +349,17 @@
         .console-container {
             background: var(--dark-glass);
             border: 1px solid var(--border-glow);
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 255, 102, 0.05);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .console-header {
             background: rgba(0, 255, 102, 0.03);
             border-bottom: 1px solid rgba(0, 255, 102, 0.1);
-            padding: 12px 20px;
+            padding: 14px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -271,15 +381,17 @@
             font-family: var(--font-mono);
             font-size: 0.75rem;
             color: var(--neon-green);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            font-weight: bold;
         }
 
         .console-body {
-            padding: 20px;
-            height: 300px;
+            padding: 24px;
+            height: 320px;
             overflow-y: auto;
             font-family: var(--font-mono);
             font-size: 0.9rem;
+            background: rgba(0,0,0,0.35);
         }
 
         .console-body::-webkit-scrollbar {
@@ -327,7 +439,7 @@
             color: #ffffff;
             font-family: var(--font-mono);
             font-size: 0.8rem;
-            padding: 6px 16px;
+            padding: 8px 18px;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.2s;
@@ -342,42 +454,48 @@
         /* ANIMATIONS */
         @keyframes pulse {
             0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.4; box-shadow: 0 0 15px var(--neon-green); }
+            50% { transform: scale(1.15); opacity: 0.5; box-shadow: 0 0 15px var(--neon-green); }
             100% { transform: scale(1); opacity: 1; }
         }
 
         /* SMARTPHONE & TABLET COMPATIBILITY */
         @media (max-width: 768px) {
             header {
-                padding: 20px 5%;
+                padding: 18px 5%;
             }
 
             .logo-text {
-                font-size: 1.1rem;
+                font-size: 1.15rem;
+                letter-spacing: 3px;
             }
 
             main {
                 margin: 20px auto;
-                gap: 40px;
+                gap: 35px;
             }
 
             .hero-section {
                 grid-template-columns: 1fr;
-                padding: 20px;
+                padding: 24px;
                 gap: 25px;
                 text-align: center;
             }
 
             .hero-artwork {
                 width: 100%;
-                max-width: 260px;
-                height: 260px;
+                max-width: 240px;
+                height: 240px;
                 margin: 0 auto;
+            }
+
+            .hero-content h2 {
+                font-size: 1.9rem;
             }
 
             .btn-glowing {
                 width: 100%;
                 text-align: center;
+                padding: 14px 20px;
             }
 
             .album-grid {
@@ -385,15 +503,31 @@
                 gap: 20px;
             }
 
+            .contact-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+                gap: 20px;
+            }
+
+            .email-glowing-box {
+                width: 100%;
+                text-align: center;
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+
             .console-body {
-                height: 250px;
+                height: 240px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="ambient-bg"></div>
+    <!-- DIGITAL RAIN ELEMENT -->
+    <canvas id="rainCanvas"></canvas>
+    <div class="ambient-glow"></div>
 
     <header>
         <div class="logo-container">
@@ -472,22 +606,93 @@
                 <button class="action-chip" onclick="executeCommand('bio')">> bio</button>
                 <button class="action-chip" onclick="executeCommand('specs')">> specs</button>
                 <button class="action-chip" onclick="executeCommand('lyrics')">> lyrics</button>
+                <button class="action-chip" onclick="executeCommand('contact')">> contact</button>
                 <button class="action-chip" onclick="executeCommand('clear')">> clear</button>
             </div>
+        </section>
+
+        <!-- SECURE CONTACT PORTAL -->
+        <section class="contact-section">
+            <div class="contact-title">
+                <h3>Secure Communications</h3>
+                <p>For inquiries, bookings, or secure network transmissions.</p>
+            </div>
+            <a href="mailto:contact@pupstabile.com" class="email-glowing-box">[ contact@pupstabile.com ]</a>
         </section>
     </main>
 
     <script>
+        /* -----------------------------------------------------------
+           1. HARDWARE-ACCELERATED HTML5 CANVAS DIGITAL RAIN ENGINE
+           ----------------------------------------------------------- */
+        const canvas = document.getElementById('rainCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set dimensions to match window size exactly
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Character pool for matrix stream
+        const matrixChars = "010101010101ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()_+=[]{}|;:";
+        const fontSize = 14;
+        let columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = Math.random() * -100; // Stagger start heights
+        }
+
+        function drawRain() {
+            // Draw very faint translucent layer to create trailing glow
+            ctx.fillStyle = 'rgba(3, 5, 4, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                // Pick a random character
+                const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                
+                // Introduce subtle color variation (90% green, 10% cyber-blue)
+                if (Math.random() > 0.90) {
+                    ctx.fillStyle = '#00f0ff'; // Cyber Blue
+                } else {
+                    ctx.fillStyle = '#00ff66'; // Neon Green
+                }
+
+                // Render character
+                ctx.fillText(char, i * fontSize, rainDrops[i] * fontSize);
+
+                // Send back to top once drop runs off screen, using a randomized delay
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        }
+
+        // Loop the draw process at ~30 FPS for cinematic, organic speed
+        setInterval(drawRain, 35);
+
+
+        /* -----------------------------------------------------------
+           2. INTERACTIVE COMMAND-LINE CONSOLE ENGINE
+           ----------------------------------------------------------- */
         const cmdInput = document.getElementById('cmdInput');
         const terminalOutput = document.getElementById('terminalOutput');
         const consoleBody = document.getElementById('consoleBody');
 
-        // COMMAND DATABASE
+        // OFFICIAL COMMAND DATABASE (Swapped: Track 3 restored to Living Rent-Free)
         const COMMANDS = {
             help: `Available commands:<br>
                    &nbsp;&nbsp;bio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The artist philosophy.<br>
                    &nbsp;&nbsp;specs&nbsp;&nbsp;&nbsp;&nbsp;- Technical single registration stats.<br>
                    &nbsp;&nbsp;lyrics&nbsp;&nbsp;&nbsp;- Lyric sheets for Scars into Thunder.<br>
+                   &nbsp;&nbsp;contact&nbsp;&nbsp;- Secure communication parameters.<br>
                    &nbsp;&nbsp;album1&nbsp;&nbsp;&nbsp;- Album 1 narrative synopsis.<br>
                    &nbsp;&nbsp;album2&nbsp;&nbsp;&nbsp;- Album 2 narrative synopsis.<br>
                    &nbsp;&nbsp;album3&nbsp;&nbsp;&nbsp;- Album 3 narrative synopsis.<br>
@@ -508,15 +713,22 @@
                      Chorus Hook:<br>
                      "Am I lucid... or is it a paradox?<br>
                      A restless mind trapped inside a digital box!"`,
+
+            contact: `<span style="color: var(--neon-blue)">SECURE COMMUNICATIONS // ESTONIA SECURE LAYER</span><br>
+                      • Primary Admin Gateway: contact@pupstabile.com<br>
+                      • SimpleLogin Routing: Active<br>
+                      • Encryption Protocol: Proton Mail Zero-Knowledge E2EE`,
             
             album1: `<span style="color: var(--neon-pink)">ALBUM 1: SYSTEM CRASH (The Descent)</span><br>
-                     A deep sonic plunge into dark synthwave, emotional chaos, and heavy progressive trance. Releasing on September 29, 2026 as Part 1 of the double album. Fuses high-octane 90s euro-trance with heavy narratives.`,
+                     A deep sonic plunge into dark synthwave, emotional chaos, and heavy progressive trance. Releasing on September 29, 2026. Fuses high-octane 90s euro-trance with heavy narratives. Featuring lead single "Scars into Thunder".`,
                      
             album2: `<span style="color: var(--neon-green)">ALBUM 2: SYSTEM RESTORE (The Rebuild)</span><br>
-                     A clinical, pristine, and engineered rebuild.Ramping from high-voltage 128 BPM electro-house beats into breathtaking Baltic choral arrangements and soaring ASOT-style uplifting trance.`,
+                     A clinical, pristine, and engineered rebuild. Ramping from high-voltage 128 BPM electro-house beats into breathtaking Baltic choral arrangements and soaring ASOT-style uplifting trance.`,
                      
             album3: `<span style="color: var(--neon-blue)">ALBUM 3: SYSTEM ALIGNED (The Internal Resolution)</span><br>
-                     The ultimate internal peace and alignment. Featuring highly-energetic, sarcastic hyperpop critiques, stadium progressive house love anthems, and breathtaking Baltic progressive trance resolutions.`
+                     The ultimate internal peace and alignment. Fusing beautiful melodic progressive house love anthems with deep, personal Tallinn recovery pieces.<br>
+                     <br>
+                     • Featured Track 03: "Living Rent-Free (The Unhinging Truth)" [Restored]`
         };
 
         function executeCommand(cmd) {
