@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pup.STABILE // Official Portal</title>
     <style>
-        /* CORE DESIGN VARIABLES */
+        /* CORE DESIGN VARIABLES (DYNAMICALLY UPDATED BY JS) */
         :root {
-            --neon-green: #00ff66;
+            --neon-accent: #00ff66;
             --neon-blue: #00f0ff;
             --neon-pink: #ff007f;
-            --dark-glass: rgba(10, 15, 13, 0.72);
+            --dark-glass: rgba(10, 15, 13, 0.75);
             --border-glow: rgba(0, 255, 102, 0.15);
             --font-mono: "Courier New", Courier, monospace;
             --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --bg-color: #030504;
         }
 
         * {
@@ -23,7 +24,7 @@
         }
 
         body {
-            background-color: #030504;
+            background-color: var(--bg-color);
             color: #ffffff;
             font-family: var(--font-sans);
             line-height: 1.6;
@@ -31,44 +32,49 @@
             min-height: 100vh;
             padding-bottom: 80px;
             position: relative;
+            transition: background-color 0.8s ease;
         }
 
-        /* HARDWARE-ACCELERATED DIGITAL RAIN CANVAS */
+        /* FIXED LAYER: HTML5 CANVAS DIGITAL RAIN */
         #rainCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
-            opacity: 0.12; /* Kept subtle so text remains highly readable on mobile */
+            z-index: 0; /* Sits above background, below content */
+            opacity: 0.15;
             pointer-events: none;
         }
 
-        /* AMBIENT GLOW BACKDROP */
+        /* FIXED LAYER: AMBIENT GLOW BACKDROP */
         .ambient-glow {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 102, 0.05) 0%, rgba(3, 5, 4, 0.95) 100%);
-            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 102, 0.04) 0%, rgba(3, 5, 4, 0.98) 100%);
+            z-index: -1; /* Sits at the absolute bottom */
             pointer-events: none;
+            transition: background 0.8s ease;
         }
 
-        /* SITE HEADER */
+        /* SITE HEADER (Z-INDEX FORCED TO TOP) */
         header {
+            position: relative;
             width: 100%;
             padding: 25px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(0, 255, 102, 0.08);
-            background: rgba(3, 5, 4, 0.6);
+            background: rgba(3, 5, 4, 0.7);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            z-index: 10;
+            z-index: 5;
+            cursor: pointer;
+            transition: border-color 0.5s ease;
         }
 
         .logo-container {
@@ -80,10 +86,11 @@
         .logo-pulse {
             width: 10px;
             height: 10px;
-            background-color: var(--neon-green);
+            background-color: var(--neon-accent);
             border-radius: 50%;
-            box-shadow: 0 0 12px var(--neon-green);
+            box-shadow: 0 0 12px var(--neon-accent);
             animation: pulse 2s infinite;
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
         }
 
         .logo-text {
@@ -92,20 +99,23 @@
             letter-spacing: 5px;
             font-size: 1.4rem;
             color: #ffffff;
-            text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+            transition: text-shadow 0.5s ease;
         }
 
-        /* MAIN WRAPPER */
+        /* MAIN CONTENT AREA (FORCED ABOVE CANVAS) */
         main {
+            position: relative;
             max-width: 1000px;
             margin: 40px auto;
             padding: 0 20px;
             display: flex;
             flex-direction: column;
             gap: 50px;
+            z-index: 2;
         }
 
-        /* HERO SECTION: LEAD SINGLE (GLASSMORPHIC) */
+        /* HERO SECTION: LEAD SINGLE */
         .hero-section {
             background: var(--dark-glass);
             border: 1px solid var(--border-glow);
@@ -117,39 +127,22 @@
             align-items: center;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 0 50px rgba(0, 255, 102, 0.03), inset 0 0 20px rgba(255,255,255,0.02);
-            position: relative;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(0,255,102,0.05) 0%, rgba(0,240,255,0.05) 100%);
-            pointer-events: none;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.5s ease, box-shadow 0.5s ease;
         }
 
         .hero-artwork {
             width: 280px;
             height: 280px;
             border-radius: 12px;
-            border: 1px solid rgba(0, 255, 102, 0.25);
+            border: 1px solid var(--border-glow);
             background: url('./scars-into-thunder.jpg') no-repeat center center/cover;
-            box-shadow: 0 0 35px rgba(0, 255, 102, 0.2);
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            z-index: 2;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.5s ease;
         }
 
         .hero-artwork:hover {
             transform: scale(1.03) rotate(0.5deg);
-        }
-
-        .hero-content {
-            z-index: 2;
         }
 
         .hero-content h2 {
@@ -157,19 +150,18 @@
             font-weight: 800;
             letter-spacing: -0.5px;
             margin-bottom: 5px;
-            background: linear-gradient(90deg, #ffffff 0%, #a3ffd0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ffffff;
         }
 
         .hero-subtitle {
             font-family: var(--font-mono);
-            color: var(--neon-green);
+            color: var(--neon-accent);
             font-size: 0.9rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 20px;
             font-weight: bold;
+            transition: color 0.5s ease;
         }
 
         .hero-desc {
@@ -180,7 +172,7 @@
 
         .btn-glowing {
             display: inline-block;
-            background: var(--neon-green);
+            background: var(--neon-accent);
             color: #000000;
             padding: 16px 36px;
             font-size: 1rem;
@@ -191,7 +183,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 0 25px rgba(0, 255, 102, 0.3);
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.2);
         }
 
         .btn-glowing:hover {
@@ -211,13 +203,14 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            transition: color 0.5s ease;
         }
 
         .section-title::after {
             content: '';
             flex-grow: 1;
             height: 1px;
-            background: linear-gradient(90deg, rgba(0, 240, 255, 0.2) 0%, transparent 100%);
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.15) 0%, transparent 100%);
         }
 
         .album-grid {
@@ -239,9 +232,9 @@
         }
 
         .album-card:hover {
-            border-color: rgba(0, 240, 255, 0.3);
+            border-color: var(--neon-accent);
             transform: translateY(-6px);
-            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 255, 102, 0.05);
         }
 
         .album-cover {
@@ -254,7 +247,7 @@
         }
 
         .album-card:hover .album-cover {
-            border-color: var(--neon-blue);
+            border-color: var(--neon-accent);
         }
 
         #ac-1 { background: url('./album1.jpg') no-repeat center center/cover; }
@@ -276,7 +269,121 @@
             letter-spacing: 1px;
         }
 
-        /* INTEGRATED SECURE CONTACT PORTAL */
+        /* INTEGRATED CONSOLE SECTION */
+        .console-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .console-container {
+            background: var(--dark-glass);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: border-color 0.5s ease;
+        }
+
+        .console-header {
+            background: rgba(0, 255, 102, 0.03);
+            border-bottom: 1px solid rgba(0, 255, 102, 0.1);
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .window-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--neon-accent);
+            letter-spacing: 3px;
+            font-weight: bold;
+            transition: color 0.5s ease;
+        }
+
+        .console-body {
+            padding: 24px;
+            height: 320px;
+            overflow-y: auto;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.45);
+        }
+
+        .console-body::-webkit-scrollbar {
+            width: 4px;
+        }
+        .console-body::-webkit-scrollbar-thumb {
+            background: var(--border-glow);
+        }
+
+        .terminal-output {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .command-prompt-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .input-element {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            width: 100%;
+            outline: none;
+            caret-color: var(--neon-accent);
+        }
+
+        /* QUICK ACTION CHIPS */
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .action-chip {
+            background: rgba(0, 255, 102, 0.03);
+            border: 1px solid rgba(0, 255, 102, 0.15);
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-chip:hover {
+            border-color: var(--neon-accent);
+            color: var(--neon-accent);
+            background: rgba(0, 255, 102, 0.08);
+        }
+
+        /* SECURE CONTACT PORTAL */
         .contact-section {
             background: var(--dark-glass);
             border: 1px solid rgba(0, 240, 255, 0.15);
@@ -289,19 +396,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,240,255,0.02) 0%, transparent 100%);
-            pointer-events: none;
+            transition: border-color 0.5s ease;
         }
 
         .contact-title h3 {
@@ -339,197 +434,36 @@
             transform: scale(1.02);
         }
 
-        /* INTEGRATED CONSOLE SECTION (NOVICE INSTRUCTIONS ADDED) */
-        .console-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .console-container {
-            background: var(--dark-glass);
-            border: 1px solid var(--border-glow);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .console-header {
-            background: rgba(0, 255, 102, 0.03);
-            border-bottom: 1px solid rgba(0, 255, 102, 0.1);
-            padding: 14px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .window-dots {
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(0, 255, 102, 0.2);
-        }
-
-        .window-title {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--neon-green);
-            letter-spacing: 3px;
-            font-weight: bold;
-        }
-
-        .console-body {
-            padding: 24px;
-            height: 320px;
-            overflow-y: auto;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            background: rgba(0,0,0,0.35);
-        }
-
-        .console-body::-webkit-scrollbar {
-            width: 4px;
-        }
-        .console-body::-webkit-scrollbar-thumb {
-            background: var(--border-glow);
-        }
-
-        .terminal-output {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .command-prompt-line {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .input-element {
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            width: 100%;
-            outline: none;
-            caret-color: var(--neon-green);
-        }
-
-        /* QUICK ACTION CHIPS */
-        .quick-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .action-chip {
-            background: rgba(0, 255, 102, 0.03);
-            border: 1px solid rgba(0, 255, 102, 0.15);
-            color: #ffffff;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .action-chip:hover {
-            border-color: var(--neon-green);
-            color: var(--neon-green);
-            background: rgba(0, 255, 102, 0.08);
-        }
-
         /* ANIMATIONS */
         @keyframes pulse {
             0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.15); opacity: 0.5; box-shadow: 0 0 15px var(--neon-green); }
+            50% { transform: scale(1.15); opacity: 0.5; box-shadow: 0 0 15px var(--neon-accent); }
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* SMARTPHONE & TABLET COMPATIBILITY */
+        /* RESPONSIVE LAYOUT */
         @media (max-width: 768px) {
-            header {
-                padding: 18px 5%;
-            }
-
-            .logo-text {
-                font-size: 1.15rem;
-                letter-spacing: 3px;
-            }
-
-            main {
-                margin: 20px auto;
-                gap: 35px;
-            }
-
-            .hero-section {
-                grid-template-columns: 1fr;
-                padding: 24px;
-                gap: 25px;
-                text-align: center;
-            }
-
-            .hero-artwork {
-                width: 100%;
-                max-width: 240px;
-                height: 240px;
-                margin: 0 auto;
-            }
-
-            .hero-content h2 {
-                font-size: 1.9rem;
-            }
-
-            .btn-glowing {
-                width: 100%;
-                text-align: center;
-                padding: 14px 20px;
-            }
-
-            .album-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .contact-section {
-                flex-direction: column;
-                text-align: center;
-                padding: 25px;
-                gap: 20px;
-            }
-
-            .email-glowing-box {
-                width: 100%;
-                text-align: center;
-                padding: 12px 15px;
-                font-size: 0.95rem;
-            }
-
-            .console-body {
-                height: 240px;
-            }
+            header { padding: 18px 5%; }
+            .logo-text { font-size: 1.15rem; letter-spacing: 3px; }
+            main { margin: 20px auto; gap: 35px; }
+            .hero-section { grid-template-columns: 1fr; padding: 24px; gap: 25px; text-align: center; }
+            .hero-artwork { width: 100%; max-width: 240px; height: 240px; margin: 0 auto; }
+            .hero-content h2 { font-size: 1.9rem; }
+            .btn-glowing { width: 100%; text-align: center; padding: 14px 20px; }
+            .album-grid { grid-template-columns: 1fr; gap: 20px; }
+            .contact-section { flex-direction: column; text-align: center; padding: 25px; gap: 20px; }
+            .email-glowing-box { width: 100%; text-align: center; }
+            .console-body { height: 240px; }
         }
     </style>
 </head>
-<body>
+<body id="pageBody">
 
-    <!-- DIGITAL RAIN ELEMENT -->
+    <!-- CANVAS & ATMOSPHERIC BLURS -->
     <canvas id="rainCanvas"></canvas>
-    <div class="ambient-glow"></div>
+    <div class="ambient-glow" id="glowOverlay"></div>
 
-    <header>
+    <header onclick="resetMainframe()">
         <div class="logo-container">
             <div class="logo-pulse"></div>
             <div class="logo-text">pup.STABILE</div>
@@ -539,34 +473,34 @@
 
     <main>
         <!-- HERO SECTION: THE LEAD SINGLE -->
-        <section class="hero-section">
+        <section class="hero-section" id="heroSec">
             <div class="hero-artwork"></div>
             <div class="hero-content">
                 <div class="hero-subtitle">NEW SINGLE // OUT NOW</div>
-                <h2>Scars into Thunder</h2>
+                <h2 id="heroTitle">Scars into Thunder</h2>
                 <p class="hero-desc">An architectural cyber-trance power ballad fusing dark, brooding 80s synthwave with modern Baltic progressive house. Fusing raw analog synths with human recovery.</p>
-                <a href="https://release.landr.com/991048977563" class="btn-glowing" target="_blank">> PRE-SAVE SINGLE</a>
+                <a href="https://release.landr.com/991048977563" class="btn-glowing" id="heroBtn" target="_blank">> PRE-SAVE SINGLE</a>
             </div>
         </section>
 
         <!-- THE ALBUM TRILOGY GRAPHICS -->
         <section>
-            <div class="section-title">THE SYSTEM TRILOGY</div>
+            <div class="section-title" id="trilogyTitle">THE SYSTEM TRILOGY</div>
             <div class="album-grid">
                 <!-- Album 1 -->
-                <div class="album-card" onclick="executeCommand('album1')">
+                <div class="album-card" id="card1" onclick="executeCommand('album1')">
                     <div class="album-cover" id="ac-1"></div>
                     <div class="album-name">Album 1: System Crash</div>
                     <div class="album-meta">The Descent // 12 Tracks</div>
                 </div>
                 <!-- Album 2 -->
-                <div class="album-card" onclick="executeCommand('album2')">
+                <div class="album-card" id="card2" onclick="executeCommand('album2')">
                     <div class="album-cover" id="ac-2"></div>
                     <div class="album-name">Album 2: System Restore</div>
                     <div class="album-meta">The Rebuild // 12 Tracks</div>
                 </div>
                 <!-- Album 3 -->
-                <div class="album-card" onclick="executeCommand('album3')">
+                <div class="album-card" id="card3" onclick="executeCommand('album3')">
                     <div class="album-cover" id="ac-3"></div>
                     <div class="album-name">Album 3: System Aligned</div>
                     <div class="album-meta">The Resolution // 12 Tracks</div>
@@ -576,25 +510,25 @@
 
         <!-- THE INTERACTIVE DEVELOPER CONSOLE -->
         <section class="console-section">
-            <div class="section-title">MAINFRAME UTILITY [OPTIONAL DEV TOOL]</div>
-            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: -10px;">Tap a button below or type a custom command directly into the console to extract secret track data.</p>
+            <div class="section-title" id="consoleTitle">MAINFRAME UTILITY [INTEGRATED TERMINAL]</div>
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: -10px;">Tap an album card above or type a command in the console to decrypt track structures.</p>
             
-            <div class="console-container">
+            <div class="console-container" id="terminalContainer">
                 <div class="console-header">
                     <div class="window-dots">
                         <div class="dot"></div>
                         <div class="dot"></div>
                         <div class="dot"></div>
                     </div>
-                    <div class="window-title">TERMINAL // pup.STABILE</div>
+                    <div class="window-title" id="windowTitle">TERMINAL // pup.STABILE</div>
                 </div>
 
                 <div class="console-body" id="consoleBody">
                     <div class="terminal-output" id="terminalOutput">
-                        <div><span style="color: var(--neon-green)">[SYSTEM SECURE]</span> Terminal active... Type <span style="color: var(--neon-blue)">'help'</span> for instructions.</div>
+                        <div><span style="color: #00ff66">[SYSTEM SECURE]</span> Mainframe active... Type <span style="color: #00f0ff">'help'</span> for instructions.</div>
                     </div>
                     <div class="command-prompt-line">
-                        <span style="color: var(--neon-green)">guest@pupstabile:~$</span>
+                        <span style="color: var(--neon-accent)" id="promptSymbol">guest@pupstabile:~$</span>
                         <input type="text" class="input-element" id="cmdInput" autocomplete="off" placeholder="type a command..." autofocus>
                     </div>
                 </div>
@@ -612,12 +546,12 @@
         </section>
 
         <!-- SECURE CONTACT PORTAL -->
-        <section class="contact-section">
+        <section class="contact-section" id="contactSec">
             <div class="contact-title">
                 <h3>Secure Communications</h3>
                 <p>For inquiries, bookings, or secure network transmissions.</p>
             </div>
-            <a href="mailto:contact@pupstabile.com" class="email-glowing-box">[ contact@pupstabile.com ]</a>
+            <a href="mailto:contact@pupstabile.com" class="email-glowing-box" id="contactEmail">[ contact@pupstabile.com ]</a>
         </section>
     </main>
 
@@ -628,7 +562,6 @@
         const canvas = document.getElementById('rainCanvas');
         const ctx = canvas.getContext('2d');
 
-        // Set dimensions to match window size exactly
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -636,57 +569,100 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Character pool for matrix stream
         const matrixChars = "010101010101ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()_+=[]{}|;:";
         const fontSize = 14;
         let columns = canvas.width / fontSize;
 
         const rainDrops = [];
         for (let x = 0; x < columns; x++) {
-            rainDrops[x] = Math.random() * -100; // Stagger start heights
+            rainDrops[x] = Math.random() * -100;
         }
 
+        // Global color variable dynamically updated by theme shifting engine
+        let rainColor = '#00ff66'; 
+
         function drawRain() {
-            // Draw very faint translucent layer to create trailing glow
             ctx.fillStyle = 'rgba(3, 5, 4, 0.08)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < rainDrops.length; i++) {
-                // Pick a random character
                 const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
                 
-                // Introduce subtle color variation (90% green, 10% cyber-blue)
-                if (Math.random() > 0.90) {
-                    ctx.fillStyle = '#00f0ff'; // Cyber Blue
-                } else {
-                    ctx.fillStyle = '#00ff66'; // Neon Green
-                }
-
-                // Render character
+                ctx.fillStyle = rainColor;
                 ctx.fillText(char, i * fontSize, rainDrops[i] * fontSize);
 
-                // Send back to top once drop runs off screen, using a randomized delay
                 if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     rainDrops[i] = 0;
                 }
                 rainDrops[i]++;
             }
         }
-
-        // Loop the draw process at ~30 FPS for cinematic, organic speed
         setInterval(drawRain, 35);
 
 
         /* -----------------------------------------------------------
-           2. INTERACTIVE COMMAND-LINE CONSOLE ENGINE
+           2. THE DYNAMIC MAINFRAME THEME-SHIFTING ENGINE
+           ----------------------------------------------------------- */
+        const rootStyles = document.documentElement;
+
+        function applyGlitchTheme(theme) {
+            const glowOverlay = document.getElementById('glowOverlay');
+            
+            if (theme === 'crash') {
+                // RED/CRIMSON GLITCH THEME
+                rainColor = '#ff0055';
+                rootStyles.style.setProperty('--neon-accent', '#ff0055');
+                rootStyles.style.setProperty('--neon-blue', '#ff00aa');
+                rootStyles.style.setProperty('--border-glow', 'rgba(255, 0, 85, 0.35)');
+                rootStyles.style.setProperty('--bg-color', '#090104');
+                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(255, 0, 85, 0.1) 0%, rgba(9, 1, 4, 0.98) 100%)";
+            } 
+            else if (theme === 'restore') {
+                // AMBER/RETRO GOLD THEME
+                rainColor = '#ffaa00';
+                rootStyles.style.setProperty('--neon-accent', '#ffaa00');
+                rootStyles.style.setProperty('--neon-blue', '#ffa300');
+                rootStyles.style.setProperty('--border-glow', 'rgba(255, 170, 0, 0.3)');
+                rootStyles.style.setProperty('--bg-color', '#070401');
+                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(255, 170, 0, 0.08) 0%, rgba(7, 4, 1, 0.98) 100%)";
+            } 
+            else if (theme === 'aligned') {
+                // CYAN/TEAL RESOLUTION THEME
+                rainColor = '#00f0ff';
+                rootStyles.style.setProperty('--neon-accent', '#00f0ff');
+                rootStyles.style.setProperty('--neon-blue', '#00ffd0');
+                rootStyles.style.setProperty('--border-glow', 'rgba(0, 240, 255, 0.35)');
+                rootStyles.style.setProperty('--bg-color', '#010508');
+                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.1) 0%, rgba(1, 5, 8, 0.98) 100%)";
+            }
+        }
+
+        function resetMainframe() {
+            const glowOverlay = document.getElementById('glowOverlay');
+            rainColor = '#00ff66';
+            rootStyles.style.setProperty('--neon-accent', '#00ff66');
+            rootStyles.style.setProperty('--neon-blue', '#00f0ff');
+            rootStyles.style.setProperty('--border-glow', 'rgba(0, 255, 102, 0.15)');
+            rootStyles.style.setProperty('--bg-color', '#030504');
+            glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(0, 255, 102, 0.04) 0%, rgba(3, 5, 4, 0.98) 100%)";
+            
+            // Console print confirmation
+            const response = document.createElement('div');
+            response.innerHTML = `<span style="color: #00ff66">[SYSTEM RESET] Mainframe returned to safe green state.</span>`;
+            terminalOutput.appendChild(response);
+            consoleBody.scrollTop = consoleBody.scrollHeight;
+        }
+
+
+        /* -----------------------------------------------------------
+           3. INTERACTIVE TERMINAL DATABASE & COMMAND HANDLER
            ----------------------------------------------------------- */
         const cmdInput = document.getElementById('cmdInput');
         const terminalOutput = document.getElementById('terminalOutput');
         const consoleBody = document.getElementById('consoleBody');
 
-        // OFFICIAL COMMAND DATABASE (Swapped: Track 3 restored to Living Rent-Free)
         const COMMANDS = {
             help: `Available commands:<br>
                    &nbsp;&nbsp;bio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The artist philosophy.<br>
@@ -698,10 +674,10 @@
                    &nbsp;&nbsp;album3&nbsp;&nbsp;&nbsp;- Album 3 narrative synopsis.<br>
                    &nbsp;&nbsp;clear&nbsp;&nbsp;&nbsp;&nbsp;- Clear screen buffer.`,
             
-            bio: `<span style="color: var(--neon-green)">ARTIST BIO // pup.STABILE</span><br>
+            bio: `<span style="color: var(--neon-accent)">ARTIST BIO // pup.STABILE</span><br>
                   Formed in Tallinn, Estonia. pup.STABILE maps highly personal emotional survival onto mechanical and software-based structures. Melodic progressive house and synthwave featuring rare close-mic E2 to C#4 bass-baritone vocals.`,
             
-            specs: `<span style="color: var(--neon-blue)">REGISTRATION METADATA // SCARS INTO THUNDER</span><br>
+            specs: `<span style="color: #00f0ff">REGISTRATION METADATA // SCARS INTO THUNDER</span><br>
                     • Title: Scars into Thunder<br>
                     • UPC: 991048977563<br>
                     • ISRC: CAGOO2698921<br>
@@ -714,7 +690,7 @@
                      "Am I lucid... or is it a paradox?<br>
                      A restless mind trapped inside a digital box!"`,
 
-            contact: `<span style="color: var(--neon-blue)">SECURE COMMUNICATIONS // ESTONIA SECURE LAYER</span><br>
+            contact: `<span style="color: #00f0ff">SECURE COMMUNICATIONS // ESTONIA SECURE LAYER</span><br>
                       • Primary Admin Gateway: contact@pupstabile.com<br>
                       • SimpleLogin Routing: Active<br>
                       • Encryption Protocol: Proton Mail Zero-Knowledge E2EE`,
@@ -722,10 +698,10 @@
             album1: `<span style="color: var(--neon-pink)">ALBUM 1: SYSTEM CRASH (The Descent)</span><br>
                      A deep sonic plunge into dark synthwave, emotional chaos, and heavy progressive trance. Releasing on September 29, 2026. Fuses high-octane 90s euro-trance with heavy narratives. Featuring lead single "Scars into Thunder".`,
                      
-            album2: `<span style="color: var(--neon-green)">ALBUM 2: SYSTEM RESTORE (The Rebuild)</span><br>
+            album2: `<span style="color: #ffaa00">ALBUM 2: SYSTEM RESTORE (The Rebuild)</span><br>
                      A clinical, pristine, and engineered rebuild. Ramping from high-voltage 128 BPM electro-house beats into breathtaking Baltic choral arrangements and soaring ASOT-style uplifting trance.`,
                      
-            album3: `<span style="color: var(--neon-blue)">ALBUM 3: SYSTEM ALIGNED (The Internal Resolution)</span><br>
+            album3: `<span style="color: #00f0ff">ALBUM 3: SYSTEM ALIGNED (The Internal Resolution)</span><br>
                      The ultimate internal peace and alignment. Fusing beautiful melodic progressive house love anthems with deep, personal Tallinn recovery pieces.<br>
                      <br>
                      • Featured Track 03: "Living Rent-Free (The Unhinging Truth)" [Restored]`
@@ -735,12 +711,17 @@
             cmd = cmd.trim().toLowerCase();
             if (cmd === '') return;
 
+            // Trigger theme shifts on specific commands
+            if (cmd === 'album1') applyGlitchTheme('crash');
+            if (cmd === 'album2') applyGlitchTheme('restore');
+            if (cmd === 'album3') applyGlitchTheme('aligned');
+
             // Log echo line
             const echo = document.createElement('div');
-            echo.innerHTML = `<span style="color: var(--neon-green)">guest@pupstabile:~$</span> <span style="color: #ffffff">${cmd}</span>`;
+            echo.innerHTML = `<span style="color: var(--neon-accent)">guest@pupstabile:~$</span> <span style="color: #ffffff">${cmd}</span>`;
             terminalOutput.appendChild(echo);
 
-            // Handle logic
+            // Handle output
             const response = document.createElement('div');
             response.style.marginTop = '5px';
             response.style.marginBottom = '15px';
@@ -755,6 +736,9 @@
                 terminalOutput.appendChild(response);
             }
 
+            // Smooth scroll to terminal container
+            document.getElementById('terminalContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
             consoleBody.scrollTop = consoleBody.scrollHeight;
             cmdInput.value = '';
         }
