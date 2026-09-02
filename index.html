@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pup.STABILE // Official Portal</title>
     <style>
-        /* CORE DESIGN VARIABLES (DYNAMICALLY UPDATED BY JS) */
+        /* CORE DESIGN VARIABLES */
         :root {
             --neon-accent: #00ff66;
             --neon-blue: #00f0ff;
             --neon-pink: #ff007f;
-            --dark-glass: rgba(10, 15, 13, 0.75);
+            --dark-glass: rgba(10, 15, 13, 0.78);
             --border-glow: rgba(0, 255, 102, 0.15);
             --font-mono: "Courier New", Courier, monospace;
             --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -35,15 +35,15 @@
             transition: background-color 0.8s ease;
         }
 
-        /* FIXED LAYER: HTML5 CANVAS DIGITAL RAIN */
+        /* FIXED LAYER: BRIGHTENED DIGITAL RAIN */
         #rainCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0; /* Sits above background, below content */
-            opacity: 0.15;
+            z-index: 0; /* Placed cleanly above background, below glass panels */
+            opacity: 0.45; /* Boosted from 0.15 to prevent desktop browser wash-out */
             pointer-events: none;
         }
 
@@ -55,12 +55,12 @@
             width: 100%;
             height: 100%;
             background: radial-gradient(circle at 50% 50%, rgba(0, 255, 102, 0.04) 0%, rgba(3, 5, 4, 0.98) 100%);
-            z-index: -1; /* Sits at the absolute bottom */
+            z-index: -1; 
             pointer-events: none;
             transition: background 0.8s ease;
         }
 
-        /* SITE HEADER (Z-INDEX FORCED TO TOP) */
+        /* SITE HEADER */
         header {
             position: relative;
             width: 100%;
@@ -100,10 +100,9 @@
             font-size: 1.4rem;
             color: #ffffff;
             text-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
-            transition: text-shadow 0.5s ease;
         }
 
-        /* MAIN CONTENT AREA (FORCED ABOVE CANVAS) */
+        /* MAIN CONTENT AREA */
         main {
             position: relative;
             max-width: 1000px;
@@ -112,10 +111,10 @@
             display: flex;
             flex-direction: column;
             gap: 50px;
-            z-index: 2;
+            z-index: 2; /* Forces entire content panel above canvas rain stream */
         }
 
-        /* HERO SECTION: LEAD SINGLE */
+        /* HERO SECTION */
         .hero-section {
             background: var(--dark-glass);
             border: 1px solid var(--border-glow);
@@ -127,7 +126,7 @@
             align-items: center;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
             transition: border-color 0.5s ease, box-shadow 0.5s ease;
         }
 
@@ -192,7 +191,7 @@
             transform: translateY(-2px);
         }
 
-        /* THE TRILOGY SHOWCASE (3 ALBUMS) */
+        /* THE TRILOGY SHOWCASE */
         .section-title {
             font-family: var(--font-mono);
             font-size: 1rem;
@@ -557,37 +556,43 @@
 
     <script>
         /* -----------------------------------------------------------
-           1. HARDWARE-ACCELERATED HTML5 CANVAS DIGITAL RAIN ENGINE
+           1. FIXED & BRIGHTENED DIGITAL RAIN ENGINE
            ----------------------------------------------------------- */
         const canvas = document.getElementById('rainCanvas');
         const ctx = canvas.getContext('2d');
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
         const matrixChars = "010101010101ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()_+=[]{}|;:";
         const fontSize = 14;
-        let columns = canvas.width / fontSize;
-
+        let columns = 0;
         const rainDrops = [];
-        for (let x = 0; x < columns; x++) {
-            rainDrops[x] = Math.random() * -100;
-        }
-
-        // Global color variable dynamically updated by theme shifting engine
         let rainColor = '#00ff66'; 
 
+        // Bulletproof viewport handler solving late Chrome/Firefox paint states
+        function resizeCanvas() {
+            canvas.width = window.innerWidth || document.documentElement.clientWidth;
+            canvas.height = window.innerHeight || document.documentElement.clientHeight;
+            columns = Math.floor(canvas.width / fontSize);
+
+            while (rainDrops.length < columns) {
+                rainDrops.push(Math.random() * -100);
+            }
+        }
+
+        // Initialize immediately
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Secondary trigger in case window measurements delay during load
+        setTimeout(resizeCanvas, 100);
+
         function drawRain() {
-            ctx.fillStyle = 'rgba(3, 5, 4, 0.08)';
+            // Speed up trail fading slightly with 0.12 alpha for higher contrast
+            ctx.fillStyle = 'rgba(3, 5, 4, 0.12)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.font = fontSize + 'px monospace';
 
-            for (let i = 0; i < rainDrops.length; i++) {
+            for (let i = 0; i < columns; i++) {
                 const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
                 
                 ctx.fillStyle = rainColor;
@@ -599,6 +604,8 @@
                 rainDrops[i]++;
             }
         }
+        
+        // Loop the script
         setInterval(drawRain, 35);
 
 
@@ -611,31 +618,28 @@
             const glowOverlay = document.getElementById('glowOverlay');
             
             if (theme === 'crash') {
-                // RED/CRIMSON GLITCH THEME
                 rainColor = '#ff0055';
                 rootStyles.style.setProperty('--neon-accent', '#ff0055');
                 rootStyles.style.setProperty('--neon-blue', '#ff00aa');
                 rootStyles.style.setProperty('--border-glow', 'rgba(255, 0, 85, 0.35)');
                 rootStyles.style.setProperty('--bg-color', '#090104');
-                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(255, 0, 85, 0.1) 0%, rgba(9, 1, 4, 0.98) 100%)";
+                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(255, 0, 85, 0.12) 0%, rgba(9, 1, 4, 0.98) 100%)";
             } 
             else if (theme === 'restore') {
-                // AMBER/RETRO GOLD THEME
                 rainColor = '#ffaa00';
                 rootStyles.style.setProperty('--neon-accent', '#ffaa00');
                 rootStyles.style.setProperty('--neon-blue', '#ffa300');
                 rootStyles.style.setProperty('--border-glow', 'rgba(255, 170, 0, 0.3)');
                 rootStyles.style.setProperty('--bg-color', '#070401');
-                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(255, 170, 0, 0.08) 0%, rgba(7, 4, 1, 0.98) 100%)";
+                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(255, 170, 0, 0.1) 0%, rgba(7, 4, 1, 0.98) 100%)";
             } 
             else if (theme === 'aligned') {
-                // CYAN/TEAL RESOLUTION THEME
                 rainColor = '#00f0ff';
                 rootStyles.style.setProperty('--neon-accent', '#00f0ff');
                 rootStyles.style.setProperty('--neon-blue', '#00ffd0');
                 rootStyles.style.setProperty('--border-glow', 'rgba(0, 240, 255, 0.35)');
                 rootStyles.style.setProperty('--bg-color', '#010508');
-                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.1) 0%, rgba(1, 5, 8, 0.98) 100%)";
+                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.12) 0%, rgba(1, 5, 8, 0.98) 100%)";
             }
         }
 
@@ -648,9 +652,8 @@
             rootStyles.style.setProperty('--bg-color', '#030504');
             glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(0, 255, 102, 0.04) 0%, rgba(3, 5, 4, 0.98) 100%)";
             
-            // Console print confirmation
             const response = document.createElement('div');
-            response.innerHTML = `<span style="color: #00ff66">[SYSTEM RESET] Mainframe returned to safe green state.</span>`;
+            response.innerHTML = `<span style="color: #00ff66">[SYSTEM RESET] Mainframe returned to default green state.</span>`;
             terminalOutput.appendChild(response);
             consoleBody.scrollTop = consoleBody.scrollHeight;
         }
@@ -711,17 +714,14 @@
             cmd = cmd.trim().toLowerCase();
             if (cmd === '') return;
 
-            // Trigger theme shifts on specific commands
             if (cmd === 'album1') applyGlitchTheme('crash');
             if (cmd === 'album2') applyGlitchTheme('restore');
             if (cmd === 'album3') applyGlitchTheme('aligned');
 
-            // Log echo line
             const echo = document.createElement('div');
             echo.innerHTML = `<span style="color: var(--neon-accent)">guest@pupstabile:~$</span> <span style="color: #ffffff">${cmd}</span>`;
             terminalOutput.appendChild(echo);
 
-            // Handle output
             const response = document.createElement('div');
             response.style.marginTop = '5px';
             response.style.marginBottom = '15px';
@@ -736,7 +736,6 @@
                 terminalOutput.appendChild(response);
             }
 
-            // Smooth scroll to terminal container
             document.getElementById('terminalContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
             
             consoleBody.scrollTop = consoleBody.scrollHeight;
