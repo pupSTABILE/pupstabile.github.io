@@ -165,7 +165,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 100px;
+            padding-top: 110px;
             padding-bottom: 60px;
         }
 
@@ -179,7 +179,7 @@
         .hero-text {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
         }
 
         .badge-terminal {
@@ -227,10 +227,58 @@
             filter: drop-shadow(var(--glow-cyan));
         }
 
+        /* NEW INLINE PROFILE POSITIONING */
+        .profile-wrapper {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 10px 0;
+        }
+
+        .profile-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-orange), var(--accent-purple));
+            filter: blur(15px);
+            opacity: 0.45;
+            animation: rotateGlow 8s infinite linear;
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: var(--glow-cyan);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .profile-container:hover .profile-img {
+            transform: scale(1.05);
+        }
+
         .hero-subtitle {
             font-size: 1.25rem;
             color: var(--text-muted);
             font-weight: 400;
+            margin-top: 5px;
         }
 
         .hero-desc {
@@ -286,53 +334,6 @@
             border-color: var(--accent-cyan);
             box-shadow: var(--glow-cyan);
             transform: translateY(-2px);
-        }
-
-        /* Profile Frame Graphic */
-        .profile-wrapper {
-            position: relative;
-            width: 380px;
-            height: 380px;
-            margin: 0 auto;
-        }
-
-        .profile-glow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-orange), var(--accent-purple));
-            filter: blur(25px);
-            opacity: 0.45;
-            animation: rotateGlow 8s infinite linear;
-        }
-
-        @keyframes rotateGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .profile-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 2px solid var(--border-color);
-            overflow: hidden;
-            box-shadow: var(--glow-cyan);
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.5s ease;
-        }
-
-        .profile-container:hover .profile-img {
-            transform: scale(1.05);
         }
 
         /* Sections General Setup */
@@ -799,14 +800,6 @@
             cursor: default;
         }
 
-        .tag:hover {
-            background: rgba(0, 242, 242, 0.05);
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            box-shadow: var(--glow-cyan);
-            transform: translateY(-2px);
-        }
-
         /* Secure Single-Intake Portal Section */
         .connect-grid {
             display: grid;
@@ -942,6 +935,9 @@
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
+            .profile-wrapper {
+                margin: 20px auto;
+            }
         }
 
         @media (max-width: 768px) {
@@ -966,8 +962,8 @@
                 right: auto !important;
             }
             .profile-wrapper {
-                width: 280px;
-                height: 280px;
+                width: 200px;
+                height: 200px;
             }
         }
     </style>
@@ -997,7 +993,17 @@
         <div class="container hero-grid">
             <div class="hero-text">
                 <div class="badge-terminal"><span></span>VERIFICATION SEQUENCE ACTIVE</div>
+                
                 <h1>pup.<span>STABILE</span></h1>
+                
+                <!-- NEW POSITIONED INLINE PROFILE FRAME -->
+                <div class="profile-wrapper">
+                    <div class="profile-glow"></div>
+                    <div class="profile-container">
+                        <img src="pupstabile_profile_photo_v2.png" alt="pup.STABILE" class="profile-img">
+                    </div>
+                </div>
+
                 <p class="hero-subtitle mono">ARCHITECTURAL CYBER-TRANCE // ESTONIAN REBOOT</p>
                 <p class="hero-desc">
                     Fusing the driving basslines of progressive house with raw bass-baritone vocals, pup.STABILE utilizes the clinical metadata of software design to blueprint human survival. Written in Tallinn, Estonia.
@@ -1395,6 +1401,39 @@
         // Run the telemetry engine loop every 2.5 seconds
         setInterval(updateTelemetry, 2500);
 
+        // Interactive Random Color Hover Event for Verified Inspiration Tags
+        const tags = document.querySelectorAll('.tag');
+        const neonColors = [
+            '#00f2f2', // Cyber Cyan
+            '#ff5500', // Neon Orange
+            '#9d4edd', // Electric Purple
+            '#ffd700', // Digital Gold
+            '#39ff14', // Matrix Lime
+            '#ff007f', // Cyber Pink
+            '#00ff66'  // Hyper Green
+        ];
+
+        tags.forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                // Select a random neon color that is different from current text
+                const randomColor = neonColors[Math.floor(Math.random() * neonColors.length)];
+                tag.style.borderColor = randomColor;
+                tag.style.color = randomColor;
+                tag.style.boxShadow = `0 0 15px ${randomColor}`;
+                tag.style.background = 'rgba(255, 255, 255, 0.05)';
+                tag.style.transform = 'translateY(-2px)';
+            });
+
+            tag.addEventListener('mouseleave', () => {
+                // Revert to original styling cleanly
+                tag.style.borderColor = 'rgba(255, 255, 255, 0.06)';
+                tag.style.color = 'var(--text-muted)';
+                tag.style.boxShadow = 'none';
+                tag.style.background = 'rgba(255, 255, 255, 0.02)';
+                tag.style.transform = 'none';
+            });
+        });
+
         // Smooth scroll implementation
         document.querySelectorAll('nav a, .hero-cta a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1415,7 +1454,7 @@
         // Copy SimpleLogin email alias function
         function copyAlias(email) {
             navigator.clipboard.writeText(email).then(() => {
-                alert(`Relay email copied: ${email}`);
+                alert(`Contact gateway address copied: ${email}`);
             }).catch(err => {
                 console.error('Copy failed: ', err);
             });
