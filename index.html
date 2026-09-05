@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pup.STABILE | Architectural Cyber-Trance // Official Portal</title>
     
-    <!-- Google Fonts for futuristic, sharp technical typography -->
+    <!-- Google Fonts for sharp technical typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-dark: #070a13;
-            --bg-panel: #0d1222;
+            --bg-dark: #05070c;
+            --bg-glass: rgba(10, 14, 26, 0.45);
+            --bg-glass-hover: rgba(16, 22, 42, 0.65);
             --accent-cyan: #00f2f2;
             --accent-orange: #ff5500;
             --accent-purple: #9d4edd;
@@ -21,7 +22,10 @@
             --text-main: #f0f3f8;
             --text-muted: #8b9bb4;
             --border-color: rgba(0, 242, 242, 0.15);
-            --grid-line: rgba(0, 242, 242, 0.03);
+            --border-hover: rgba(0, 242, 242, 0.4);
+            --glow-cyan: 0 0 15px rgba(0, 242, 242, 0.25);
+            --glow-orange: 0 0 15px rgba(255, 85, 0, 0.25);
+            --glow-purple: 0 0 15px rgba(157, 78, 221, 0.25);
         }
 
         * {
@@ -30,16 +34,41 @@
             padding: 0;
         }
 
+        /* Custom Scrollbar for Cyberpunk Vibe */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 242, 242, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+            box-shadow: var(--glow-cyan);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: 
-                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-            background-size: 40px 40px;
+            position: relative;
+        }
+
+        /* Fullscreen Matrix Background Canvas */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.25;
         }
 
         h1, h2, h3, h4, .font-tech {
@@ -68,14 +97,26 @@
             padding: 0 24px;
         }
 
-        /* Top Navigation */
+        /* Glassmorphism Rule */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Top Navigation Header */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(7, 10, 19, 0.85);
+            background: rgba(5, 7, 12, 0.7);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
         }
@@ -96,6 +137,7 @@
 
         .brand span {
             color: var(--accent-cyan);
+            text-shadow: var(--glow-cyan);
         }
 
         nav ul {
@@ -114,9 +156,10 @@
 
         nav ul a:hover, nav ul a.active {
             color: var(--accent-cyan);
+            text-shadow: var(--glow-cyan);
         }
 
-        /* Hero Section */
+        /* Hero Sector */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -124,13 +167,12 @@
             align-items: center;
             padding-top: 100px;
             padding-bottom: 60px;
-            border-bottom: 1px solid var(--border-color);
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 48px;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 60px;
             align-items: center;
         }
 
@@ -152,6 +194,7 @@
             color: var(--accent-cyan);
             font-size: 0.8rem;
             font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .badge-terminal span {
@@ -171,7 +214,7 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 4.8rem;
             line-height: 0.95;
             font-weight: 800;
             text-transform: uppercase;
@@ -180,7 +223,8 @@
 
         .hero h1 span {
             color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
+            -webkit-text-stroke: 1px rgba(0, 242, 242, 0.8);
+            filter: drop-shadow(var(--glow-cyan));
         }
 
         .hero-subtitle {
@@ -191,8 +235,7 @@
 
         .hero-desc {
             color: var(--text-muted);
-            max-width: 540px;
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
 
         .hero-cta {
@@ -213,7 +256,7 @@
             letter-spacing: 1px;
             border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             font-family: 'Space Grotesk', sans-serif;
         }
 
@@ -221,13 +264,14 @@
             background-color: var(--accent-orange);
             color: #fff;
             border: 1px solid var(--accent-orange);
-            box-shadow: 0 4px 20px rgba(255, 85, 0, 0.25);
+            box-shadow: var(--glow-orange);
         }
 
         .btn-primary:hover {
             background-color: transparent;
             color: var(--accent-orange);
-            box-shadow: 0 4px 30px rgba(255, 85, 0, 0.4);
+            box-shadow: 0 0 25px rgba(255, 85, 0, 0.5);
+            border-color: var(--accent-orange);
             transform: translateY(-2px);
         }
 
@@ -240,95 +284,90 @@
         .btn-secondary:hover {
             background-color: rgba(0, 242, 242, 0.05);
             border-color: var(--accent-cyan);
-            box-shadow: 0 4px 20px rgba(0, 242, 242, 0.15);
+            box-shadow: var(--glow-cyan);
             transform: translateY(-2px);
         }
 
-        /* Hero Graphic Panel */
-        .hero-panel {
-            background: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            padding: 24px;
-            border-radius: 8px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        /* Main Image 1/4 - Profile Frame */
+        .profile-wrapper {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            margin: 0 auto;
+        }
+
+        .profile-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-orange), var(--accent-purple));
+            filter: blur(25px);
+            opacity: 0.45;
+            animation: rotateGlow 8s infinite linear;
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: var(--glow-cyan);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .profile-container:hover .profile-img {
+            transform: scale(1.05);
+        }
+
+        /* Sections General Setup */
+        section {
+            padding: 100px 0;
             position: relative;
         }
 
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(0, 242, 242, 0.1);
-            padding-bottom: 12px;
-            margin-bottom: 20px;
-        }
-
-        .panel-dot-group {
-            display: flex;
-            gap: 6px;
-        }
-
-        .panel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: rgba(255,255,255,0.1);
-        }
-
-        .panel-dot:nth-child(1) { background-color: var(--accent-orange); }
-        .panel-dot:nth-child(2) { background-color: var(--accent-gold); }
-        .panel-dot:nth-child(3) { background-color: var(--accent-cyan); }
-
-        .panel-title {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .diagnostic-line {
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-        }
-
-        .diagnostic-line span.label {
-            color: var(--accent-cyan);
-        }
-
-        .diagnostic-line span.value {
-            color: #fff;
-            font-weight: 600;
-        }
-
-        /* Sections */
-        section {
-            padding: 100px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             text-transform: uppercase;
             margin-bottom: 16px;
             color: #fff;
             position: relative;
-            display: inline-block;
         }
 
         .section-title span {
             color: var(--accent-cyan);
+            text-shadow: var(--glow-cyan);
         }
 
         .section-desc {
             color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
+            font-size: 1.15rem;
+            max-width: 650px;
             margin-bottom: 60px;
         }
 
-        /* Sector Timeline */
+        /* Relocation Timeline */
+        .timeline-card {
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
         .timeline {
             position: relative;
             max-width: 800px;
@@ -380,7 +419,7 @@
 
         .timeline-item:last-child .timeline-dot {
             border-color: var(--accent-purple);
-            box-shadow: 0 0 10px var(--accent-purple);
+            box-shadow: var(--glow-purple);
         }
 
         .timeline-year {
@@ -399,10 +438,10 @@
         }
 
         .timeline-location {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .timeline-body {
@@ -410,26 +449,144 @@
             font-size: 0.95rem;
         }
 
-        /* Pillars & Sound Protocol Grid */
+        /* 3-Column Glassmorphic Albums Grid */
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .album-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .album-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 10px 40px rgba(0, 242, 242, 0.08);
+            transform: translateY(-4px);
+        }
+
+        /* Images 2, 3, 4 of 4 - Album Covers */
+        .album-art-container {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .album-art {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .album-card:hover .album-art {
+            transform: scale(1.04);
+        }
+
+        .album-glow-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(5,7,12,0.85);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--accent-cyan);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .album-card:nth-child(2) .album-glow-indicator { border-color: var(--accent-orange); color: var(--accent-orange); }
+        .album-card:nth-child(3) .album-glow-indicator { border-color: var(--accent-purple); color: var(--accent-purple); }
+
+        .album-card h3 {
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .album-subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .album-card:nth-child(2) .album-subtitle { color: var(--accent-orange); }
+        .album-card:nth-child(3) .album-subtitle { color: var(--accent-purple); }
+
+        /* Tracklist in Album Cards */
+        .track-scroller {
+            background: rgba(0,0,0,0.2);
+            border-radius: 6px;
+            padding: 16px;
+            font-size: 0.85rem;
+            flex-grow: 1;
+            margin-bottom: 24px;
+            max-height: 280px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .track-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-muted);
+        }
+
+        .track-row:last-child {
+            border-bottom: none;
+        }
+
+        .track-title {
+            color: var(--text-main);
+            font-weight: 500;
+            padding-right: 8px;
+        }
+
+        .track-score {
+            font-family: 'Space Mono', monospace;
+            color: var(--accent-cyan);
+            font-size: 0.8rem;
+        }
+
+        .album-card:nth-child(2) .track-score { color: var(--accent-orange); }
+        .album-card:nth-child(3) .track-score { color: var(--accent-purple); }
+
+        /* Sound Protocol & Tags */
         .protocol-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 32px;
-            margin-bottom: 60px;
+            margin-bottom: 48px;
         }
 
         .protocol-card {
-            background-color: var(--bg-panel);
-            border: 1px solid rgba(0, 242, 242, 0.08);
             padding: 32px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
         }
 
         .protocol-card:hover {
             border-color: var(--accent-cyan);
-            box-shadow: 0 10px 30px rgba(0, 242, 242, 0.05);
-            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,242,242,0.05);
+            transform: translateY(-2px);
         }
 
         .card-num {
@@ -450,24 +607,15 @@
             font-size: 0.95rem;
         }
 
-        /* Inspiration tags */
-        .inspiration-section {
-            border-top: 1px solid rgba(0, 242, 242, 0.08);
-            padding-top: 48px;
-        }
-
-        .inspiration-title {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 24px;
-            color: #fff;
+        .inspiration-card {
+            padding: 40px;
         }
 
         .tag-cloud {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
+            margin-top: 24px;
         }
 
         .tag {
@@ -479,20 +627,22 @@
             font-size: 0.85rem;
             font-weight: 500;
             transition: all 0.3s ease;
+            cursor: default;
         }
 
         .tag:hover {
             background: rgba(0, 242, 242, 0.05);
             border-color: var(--accent-cyan);
             color: var(--accent-cyan);
-            box-shadow: 0 0 12px rgba(0, 242, 242, 0.15);
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-2px);
         }
 
-        /* Connection simplelogin card alias list */
+        /* Secure Relay Portals */
         .connect-grid {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            gap: 48px;
+            gap: 60px;
             align-items: center;
         }
 
@@ -503,19 +653,16 @@
         }
 
         .alias-card {
-            background: var(--bg-panel);
-            border: 1px solid rgba(255, 255, 255, 0.04);
             padding: 20px;
-            border-radius: 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .alias-card:hover {
             border-color: rgba(0, 242, 242, 0.2);
-            background: rgba(13, 18, 34, 0.8);
+            background: var(--bg-glass-hover);
         }
 
         .alias-info {
@@ -564,12 +711,12 @@
             background: var(--accent-cyan);
             border-color: var(--accent-cyan);
             color: var(--bg-dark);
-            box-shadow: 0 0 10px rgba(0, 242, 242, 0.3);
+            box-shadow: var(--glow-cyan);
         }
 
         /* Footer */
         footer {
-            background: #04060c;
+            background: #030408;
             border-top: 1px solid var(--border-color);
             padding: 48px 0;
             text-align: center;
@@ -593,17 +740,24 @@
             opacity: 0.6;
         }
 
-        @media (max-width: 992px) {
-            .hero-grid {
+        /* Responsive Breakpoints */
+        @media (max-width: 1100px) {
+            .albums-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
+                max-width: 550px;
+                margin: 0 auto;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
                 text-align: center;
             }
             .badge-terminal {
                 margin: 0 auto;
             }
             .hero h1 {
-                font-size: 3.5rem;
+                font-size: 3.8rem;
             }
             .hero-desc {
                 margin: 0 auto;
@@ -642,10 +796,17 @@
                 left: 15px !important;
                 right: auto !important;
             }
+            .profile-wrapper {
+                width: 280px;
+                height: 280px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Real-time Digital Rain Background Canvas -->
+    <canvas id="matrix"></canvas>
 
     <!-- Header Navigation -->
     <header>
@@ -653,8 +814,8 @@
             <div class="brand">pup<span>.STABILE</span></div>
             <nav>
                 <ul>
-                    <li><a href="#hero" class="active">Sectors</a></li>
-                    <li><a href="#biography">Biography</a></li>
+                    <li><a href="#hero" class="active">Trilogy</a></li>
+                    <li><a href="#biography">Relocation</a></li>
                     <li><a href="#protocol">Protocol</a></li>
                     <li><a href="#connect">Connect</a></li>
                 </ul>
@@ -666,132 +827,219 @@
     <section id="hero" class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
-                <div class="badge-terminal"><span></span>STATUS: DECRYPTION IN PROGRESS</div>
+                <div class="badge-terminal"><span></span>VERIFICATION SEQUENCE ACTIVE</div>
                 <h1>pup.<span>STABILE</span></h1>
-                <p class="hero-subtitle mono">ARCHITECTURAL CYBER-TRANCE // SYSTEM ALIGNED</p>
+                <p class="hero-subtitle mono">ARCHITECTURAL CYBER-TRANCE // ESTONIAN REBOOT</p>
                 <p class="hero-desc">
-                    Forged in the sub-zero winters of New Hampshire and rewired in the quiet Baltic sanctuary of Tallinn, Estonia. A pupil of cybersecurity and physical geometry, translating structural survival into driving techno kicks and lush 90s Euro-trance.
+                    Fusing the driving basslines of progressive house with raw bass-baritone vocals, pup.STABILE utilizes the clinical metadata of software design to blueprint human survival. Written in Tallinn, Estonia.
                 </p>
                 <div class="hero-cta">
                     <a href="https://release.landr.com/991048977563" class="btn btn-primary" target="_blank">DECRYPTION SEQUENCE: 09.15.26</a>
-                    <a href="#protocol" class="btn btn-secondary">Explore Sound</a>
+                    <a href="#protocol" class="btn btn-secondary">System Protocols</a>
                 </div>
             </div>
             
-            <div class="hero-panel">
-                <div class="panel-header">
-                    <div class="panel-dot-group">
-                        <div class="panel-dot"></div>
-                        <div class="panel-dot"></div>
-                        <div class="panel-dot"></div>
-                    </div>
-                    <div class="panel-title mono">Diagnostic Readout</div>
-                </div>
-                <div class="mono">
-                    <div class="diagnostic-line"><span class="label">ARTIST:</span> <span class="value">pup.STABILE</span></div>
-                    <div class="diagnostic-line"><span class="label">GENRE:</span> <span class="value">Architectural Cyber-Trance</span></div>
-                    <div class="diagnostic-line"><span class="label">CITIZENSHIP:</span> <span class="value">United States (Permanent Expat)</span></div>
-                    <div class="diagnostic-line"><span class="label">REGISTRATION:</span> <span class="value">Tallinn, Harju County, Estonia</span></div>
-                    <div class="diagnostic-line"><span class="label">DEBUT_SINGLE:</span> <span class="value">"Scars into Thunder"</span></div>
-                    <div class="diagnostic-line"><span class="label">LAUNCH_DATE:</span> <span class="value">15 September 2026</span></div>
-                    <div class="diagnostic-line"><span class="label">ALBUM_CYCLE:</span> <span class="value">SYSTEM CRASH & SYSTEM RESTORE</span></div>
-                    <div class="diagnostic-line"><span class="label">VOCAL_RANGE:</span> <span class="value">Bass-Baritone (E2 - C#4 Register)</span></div>
-                    <div class="diagnostic-line" style="margin-top: 15px; color: var(--accent-orange); font-weight: bold;">[ SYSTEM SECURITY STATUS: SECURE ]</div>
+            <!-- Image 1 of 4: Profile Headshot -->
+            <div class="profile-wrapper">
+                <div class="profile-glow"></div>
+                <div class="profile-container">
+                    <img src="pupstabile_profile_photo_v2.png" alt="pup.STABILE" class="profile-img">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Biography Sector -->
-    <section id="biography">
+    <!-- Album Trilogy Grid (Images 2, 3, 4 of 4) -->
+    <section id="albums">
         <div class="container">
             <center>
-                <h2 class="section-title">The <span>Relocation</span> Timeline</h2>
+                <h2 class="section-title">The <span>Album</span> Trilogy</h2>
                 <p class="section-desc">
-                    The geographic and emotional journey of Jeremy David Stabile, mapping physical discipline and technical architecture onto a story of survival.
+                    A comprehensive 36-track narrative arc charting your descent, systemic rebuild, and final alignment in Estonia.
                 </p>
             </center>
 
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-year mono">ORIGINS</div>
-                    <div class="timeline-location">New Hampshire, USA</div>
-                    <div class="timeline-body">
-                        Born and raised amid New England snow. A competitive gymnast flying high until a severe high school injury shattered athletic trajectories, forcing a pivot from physical flight to intellectual infrastructure.
+            <div class="albums-grid">
+                
+                <!-- Card 1: SYSTEM CRASH (Image 2/4) -->
+                <div class="glass-card album-card">
+                    <div class="album-art-container">
+                        <img src="album1.jpg" alt="SYSTEM CRASH Cover" class="album-art">
+                        <div class="album-glow-indicator">PART 1</div>
                     </div>
+                    <h3>System Crash</h3>
+                    <div class="album-subtitle font-tech">The Descent // 95.8 Avg Score</div>
+                    
+                    <div class="track-scroller">
+                        <div class="track-row"><span>01. Black Cloud (The Filter)</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>02. Trickle Down (Faceplanted)</span><span class="track-score">95</span></div>
+                        <div class="track-row"><span>03. Metrics & Needles</span><span class="track-score">94</span></div>
+                        <div class="track-row"><span>04. One-Way Glass (Watch Me Bloom)</span><span class="track-score">91</span></div>
+                        <div class="track-row"><span>05. Anxiety (The Outside Variable)</span><span class="track-score">98</span></div>
+                        <div class="track-row"><span>06. Relapse (The Rage-Baited Mind)</span><span class="track-score">96</span></div>
+                        <div class="track-row"><span>07. Counting all the bruises</span><span class="track-score">94</span></div>
+                        <div class="track-row"><span>08. The Light I left Behind</span><span class="track-score">92</span></div>
+                        <div class="track-row"><span>09. Scars into Thunder</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>10. I'm Not Done Yet!</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>11. Nostalgic (Down my Spine)</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>12. The Angst Synapses</span><span class="track-score">100</span></div>
+                    </div>
+                    
+                    <a href="https://release.landr.com/991048977563" class="btn btn-primary" style="padding: 12px 24px;" target="_blank">Pre-Save Single</a>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-year mono">TRANSITION</div>
-                    <div class="timeline-location">Orlando, FL & Las Vegas, NV</div>
-                    <div class="timeline-body">
-                        A brief chapter under Florida palm trees and a handful of sleepless months navigating the desert neon of Las Vegas, seeking connection and sifting through the jaded weight of the world.
+                <!-- Card 2: SYSTEM RESTORE (Image 3/4) -->
+                <div class="glass-card album-card">
+                    <div class="album-art-container">
+                        <img src="album2.jpg" alt="SYSTEM RESTORE Cover" class="album-art">
+                        <div class="album-glow-indicator" style="border-color: var(--accent-orange); color: var(--accent-orange);">PART 2</div>
                     </div>
+                    <h3>System Restore</h3>
+                    <div class="album-subtitle font-tech" style="color: var(--accent-orange);">The Architecture // 94.5 Avg Score</div>
+                    
+                    <div class="track-scroller">
+                        <div class="track-row"><span>01. Where the Machine Stops (Cold Boot)</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>02. The Prescribed Matrix</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>03. Third Rail</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>04. Leaving the Maze</span><span class="track-score">94</span></div>
+                        <div class="track-row"><span>05. Elusive Sanctuary</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>06. Legacy By Design</span><span class="track-score">94</span></div>
+                        <div class="track-row"><span>07. Under my Control</span><span class="track-score">88</span></div>
+                        <div class="track-row"><span>08. I Broke Free!</span><span class="track-score">96</span></div>
+                        <div class="track-row"><span>09. Euphorically Bound</span><span class="track-score">97</span></div>
+                        <div class="track-row"><span>10. The Audacious Bacon-Wrapped Fable</span><span class="track-score">97</span></div>
+                        <div class="track-row"><span>11. The Currency of Truth</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>12. New Found Strength</span><span class="track-score">93</span></div>
+                    </div>
+                    
+                    <button class="btn btn-secondary" style="padding: 12px 24px; color: var(--accent-orange); border-color: rgba(255, 85, 0, 0.3);" onclick="alert('System Restore mastering session pending.')">Mastering Active</button>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-year mono">THE DESCENT</div>
-                    <div class="timeline-location">Los Angeles & Palm Springs, CA</div>
-                    <div class="timeline-body">
-                        15 years inside the high-contrast California neon grid. Building a career in cybersecurity while battling the silent, gradual buildup of anxiety and relational static in the poly webs of LA.
+                <!-- Card 3: SYSTEM ALIGNED (Image 4/4) -->
+                <div class="glass-card album-card">
+                    <div class="album-art-container">
+                        <img src="album3.jpg" alt="SYSTEM ALIGNED Cover" class="album-art">
+                        <div class="album-glow-indicator" style="border-color: var(--accent-purple); color: var(--accent-purple);">PART 3</div>
                     </div>
+                    <h3>System Aligned</h3>
+                    <div class="album-subtitle font-tech" style="color: var(--accent-purple);">Internal Resolution // 97.4 Avg Score</div>
+                    
+                    <div class="track-scroller">
+                        <div class="track-row"><span>01. Anti-Anything (Firmware Upgrade)</span><span class="track-score">95</span></div>
+                        <div class="track-row"><span>02. The Wrong Train (Expensive Goodbyes)</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>03. Living Rent-Free (The Unhinging Truth)</span><span class="track-score">95</span></div>
+                        <div class="track-row"><span>04. Dropped Packets</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>05. Human in the Loop (Our Shared Code)</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>06. Too Big to Fail (Encrypted Kleptocracy)</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>07. Sentient Jar of Mayonnaise</span><span class="track-score">94</span></div>
+                        <div class="track-row"><span>08. Kleptocratic Scum (Adversarial Attack)</span><span class="track-score">96</span></div>
+                        <div class="track-row"><span>09. Emotional Damage (The Defrag)</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>10. My Own Tormented Bubble</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span>11. I'm Broken, but Healing</span><span class="track-score">94</span></div>
+                        <div class="track-row"><span>12. System Aligned</span><span class="track-score">100</span></div>
+                    </div>
+                    
+                    <button class="btn btn-secondary" style="padding: 12px 24px; color: var(--accent-purple); border-color: rgba(157, 78, 221, 0.3);" onclick="alert('System Aligned production session locked.')">Locked in Vault</button>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-year mono">SYSTEM CRASH</div>
-                    <div class="timeline-location">San Diego, CA</div>
-                    <div class="timeline-body">
-                        4 years culminating in total collapse—a devastating 6-week eviction on the physical pavement of San Diego. Surviving at the absolute edge of the system, keeping raw human trust intact amidst the wreckage.
-                    </div>
-                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-year mono">MAY 2026 // COLD BOOT</div>
-                    <div class="timeline-location">Tallinn, Estonia</div>
-                    <div class="timeline-body">
-                        Relocated permanently to the Baltics. Rebuilding a clean, sovereign life and private technical office under the 0% corporate tax shield of Harju County. Purging US consumerist malware to write a new legacy.
+    <!-- Biography Relocation Timeline Section -->
+    <section id="biography">
+        <div class="container">
+            <center>
+                <h2 class="section-title">The <span>Relocation</span> Path</h2>
+                <p class="section-desc">
+                    The geographic trajectory of Jeremy David Stabile, mapping a lifetime of physical movement, traumatic system crashes, and eventual sovereign recovery in the Baltics.
+                </p>
+            </center>
+
+            <div class="glass-card timeline-card">
+                <div class="timeline">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year mono">ORIGINS</div>
+                        <div class="timeline-location">New Hampshire, USA</div>
+                        <div class="timeline-body">
+                            Born and raised amidst New England winter storms. Trained as a competitive gymnast until a severe high school injury shattered his athletic dreams, driving his kinetic focus into the technical world of cybersecurity.
+                        </div>
                     </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year mono">TRANSITION</div>
+                        <div class="timeline-location">Orlando, FL & Las Vegas, NV</div>
+                        <div class="timeline-body">
+                            A brief stint under Florida palms followed by a sleepless handful of months navigating the neon deserts of Las Vegas, chasing synthetic lights and coping with the early weight of isolation.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year mono">THE DESCENT</div>
+                        <div class="timeline-location">Los Angeles & Palm Springs, CA</div>
+                        <div class="timeline-body">
+                            15 years on the West Coast grid. Building a professional career in digital architecture while managing a complicated LA poly web, relational static, and chronic, quiet anxieties.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year mono">SYSTEM CRASH</div>
+                        <div class="timeline-location">San Diego, CA</div>
+                        <div class="timeline-body">
+                            4 years leading to a final breakdown. A devastating 6-week eviction on the physical pavement of San Diego. Surviving at the absolute edge of the system with only his partner and a baseline of human resilience intact.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year mono">MAY 2026 // SYSTEM RESTORE</div>
+                        <div class="timeline-location">Tallinn, Estonia</div>
+                        <div class="timeline-body">
+                            Permanent expat relocation to the Baltics. Purging US consumerist malware, resetting his legal and financial architecture, and establishing aTechnical Office under the 0% corporate tax shield of Harju County.
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Protocol / Pillars Section -->
+    <!-- Sound Protocol & Tag Cloud -->
     <section id="protocol">
         <div class="container">
             <center>
                 <h2 class="section-title">The <span>Sound</span> Protocol</h2>
                 <p class="section-desc">
-                    Architectural Cyber-Trance is the translation of human recovery into pristine electronic code. Built on three uncompromising structural pillars.
+                    Architectural Cyber-Trance: a sonic philosophy built on heavy underground club architecture and unapologetic human stories.
                 </p>
             </center>
 
             <div class="protocol-grid">
-                <div class="protocol-card">
-                    <div class="card-num mono">PILLAR_01</div>
+                <div class="glass-card protocol-card">
+                    <div class="card-num mono">PROTOCOL_01</div>
                     <h3>The Low-End Throb</h3>
                     <p>Heavy, driving, club-ready Berlin techno and progressive house kick drums that lock in a relentless 126–128 BPM momentum, demanding physical release.</p>
                 </div>
-                <div class="protocol-card">
-                    <div class="card-num mono">PILLAR_02</div>
+                <div class="glass-card protocol-card">
+                    <div class="card-num mono">PROTOCOL_02</div>
                     <h3>The Shimmering Grid</h3>
                     <p>Soaring, cascading 90s Euro-trance synthesizer pluck arpeggios and weeping, sidechained analog string pads that create a deep, euphoric melancholy.</p>
                 </div>
-                <div class="protocol-card">
-                    <div class="card-num mono">PILLAR_03</div>
+                <div class="glass-card protocol-card">
+                    <div class="card-num mono">PROTOCOL_03</div>
                     <h3>The Biometric Signature</h3>
                     <p>Warm, intimate, close-mic E2 to C#4 bass-baritone vocals, delivered raw and dry without generic tenor pitching to prove authentic human directorship.</p>
                 </div>
             </div>
 
-            <!-- Inspirations tag cloud -->
-            <div class="inspiration-section">
-                <h4 class="inspiration-title mono">Verified Inspirations</h4>
+            <!-- Clickable, Glowing Tag Cloud of Verified Inspirations -->
+            <div class="glass-card inspiration-card">
+                <center><h4 class="inspiration-title font-tech">Verified Inspirations</h4></center>
                 <div class="tag-cloud">
                     <span class="tag">Armin van Buuren</span>
                     <span class="tag">Evanescence</span>
@@ -808,18 +1056,18 @@
         </div>
     </section>
 
-    <!-- Connect SimpleLogin Portal -->
+    <!-- Secure SimpleLogin Contacts Section -->
     <section id="connect">
         <div class="container connect-grid">
             <div>
                 <h2 class="section-title">Secure <span>Portals</span></h2>
                 <p class="section-desc">
-                    Administrative relays and contact cards are routed through private, secure SimpleLogin aliases to protect personal database integrity.
+                    All administrative traffic and routing requests are processed through secure SimpleLogin aliases to protect personal database integrity.
                 </p>
             </div>
             
             <div class="alias-box">
-                <div class="alias-card">
+                <div class="glass-card alias-card">
                     <div class="alias-info">
                         <div class="alias-label">Administrative Vault</div>
                         <div class="alias-email">admin@pupstabile.com</div>
@@ -828,7 +1076,7 @@
                     <button class="copy-btn" onclick="copyAlias('admin@pupstabile.com')">Copy</button>
                 </div>
 
-                <div class="alias-card">
+                <div class="glass-card alias-card">
                     <div class="alias-info">
                         <div class="alias-label">Promo Relay</div>
                         <div class="alias-email">releases@pupstabile.com</div>
@@ -837,7 +1085,7 @@
                     <button class="copy-btn" onclick="copyAlias('releases@pupstabile.com')">Copy</button>
                 </div>
 
-                <div class="alias-card">
+                <div class="glass-card alias-card">
                     <div class="alias-info">
                         <div class="alias-label">Public Portal</div>
                         <div class="alias-email">hello@pupstabile.com</div>
@@ -861,8 +1109,67 @@
         </div>
     </footer>
 
+    <!-- Interactive Digital Rain JavaScript Protocol -->
     <script>
-        // Smooth scroll for nav links
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        // Set full viewport scaling
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Binary falling elements representing cybersecurity and technical core
+        const chars = "01";
+        const charArray = chars.split("");
+        const fontSize = 16;
+        
+        let columns = canvas.width / fontSize;
+        let drops = [];
+        
+        // Re-initialize columns on resize
+        window.addEventListener('resize', () => {
+            columns = canvas.width / fontSize;
+            drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -100; // staggered drop delay
+            }
+        });
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100;
+        }
+
+        function drawMatrix() {
+            // Semi-transparent overlay to draw slow-fading trails
+            ctx.fillStyle = 'rgba(5, 7, 12, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Set matrix text glow colors
+            ctx.fillStyle = '#00f2f2';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+                
+                // Draw text column by column
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // Reset drop to top with staggered delay after crossing screen
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Smooth scroll implementation
         document.querySelectorAll('nav a, .hero-cta a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
