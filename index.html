@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pup.STABILE // Official Portal</title>
+    <title>pup.STABILE | Architectural Cyber-Trance // Official Portal</title>
+    
+    <!-- Google Fonts for futuristic, sharp technical typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* CORE DESIGN VARIABLES */
         :root {
-            --neon-accent: #00ff66;
-            --neon-blue: #00f0ff;
-            --neon-pink: #ff007f;
-            --dark-glass: rgba(10, 15, 13, 0.78);
-            --border-glow: rgba(0, 255, 102, 0.15);
-            --font-mono: "Courier New", Courier, monospace;
-            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --bg-color: #030504;
+            --bg-dark: #070a13;
+            --bg-panel: #0d1222;
+            --accent-cyan: #00f2f2;
+            --accent-orange: #ff5500;
+            --accent-purple: #9d4edd;
+            --accent-gold: #ffd700;
+            --text-main: #f0f3f8;
+            --text-muted: #8b9bb4;
+            --border-color: rgba(0, 242, 242, 0.15);
+            --grid-line: rgba(0, 242, 242, 0.03);
         }
 
         * {
@@ -24,729 +31,862 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: #ffffff;
-            font-family: var(--font-sans);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            min-height: 100vh;
-            padding-bottom: 80px;
-            position: relative;
-            transition: background-color 0.8s ease;
+            background-image: 
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        /* FIXED LAYER: BRIGHTENED DIGITAL RAIN */
-        #rainCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Placed cleanly above background, below glass panels */
-            opacity: 0.45; /* Boosted from 0.15 to prevent desktop browser wash-out */
-            pointer-events: none;
+        h1, h2, h3, h4, .font-tech {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
         }
 
-        /* FIXED LAYER: AMBIENT GLOW BACKDROP */
-        .ambient-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 102, 0.04) 0%, rgba(3, 5, 4, 0.98) 100%);
-            z-index: -1; 
-            pointer-events: none;
-            transition: background 0.8s ease;
+        .mono {
+            font-family: 'Space Mono', monospace;
         }
 
-        /* SITE HEADER */
+        a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Top Navigation */
         header {
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 25px 5%;
+            background-color: rgba(7, 10, 19, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0, 255, 102, 0.08);
-            background: rgba(3, 5, 4, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 5;
-            cursor: pointer;
-            transition: border-color 0.5s ease;
+            height: 80px;
         }
 
-        .logo-container {
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .brand span {
+            color: var(--accent-cyan);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        nav ul a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        nav ul a:hover, nav ul a.active {
+            color: var(--accent-cyan);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            gap: 12px;
+            padding-top: 100px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .logo-pulse {
-            width: 10px;
-            height: 10px;
-            background-color: var(--neon-accent);
-            border-radius: 50%;
-            box-shadow: 0 0 12px var(--neon-accent);
-            animation: pulse 2s infinite;
-            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            align-items: center;
         }
 
-        .logo-text {
-            font-family: var(--font-mono);
-            font-weight: 900;
-            letter-spacing: 5px;
-            font-size: 1.4rem;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
-        }
-
-        /* MAIN CONTENT AREA */
-        main {
-            position: relative;
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
+        .hero-text {
             display: flex;
             flex-direction: column;
-            gap: 50px;
-            z-index: 2; /* Forces entire content panel above canvas rain stream */
+            gap: 24px;
         }
 
-        /* HERO SECTION */
-        .hero-section {
-            background: var(--dark-glass);
-            border: 1px solid var(--border-glow);
-            border-radius: 16px;
-            padding: 40px;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 40px;
+        .badge-terminal {
+            display: inline-flex;
             align-items: center;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
-            transition: border-color 0.5s ease, box-shadow 0.5s ease;
+            gap: 8px;
+            background: rgba(0, 242, 242, 0.05);
+            border: 1px solid rgba(0, 242, 242, 0.2);
+            padding: 6px 12px;
+            border-radius: 4px;
+            width: fit-content;
+            color: var(--accent-cyan);
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
-        .hero-artwork {
-            width: 280px;
-            height: 280px;
-            border-radius: 12px;
-            border: 1px solid var(--border-glow);
-            background: url('./scars-into-thunder.jpg') no-repeat center center/cover;
-            box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.5s ease;
+        .badge-terminal span {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-cyan);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px var(--accent-cyan);
+            animation: pulse 1.5s infinite;
         }
 
-        .hero-artwork:hover {
-            transform: scale(1.03) rotate(0.5deg);
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.5; }
         }
 
-        .hero-content h2 {
-            font-size: 2.4rem;
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 0.95;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 5px;
-            color: #ffffff;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
         }
 
         .hero-subtitle {
-            font-family: var(--font-mono);
-            color: var(--neon-accent);
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            font-weight: bold;
-            transition: color 0.5s ease;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
         .hero-desc {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        .btn-glowing {
-            display: inline-block;
-            background: var(--neon-accent);
-            color: #000000;
-            padding: 16px 36px;
+            color: var(--text-muted);
+            max-width: 540px;
             font-size: 1rem;
-            font-family: var(--font-mono);
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 6px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 0 25px rgba(0, 255, 102, 0.2);
         }
 
-        .btn-glowing:hover {
-            background: #ffffff;
-            box-shadow: 0 0 35px rgba(255, 255, 255, 0.6);
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: #fff;
+            border: 1px solid var(--accent-orange);
+            box-shadow: 0 4px 20px rgba(255, 85, 0, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent-orange);
+            box-shadow: 0 4px 30px rgba(255, 85, 0, 0.4);
             transform: translateY(-2px);
         }
 
-        /* THE TRILOGY SHOWCASE */
-        .section-title {
-            font-family: var(--font-mono);
-            font-size: 1rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--neon-blue);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: color 0.5s ease;
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 242, 242, 0.3);
         }
 
-        .section-title::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(0, 240, 255, 0.15) 0%, transparent 100%);
+        .btn-secondary:hover {
+            background-color: rgba(0, 242, 242, 0.05);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 4px 20px rgba(0, 242, 242, 0.15);
+            transform: translateY(-2px);
         }
 
-        .album-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .album-card {
-            background: var(--dark-glass);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 12px;
+        /* Hero Graphic Panel */
+        .hero-panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
             padding: 24px;
-            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .album-card:hover {
-            border-color: var(--neon-accent);
-            transform: translateY(-6px);
-            box-shadow: 0 15px 35px rgba(0, 255, 102, 0.05);
-        }
-
-        .album-cover {
-            aspect-ratio: 1;
-            width: 100%;
             border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 242, 242, 0.1);
+            padding-bottom: 12px;
             margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: border-color 0.3s;
         }
 
-        .album-card:hover .album-cover {
-            border-color: var(--neon-accent);
-        }
-
-        #ac-1 { background: url('./album1.jpg') no-repeat center center/cover; }
-        #ac-2 { background: url('./album2.jpg') no-repeat center center/cover; }
-        #ac-3 { background: url('./album3.jpg') no-repeat center center/cover; }
-
-        .album-name {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #ffffff;
-        }
-
-        .album-meta {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.45);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* INTEGRATED CONSOLE SECTION */
-        .console-section {
+        .panel-dot-group {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            gap: 6px;
         }
 
-        .console-container {
-            background: var(--dark-glass);
-            border: 1px solid var(--border-glow);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: border-color 0.5s ease;
-        }
-
-        .console-header {
-            background: rgba(0, 255, 102, 0.03);
-            border-bottom: 1px solid rgba(0, 255, 102, 0.1);
-            padding: 14px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .window-dots {
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
+        .panel-dot {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
+            background-color: rgba(255,255,255,0.1);
         }
 
-        .window-title {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--neon-accent);
-            letter-spacing: 3px;
-            font-weight: bold;
-            transition: color 0.5s ease;
-        }
+        .panel-dot:nth-child(1) { background-color: var(--accent-orange); }
+        .panel-dot:nth-child(2) { background-color: var(--accent-gold); }
+        .panel-dot:nth-child(3) { background-color: var(--accent-cyan); }
 
-        .console-body {
-            padding: 24px;
-            height: 320px;
-            overflow-y: auto;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            background: rgba(0,0,0,0.45);
-        }
-
-        .console-body::-webkit-scrollbar {
-            width: 4px;
-        }
-        .console-body::-webkit-scrollbar-thumb {
-            background: var(--border-glow);
-        }
-
-        .terminal-output {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .command-prompt-line {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .input-element {
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            width: 100%;
-            outline: none;
-            caret-color: var(--neon-accent);
-        }
-
-        /* QUICK ACTION CHIPS */
-        .quick-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .action-chip {
-            background: rgba(0, 255, 102, 0.03);
-            border: 1px solid rgba(0, 255, 102, 0.15);
-            color: #ffffff;
-            font-family: var(--font-mono);
+        .panel-title {
             font-size: 0.8rem;
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .action-chip:hover {
-            border-color: var(--neon-accent);
-            color: var(--neon-accent);
-            background: rgba(0, 255, 102, 0.08);
+        .diagnostic-line {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: var(--text-muted);
         }
 
-        /* SECURE CONTACT PORTAL */
-        .contact-section {
-            background: var(--dark-glass);
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            border-radius: 16px;
-            padding: 35px;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            transition: border-color 0.5s ease;
+        .diagnostic-line span.label {
+            color: var(--accent-cyan);
         }
 
-        .contact-title h3 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.3px;
-            margin-bottom: 5px;
+        .diagnostic-line span.value {
+            color: #fff;
+            font-weight: 600;
         }
 
-        .contact-title p {
-            color: rgba(255,255,255,0.6);
+        /* Sections */
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title span {
+            color: var(--accent-cyan);
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 60px;
+        }
+
+        /* Sector Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-orange), var(--accent-purple));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 48px;
+            width: 50%;
+            padding-right: 40px;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-right: 0;
+            padding-left: 40px;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 4px;
+            right: -10px;
+            width: 18px;
+            height: 18px;
+            background-color: var(--bg-dark);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -9px;
+            border-color: var(--accent-orange);
+        }
+
+        .timeline-item:last-child .timeline-dot {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 10px var(--accent-purple);
+        }
+
+        .timeline-year {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 6px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-year {
+            color: var(--accent-orange);
+        }
+
+        .timeline-item:last-child .timeline-year {
+            color: var(--accent-purple);
+        }
+
+        .timeline-location {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .timeline-body {
+            color: var(--text-muted);
             font-size: 0.95rem;
         }
 
-        .email-glowing-box {
-            font-family: var(--font-mono);
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px dashed var(--neon-blue);
-            padding: 12px 25px;
-            border-radius: 8px;
-            color: var(--neon-blue);
+        /* Pillars & Sound Protocol Grid */
+        .protocol-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .protocol-card {
+            background-color: var(--bg-panel);
+            border: 1px solid rgba(0, 242, 242, 0.08);
+            padding: 32px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .protocol-card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(0, 242, 242, 0.05);
+            transform: translateY(-4px);
+        }
+
+        .card-num {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
             font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .protocol-card h3 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .protocol-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Inspiration tags */
+        .inspiration-section {
+            border-top: 1px solid rgba(0, 242, 242, 0.08);
+            padding-top: 48px;
+        }
+
+        .inspiration-title {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(0, 242, 242, 0.05);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(0, 242, 242, 0.15);
+        }
+
+        /* Connection simplelogin card alias list */
+        .connect-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .alias-box {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .alias-card {
+            background: var(--bg-panel);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 20px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .alias-card:hover {
+            border-color: rgba(0, 242, 242, 0.2);
+            background: rgba(13, 18, 34, 0.8);
+        }
+
+        .alias-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .alias-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-orange);
+        }
+
+        .alias-card:nth-child(2) .alias-label { color: var(--accent-cyan); }
+        .alias-card:nth-child(3) .alias-label { color: var(--accent-purple); }
+
+        .alias-email {
+            font-family: 'Space Mono', monospace;
             font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+            color: #fff;
+            font-weight: bold;
         }
 
-        .email-glowing-box:hover {
-            background: rgba(0, 240, 255, 0.1);
-            border-style: solid;
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
-            color: #ffffff;
-            transform: scale(1.02);
+        .alias-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
-        /* ANIMATIONS */
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.15); opacity: 0.5; box-shadow: 0 0 15px var(--neon-accent); }
-            100% { transform: scale(1); opacity: 1; }
+        .copy-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 1px;
         }
 
-        /* RESPONSIVE LAYOUT */
+        .copy-btn:hover {
+            background: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            color: var(--bg-dark);
+            box-shadow: 0 0 10px rgba(0, 242, 242, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #04060c;
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        footer .credits {
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        footer .credits span {
+            color: #fff;
+        }
+
+        footer .legal {
+            font-family: 'Space Mono', monospace;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .badge-terminal {
+                margin: 0 auto;
+            }
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .hero-desc {
+                margin: 0 auto;
+            }
+            .hero-cta {
+                justify-content: center;
+            }
+            .protocol-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .connect-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
         @media (max-width: 768px) {
-            header { padding: 18px 5%; }
-            .logo-text { font-size: 1.15rem; letter-spacing: 3px; }
-            main { margin: 20px auto; gap: 35px; }
-            .hero-section { grid-template-columns: 1fr; padding: 24px; gap: 25px; text-align: center; }
-            .hero-artwork { width: 100%; max-width: 240px; height: 240px; margin: 0 auto; }
-            .hero-content h2 { font-size: 1.9rem; }
-            .btn-glowing { width: 100%; text-align: center; padding: 14px 20px; }
-            .album-grid { grid-template-columns: 1fr; gap: 20px; }
-            .contact-section { flex-direction: column; text-align: center; padding: 25px; gap: 20px; }
-            .email-glowing-box { width: 100%; text-align: center; }
-            .console-body { height: 240px; }
+            nav ul {
+                display: none;
+            }
+            .timeline::before {
+                left: 24px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 56px;
+                padding-right: 0;
+                text-align: left;
+            }
+            .timeline-item:nth-child(even) {
+                left: 0;
+                padding-left: 56px;
+            }
+            .timeline-dot {
+                left: 15px !important;
+                right: auto !important;
+            }
         }
     </style>
 </head>
-<body id="pageBody">
+<body>
 
-    <!-- CANVAS & ATMOSPHERIC BLURS -->
-    <canvas id="rainCanvas"></canvas>
-    <div class="ambient-glow" id="glowOverlay"></div>
-
-    <header onclick="resetMainframe()">
-        <div class="logo-container">
-            <div class="logo-pulse"></div>
-            <div class="logo-text">pup.STABILE</div>
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-wrapper">
+            <div class="brand">pup<span>.STABILE</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#hero" class="active">Sectors</a></li>
+                    <li><a href="#biography">Biography</a></li>
+                    <li><a href="#protocol">Protocol</a></li>
+                    <li><a href="#connect">Connect</a></li>
+                </ul>
+            </nav>
         </div>
-        <span style="font-family: var(--font-mono); font-size: 0.75rem; color: rgba(255,255,255,0.4)">TALLINN // EST</span>
     </header>
 
-    <main>
-        <!-- HERO SECTION: THE LEAD SINGLE -->
-        <section class="hero-section" id="heroSec">
-            <div class="hero-artwork"></div>
-            <div class="hero-content">
-                <div class="hero-subtitle">NEW SINGLE // OUT NOW</div>
-                <h2 id="heroTitle">Scars into Thunder</h2>
-                <p class="hero-desc">An architectural cyber-trance power ballad fusing dark, brooding 80s synthwave with modern Baltic progressive house. Fusing raw analog synths with human recovery.</p>
-                <a href="https://release.landr.com/991048977563" class="btn-glowing" id="heroBtn" target="_blank">> PRE-SAVE SINGLE</a>
-            </div>
-        </section>
-
-        <!-- THE ALBUM TRILOGY GRAPHICS -->
-        <section>
-            <div class="section-title" id="trilogyTitle">THE SYSTEM TRILOGY</div>
-            <div class="album-grid">
-                <!-- Album 1 -->
-                <div class="album-card" id="card1" onclick="executeCommand('album1')">
-                    <div class="album-cover" id="ac-1"></div>
-                    <div class="album-name">Album 1: System Crash</div>
-                    <div class="album-meta">The Descent // 12 Tracks</div>
-                </div>
-                <!-- Album 2 -->
-                <div class="album-card" id="card2" onclick="executeCommand('album2')">
-                    <div class="album-cover" id="ac-2"></div>
-                    <div class="album-name">Album 2: System Restore</div>
-                    <div class="album-meta">The Rebuild // 12 Tracks</div>
-                </div>
-                <!-- Album 3 -->
-                <div class="album-card" id="card3" onclick="executeCommand('album3')">
-                    <div class="album-cover" id="ac-3"></div>
-                    <div class="album-name">Album 3: System Aligned</div>
-                    <div class="album-meta">The Resolution // 12 Tracks</div>
+    <!-- Hero Sector -->
+    <section id="hero" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="badge-terminal"><span></span>STATUS: DECRYPTION IN PROGRESS</div>
+                <h1>pup.<span>STABILE</span></h1>
+                <p class="hero-subtitle mono">ARCHITECTURAL CYBER-TRANCE // SYSTEM ALIGNED</p>
+                <p class="hero-desc">
+                    Forged in the sub-zero winters of New Hampshire and rewired in the quiet Baltic sanctuary of Tallinn, Estonia. A pupil of cybersecurity and physical geometry, translating structural survival into driving techno kicks and lush 90s Euro-trance.
+                </p>
+                <div class="hero-cta">
+                    <a href="https://release.landr.com/991048977563" class="btn btn-primary" target="_blank">DECRYPTION SEQUENCE: 09.15.26</a>
+                    <a href="#protocol" class="btn btn-secondary">Explore Sound</a>
                 </div>
             </div>
-        </section>
-
-        <!-- THE INTERACTIVE DEVELOPER CONSOLE -->
-        <section class="console-section">
-            <div class="section-title" id="consoleTitle">MAINFRAME UTILITY [INTEGRATED TERMINAL]</div>
-            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: -10px;">Tap an album card above or type a command in the console to decrypt track structures.</p>
             
-            <div class="console-container" id="terminalContainer">
-                <div class="console-header">
-                    <div class="window-dots">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
+            <div class="hero-panel">
+                <div class="panel-header">
+                    <div class="panel-dot-group">
+                        <div class="panel-dot"></div>
+                        <div class="panel-dot"></div>
+                        <div class="panel-dot"></div>
                     </div>
-                    <div class="window-title" id="windowTitle">TERMINAL // pup.STABILE</div>
+                    <div class="panel-title mono">Diagnostic Readout</div>
+                </div>
+                <div class="mono">
+                    <div class="diagnostic-line"><span class="label">ARTIST:</span> <span class="value">pup.STABILE</span></div>
+                    <div class="diagnostic-line"><span class="label">GENRE:</span> <span class="value">Architectural Cyber-Trance</span></div>
+                    <div class="diagnostic-line"><span class="label">CITIZENSHIP:</span> <span class="value">United States (Permanent Expat)</span></div>
+                    <div class="diagnostic-line"><span class="label">REGISTRATION:</span> <span class="value">Tallinn, Harju County, Estonia</span></div>
+                    <div class="diagnostic-line"><span class="label">DEBUT_SINGLE:</span> <span class="value">"Scars into Thunder"</span></div>
+                    <div class="diagnostic-line"><span class="label">LAUNCH_DATE:</span> <span class="value">15 September 2026</span></div>
+                    <div class="diagnostic-line"><span class="label">ALBUM_CYCLE:</span> <span class="value">SYSTEM CRASH & SYSTEM RESTORE</span></div>
+                    <div class="diagnostic-line"><span class="label">VOCAL_RANGE:</span> <span class="value">Bass-Baritone (E2 - C#4 Register)</span></div>
+                    <div class="diagnostic-line" style="margin-top: 15px; color: var(--accent-orange); font-weight: bold;">[ SYSTEM SECURITY STATUS: SECURE ]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biography Sector -->
+    <section id="biography">
+        <div class="container">
+            <center>
+                <h2 class="section-title">The <span>Relocation</span> Timeline</h2>
+                <p class="section-desc">
+                    The geographic and emotional journey of Jeremy David Stabile, mapping physical discipline and technical architecture onto a story of survival.
+                </p>
+            </center>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year mono">ORIGINS</div>
+                    <div class="timeline-location">New Hampshire, USA</div>
+                    <div class="timeline-body">
+                        Born and raised amid New England snow. A competitive gymnast flying high until a severe high school injury shattered athletic trajectories, forcing a pivot from physical flight to intellectual infrastructure.
+                    </div>
                 </div>
 
-                <div class="console-body" id="consoleBody">
-                    <div class="terminal-output" id="terminalOutput">
-                        <div><span style="color: #00ff66">[SYSTEM SECURE]</span> Mainframe active... Type <span style="color: #00f0ff">'help'</span> for instructions.</div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year mono">TRANSITION</div>
+                    <div class="timeline-location">Orlando, FL & Las Vegas, NV</div>
+                    <div class="timeline-body">
+                        A brief chapter under Florida palm trees and a handful of sleepless months navigating the desert neon of Las Vegas, seeking connection and sifting through the jaded weight of the world.
                     </div>
-                    <div class="command-prompt-line">
-                        <span style="color: var(--neon-accent)" id="promptSymbol">guest@pupstabile:~$</span>
-                        <input type="text" class="input-element" id="cmdInput" autocomplete="off" placeholder="type a command..." autofocus>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year mono">THE DESCENT</div>
+                    <div class="timeline-location">Los Angeles & Palm Springs, CA</div>
+                    <div class="timeline-body">
+                        15 years inside the high-contrast California neon grid. Building a career in cybersecurity while battling the silent, gradual buildup of anxiety and relational static in the poly webs of LA.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year mono">SYSTEM CRASH</div>
+                    <div class="timeline-location">San Diego, CA</div>
+                    <div class="timeline-body">
+                        4 years culminating in total collapse—a devastating 6-week eviction on the physical pavement of San Diego. Surviving at the absolute edge of the system, keeping raw human trust intact amidst the wreckage.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year mono">MAY 2026 // COLD BOOT</div>
+                    <div class="timeline-location">Tallinn, Estonia</div>
+                    <div class="timeline-body">
+                        Relocated permanently to the Baltics. Rebuilding a clean, sovereign life and private technical office under the 0% corporate tax shield of Harju County. Purging US consumerist malware to write a new legacy.
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- TACTILE INTERACTION FOR SMARTPHONES -->
-            <div class="quick-actions">
-                <button class="action-chip" onclick="executeCommand('help')">> help</button>
-                <button class="action-chip" onclick="executeCommand('bio')">> bio</button>
-                <button class="action-chip" onclick="executeCommand('specs')">> specs</button>
-                <button class="action-chip" onclick="executeCommand('lyrics')">> lyrics</button>
-                <button class="action-chip" onclick="executeCommand('contact')">> contact</button>
-                <button class="action-chip" onclick="executeCommand('clear')">> clear</button>
-            </div>
-        </section>
+    <!-- Protocol / Pillars Section -->
+    <section id="protocol">
+        <div class="container">
+            <center>
+                <h2 class="section-title">The <span>Sound</span> Protocol</h2>
+                <p class="section-desc">
+                    Architectural Cyber-Trance is the translation of human recovery into pristine electronic code. Built on three uncompromising structural pillars.
+                </p>
+            </center>
 
-        <!-- SECURE CONTACT PORTAL -->
-        <section class="contact-section" id="contactSec">
-            <div class="contact-title">
-                <h3>Secure Communications</h3>
-                <p>For inquiries, bookings, or secure network transmissions.</p>
+            <div class="protocol-grid">
+                <div class="protocol-card">
+                    <div class="card-num mono">PILLAR_01</div>
+                    <h3>The Low-End Throb</h3>
+                    <p>Heavy, driving, club-ready Berlin techno and progressive house kick drums that lock in a relentless 126–128 BPM momentum, demanding physical release.</p>
+                </div>
+                <div class="protocol-card">
+                    <div class="card-num mono">PILLAR_02</div>
+                    <h3>The Shimmering Grid</h3>
+                    <p>Soaring, cascading 90s Euro-trance synthesizer pluck arpeggios and weeping, sidechained analog string pads that create a deep, euphoric melancholy.</p>
+                </div>
+                <div class="protocol-card">
+                    <div class="card-num mono">PILLAR_03</div>
+                    <h3>The Biometric Signature</h3>
+                    <p>Warm, intimate, close-mic E2 to C#4 bass-baritone vocals, delivered raw and dry without generic tenor pitching to prove authentic human directorship.</p>
+                </div>
             </div>
-            <a href="mailto:contact@pupstabile.com" class="email-glowing-box" id="contactEmail">[ contact@pupstabile.com ]</a>
-        </section>
-    </main>
+
+            <!-- Inspirations tag cloud -->
+            <div class="inspiration-section">
+                <h4 class="inspiration-title mono">Verified Inspirations</h4>
+                <div class="tag-cloud">
+                    <span class="tag">Armin van Buuren</span>
+                    <span class="tag">Evanescence</span>
+                    <span class="tag">Kelly Clarkson</span>
+                    <span class="tag">Josh Groban</span>
+                    <span class="tag">Kaskade</span>
+                    <span class="tag">Tiesto</span>
+                    <span class="tag">Richard Marx</span>
+                    <span class="tag">Meduza</span>
+                    <span class="tag">Alice Deejay</span>
+                    <span class="tag">Daxson</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect SimpleLogin Portal -->
+    <section id="connect">
+        <div class="container connect-grid">
+            <div>
+                <h2 class="section-title">Secure <span>Portals</span></h2>
+                <p class="section-desc">
+                    Administrative relays and contact cards are routed through private, secure SimpleLogin aliases to protect personal database integrity.
+                </p>
+            </div>
+            
+            <div class="alias-box">
+                <div class="alias-card">
+                    <div class="alias-info">
+                        <div class="alias-label">Administrative Vault</div>
+                        <div class="alias-email">admin@pupstabile.com</div>
+                        <div class="alias-desc">High-security contracts, legal IP registration</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyAlias('admin@pupstabile.com')">Copy</button>
+                </div>
+
+                <div class="alias-card">
+                    <div class="alias-info">
+                        <div class="alias-label">Promo Relay</div>
+                        <div class="alias-email">releases@pupstabile.com</div>
+                        <div class="alias-desc">Playlist curation, label relations, booking</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyAlias('releases@pupstabile.com')">Copy</button>
+                </div>
+
+                <div class="alias-card">
+                    <div class="alias-info">
+                        <div class="alias-label">Public Portal</div>
+                        <div class="alias-email">hello@pupstabile.com</div>
+                        <div class="alias-desc">General inquiries, community and fan contact</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyAlias('hello@pupstabile.com')">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer containing exact cover art footer lore lines -->
+    <footer>
+        <div class="container">
+            <div class="credits">
+                A <span>pup.STABILE</span> Production &bull; Managed by pup.STABLE &bull; Directed by pup.STABLE &bull; 2026
+            </div>
+            <div class="legal">
+                CLASSIFIED &bull; NO ACCESS &bull; RATED MEGA WOOF &bull; 01110111 01101111 01101111 01100110
+            </div>
+        </div>
+    </footer>
 
     <script>
-        /* -----------------------------------------------------------
-           1. FIXED & BRIGHTENED DIGITAL RAIN ENGINE
-           ----------------------------------------------------------- */
-        const canvas = document.getElementById('rainCanvas');
-        const ctx = canvas.getContext('2d');
-
-        const matrixChars = "010101010101ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()_+=[]{}|;:";
-        const fontSize = 14;
-        let columns = 0;
-        const rainDrops = [];
-        let rainColor = '#00ff66'; 
-
-        // Bulletproof viewport handler solving late Chrome/Firefox paint states
-        function resizeCanvas() {
-            canvas.width = window.innerWidth || document.documentElement.clientWidth;
-            canvas.height = window.innerHeight || document.documentElement.clientHeight;
-            columns = Math.floor(canvas.width / fontSize);
-
-            while (rainDrops.length < columns) {
-                rainDrops.push(Math.random() * -100);
-            }
-        }
-
-        // Initialize immediately
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        
-        // Secondary trigger in case window measurements delay during load
-        setTimeout(resizeCanvas, 100);
-
-        function drawRain() {
-            // Speed up trail fading slightly with 0.12 alpha for higher contrast
-            ctx.fillStyle = 'rgba(3, 5, 4, 0.12)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < columns; i++) {
-                const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-                
-                ctx.fillStyle = rainColor;
-                ctx.fillText(char, i * fontSize, rainDrops[i] * fontSize);
-
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
+        // Smooth scroll for nav links
+        document.querySelectorAll('nav a, .hero-cta a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                    const navLink = document.querySelector(`nav a[href="${targetId}"]`);
+                    if (navLink) navLink.classList.add('active');
                 }
-                rainDrops[i]++;
-            }
-        }
-        
-        // Loop the script
-        setInterval(drawRain, 35);
-
-
-        /* -----------------------------------------------------------
-           2. THE DYNAMIC MAINFRAME THEME-SHIFTING ENGINE
-           ----------------------------------------------------------- */
-        const rootStyles = document.documentElement;
-
-        function applyGlitchTheme(theme) {
-            const glowOverlay = document.getElementById('glowOverlay');
-            
-            if (theme === 'crash') {
-                rainColor = '#ff0055';
-                rootStyles.style.setProperty('--neon-accent', '#ff0055');
-                rootStyles.style.setProperty('--neon-blue', '#ff00aa');
-                rootStyles.style.setProperty('--border-glow', 'rgba(255, 0, 85, 0.35)');
-                rootStyles.style.setProperty('--bg-color', '#090104');
-                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(255, 0, 85, 0.12) 0%, rgba(9, 1, 4, 0.98) 100%)";
-            } 
-            else if (theme === 'restore') {
-                rainColor = '#ffaa00';
-                rootStyles.style.setProperty('--neon-accent', '#ffaa00');
-                rootStyles.style.setProperty('--neon-blue', '#ffa300');
-                rootStyles.style.setProperty('--border-glow', 'rgba(255, 170, 0, 0.3)');
-                rootStyles.style.setProperty('--bg-color', '#070401');
-                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(255, 170, 0, 0.1) 0%, rgba(7, 4, 1, 0.98) 100%)";
-            } 
-            else if (theme === 'aligned') {
-                rainColor = '#00f0ff';
-                rootStyles.style.setProperty('--neon-accent', '#00f0ff');
-                rootStyles.style.setProperty('--neon-blue', '#00ffd0');
-                rootStyles.style.setProperty('--border-glow', 'rgba(0, 240, 255, 0.35)');
-                rootStyles.style.setProperty('--bg-color', '#010508');
-                glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.12) 0%, rgba(1, 5, 8, 0.98) 100%)";
-            }
-        }
-
-        function resetMainframe() {
-            const glowOverlay = document.getElementById('glowOverlay');
-            rainColor = '#00ff66';
-            rootStyles.style.setProperty('--neon-accent', '#00ff66');
-            rootStyles.style.setProperty('--neon-blue', '#00f0ff');
-            rootStyles.style.setProperty('--border-glow', 'rgba(0, 255, 102, 0.15)');
-            rootStyles.style.setProperty('--bg-color', '#030504');
-            glowOverlay.style.background = "radial-gradient(circle at 50% 50%, rgba(0, 255, 102, 0.04) 0%, rgba(3, 5, 4, 0.98) 100%)";
-            
-            const response = document.createElement('div');
-            response.innerHTML = `<span style="color: #00ff66">[SYSTEM RESET] Mainframe returned to default green state.</span>`;
-            terminalOutput.appendChild(response);
-            consoleBody.scrollTop = consoleBody.scrollHeight;
-        }
-
-
-        /* -----------------------------------------------------------
-           3. INTERACTIVE TERMINAL DATABASE & COMMAND HANDLER
-           ----------------------------------------------------------- */
-        const cmdInput = document.getElementById('cmdInput');
-        const terminalOutput = document.getElementById('terminalOutput');
-        const consoleBody = document.getElementById('consoleBody');
-
-        const COMMANDS = {
-            help: `Available commands:<br>
-                   &nbsp;&nbsp;bio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The artist philosophy.<br>
-                   &nbsp;&nbsp;specs&nbsp;&nbsp;&nbsp;&nbsp;- Technical single registration stats.<br>
-                   &nbsp;&nbsp;lyrics&nbsp;&nbsp;&nbsp;- Lyric sheets for Scars into Thunder.<br>
-                   &nbsp;&nbsp;contact&nbsp;&nbsp;- Secure communication parameters.<br>
-                   &nbsp;&nbsp;album1&nbsp;&nbsp;&nbsp;- Album 1 narrative synopsis.<br>
-                   &nbsp;&nbsp;album2&nbsp;&nbsp;&nbsp;- Album 2 narrative synopsis.<br>
-                   &nbsp;&nbsp;album3&nbsp;&nbsp;&nbsp;- Album 3 narrative synopsis.<br>
-                   &nbsp;&nbsp;clear&nbsp;&nbsp;&nbsp;&nbsp;- Clear screen buffer.`,
-            
-            bio: `<span style="color: var(--neon-accent)">ARTIST BIO // pup.STABILE</span><br>
-                  Formed in Tallinn, Estonia. pup.STABILE maps highly personal emotional survival onto mechanical and software-based structures. Melodic progressive house and synthwave featuring rare close-mic E2 to C#4 bass-baritone vocals.`,
-            
-            specs: `<span style="color: #00f0ff">REGISTRATION METADATA // SCARS INTO THUNDER</span><br>
-                    • Title: Scars into Thunder<br>
-                    • UPC: 991048977563<br>
-                    • ISRC: CAGOO2698921<br>
-                    • Catalog: LR-3244539<br>
-                    • Status: Scheduled Release (Sept 15, 2026)`,
-            
-            lyrics: `<span style="color: var(--neon-pink)">METADATA SYNOPSIS // SCARS INTO THUNDER</span><br>
-                     Composition: 100% human-authored lyrics by Jeremy David Stabile.<br>
-                     Chorus Hook:<br>
-                     "Am I lucid... or is it a paradox?<br>
-                     A restless mind trapped inside a digital box!"`,
-
-            contact: `<span style="color: #00f0ff">SECURE COMMUNICATIONS // ESTONIA SECURE LAYER</span><br>
-                      • Primary Admin Gateway: contact@pupstabile.com<br>
-                      • SimpleLogin Routing: Active<br>
-                      • Encryption Protocol: Proton Mail Zero-Knowledge E2EE`,
-            
-            album1: `<span style="color: var(--neon-pink)">ALBUM 1: SYSTEM CRASH (The Descent)</span><br>
-                     A deep sonic plunge into dark synthwave, emotional chaos, and heavy progressive trance. Releasing on September 29, 2026. Fuses high-octane 90s euro-trance with heavy narratives. Featuring lead single "Scars into Thunder".`,
-                     
-            album2: `<span style="color: #ffaa00">ALBUM 2: SYSTEM RESTORE (The Rebuild)</span><br>
-                     A clinical, pristine, and engineered rebuild. Ramping from high-voltage 128 BPM electro-house beats into breathtaking Baltic choral arrangements and soaring ASOT-style uplifting trance.`,
-                     
-            album3: `<span style="color: #00f0ff">ALBUM 3: SYSTEM ALIGNED (The Internal Resolution)</span><br>
-                     The ultimate internal peace and alignment. Fusing beautiful melodic progressive house love anthems with deep, personal Tallinn recovery pieces.<br>
-                     <br>
-                     • Featured Track 03: "Living Rent-Free (The Unhinging Truth)" [Restored]`
-        };
-
-        function executeCommand(cmd) {
-            cmd = cmd.trim().toLowerCase();
-            if (cmd === '') return;
-
-            if (cmd === 'album1') applyGlitchTheme('crash');
-            if (cmd === 'album2') applyGlitchTheme('restore');
-            if (cmd === 'album3') applyGlitchTheme('aligned');
-
-            const echo = document.createElement('div');
-            echo.innerHTML = `<span style="color: var(--neon-accent)">guest@pupstabile:~$</span> <span style="color: #ffffff">${cmd}</span>`;
-            terminalOutput.appendChild(echo);
-
-            const response = document.createElement('div');
-            response.style.marginTop = '5px';
-            response.style.marginBottom = '15px';
-
-            if (cmd === 'clear') {
-                terminalOutput.innerHTML = '';
-            } else if (COMMANDS[cmd]) {
-                response.innerHTML = COMMANDS[cmd];
-                terminalOutput.appendChild(response);
-            } else {
-                response.innerHTML = `<span style="color: #ff3366">ERROR: Node '${cmd}' unrecognized. Type 'help' to query instructions.</span>`;
-                terminalOutput.appendChild(response);
-            }
-
-            document.getElementById('terminalContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            consoleBody.scrollTop = consoleBody.scrollHeight;
-            cmdInput.value = '';
-        }
-
-        cmdInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                executeCommand(cmdInput.value);
-            }
+            });
         });
+
+        // Copy SimpleLogin email alias function
+        function copyAlias(email) {
+            navigator.clipboard.writeText(email).then(() => {
+                alert(`Relay email copied: ${email}`);
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+            });
+        }
     </script>
 </body>
 </html>
