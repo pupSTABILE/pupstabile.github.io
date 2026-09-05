@@ -288,7 +288,7 @@
             transform: translateY(-2px);
         }
 
-        /* Main Image 1/4 - Profile Frame */
+        /* Profile Frame Graphic */
         .profile-wrapper {
             position: relative;
             width: 380px;
@@ -361,6 +361,124 @@
             max-width: 650px;
             margin-bottom: 60px;
         }
+
+        /* Diagnostic Panel Stats Layout */
+        .hero-panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 242, 242, 0.1);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .panel-dot-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .panel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .panel-dot:nth-child(1) { background-color: var(--accent-orange); }
+        .panel-dot:nth-child(2) { background-color: var(--accent-gold); }
+        .panel-dot:nth-child(3) { background-color: var(--accent-cyan); }
+
+        .panel-title {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .diagnostic-line {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .diagnostic-line span.label {
+            color: var(--accent-cyan);
+        }
+
+        .diagnostic-line span.value {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* New Mainframe Monitor Grid */
+        .mainframe-stats {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 20px;
+            border-top: 1px dashed rgba(0, 242, 242, 0.15);
+            padding-top: 20px;
+        }
+
+        .stat-widget {
+            background: rgba(5, 7, 12, 0.6);
+            border-radius: 6px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid var(--accent-cyan);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .stat-widget.w-cyan { border-left-color: var(--accent-cyan); }
+        .stat-widget.w-orange { border-left-color: var(--accent-orange); }
+        .stat-widget.w-purple { border-left-color: var(--accent-purple); }
+
+        .widget-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .widget-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+        .widget-desc {
+            font-size: 0.75rem;
+            color: rgba(139, 155, 180, 0.6);
+        }
+
+        .widget-display {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.02);
+            min-width: 120px;
+            text-align: right;
+        }
+
+        .w-cyan .widget-display { color: var(--accent-cyan); text-shadow: var(--glow-cyan); }
+        .w-orange .widget-display { color: var(--accent-orange); text-shadow: var(--glow-orange); }
+        .w-purple .widget-display { color: var(--accent-purple); text-shadow: var(--glow-purple); }
 
         /* Relocation Timeline */
         .timeline-card {
@@ -469,7 +587,6 @@
             transform: translateY(-4px);
         }
 
-        /* Images 2, 3, 4 of 4 - Album Covers */
         .album-art-container {
             width: 100%;
             aspect-ratio: 1/1;
@@ -530,12 +647,12 @@
         .album-card:nth-child(2) .album-subtitle { color: var(--accent-orange); }
         .album-card:nth-child(3) .album-subtitle { color: var(--accent-purple); }
 
-        /* Tracklist in Album Cards */
+        /* Tracklist in Album Cards (Clean, No-BS Public Version) */
         .track-scroller {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.25);
             border-radius: 6px;
             padding: 16px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             flex-grow: 1;
             margin-bottom: 24px;
             max-height: 280px;
@@ -545,33 +662,48 @@
 
         .track-row {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 6px 0;
+            padding: 8px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--text-muted);
+            transition: all 0.2s ease;
         }
 
         .track-row:last-child {
             border-bottom: none;
         }
 
+        .track-row::before {
+            content: '▶';
+            font-size: 0.65rem;
+            margin-right: 10px;
+            color: var(--accent-cyan);
+            opacity: 0.5;
+            transition: all 0.2s ease;
+        }
+
+        .album-card:nth-child(2) .track-row::before { color: var(--accent-orange); }
+        .album-card:nth-child(3) .track-row::before { color: var(--accent-purple); }
+
+        .track-row:hover {
+            color: #fff;
+            padding-left: 4px;
+        }
+
+        .track-row:hover::before {
+            opacity: 1;
+            text-shadow: 0 0 5px var(--accent-cyan);
+        }
+
+        .album-card:nth-child(2) .track-row:hover::before { text-shadow: 0 0 5px var(--accent-orange); }
+        .album-card:nth-child(3) .track-row:hover::before { text-shadow: 0 0 5px var(--accent-purple); }
+
         .track-title {
             color: var(--text-main);
             font-weight: 500;
-            padding-right: 8px;
         }
 
-        .track-score {
-            font-family: 'Space Mono', monospace;
-            color: var(--accent-cyan);
-            font-size: 0.8rem;
-        }
-
-        .album-card:nth-child(2) .track-score { color: var(--accent-orange); }
-        .album-card:nth-child(3) .track-score { color: var(--accent-purple); }
-
-        /* Sound Protocol & Tags */
+        /* Sound Protocol & Multi-Color Glow Grid */
         .protocol-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -581,25 +713,61 @@
 
         .protocol-card {
             padding: 32px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        .protocol-card:hover {
+        /* Protocol 1: Cyan Theme */
+        .protocol-card.p-cyan {
+            border: 1px solid rgba(0, 242, 242, 0.12);
+        }
+        .protocol-card.p-cyan:hover {
             border-color: var(--accent-cyan);
-            box-shadow: 0 8px 30px rgba(0,242,242,0.05);
-            transform: translateY(-2px);
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-4px);
+        }
+        .protocol-card.p-cyan .card-num {
+            color: var(--accent-cyan);
+        }
+
+        /* Protocol 2: Orange Theme */
+        .protocol-card.p-orange {
+            border: 1px solid rgba(255, 85, 0, 0.12);
+        }
+        .protocol-card.p-orange:hover {
+            border-color: var(--accent-orange);
+            box-shadow: var(--glow-orange);
+            transform: translateY(-4px);
+        }
+        .protocol-card.p-orange .card-num {
+            color: var(--accent-orange);
+        }
+
+        /* Protocol 3: Purple Theme */
+        .protocol-card.p-purple {
+            border: 1px solid rgba(157, 78, 221, 0.12);
+        }
+        .protocol-card.p-purple:hover {
+            border-color: var(--accent-purple);
+            box-shadow: var(--glow-purple);
+            transform: translateY(-4px);
+        }
+        .protocol-card.p-purple .card-num {
+            color: var(--accent-purple);
         }
 
         .card-num {
             font-size: 0.85rem;
-            color: var(--accent-cyan);
             font-weight: bold;
             margin-bottom: 12px;
+            letter-spacing: 2px;
         }
 
         .protocol-card h3 {
             font-size: 1.4rem;
             color: #fff;
             margin-bottom: 12px;
+            letter-spacing: -0.01em;
         }
 
         .protocol-card p {
@@ -616,6 +784,7 @@
             flex-wrap: wrap;
             gap: 12px;
             margin-top: 24px;
+            justify-content: center;
         }
 
         .tag {
@@ -638,10 +807,10 @@
             transform: translateY(-2px);
         }
 
-        /* Secure Relay Portals */
+        /* Secure Single-Intake Portal Section */
         .connect-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
         }
@@ -649,43 +818,42 @@
         .alias-box {
             display: flex;
             flex-direction: column;
-            gap: 16px;
         }
 
         .alias-card {
-            padding: 20px;
+            padding: 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--glow-cyan);
         }
 
         .alias-card:hover {
-            border-color: rgba(0, 242, 242, 0.2);
+            border-color: var(--accent-cyan);
             background: var(--bg-glass-hover);
         }
 
         .alias-info {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
         .alias-label {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--accent-orange);
+            color: var(--accent-cyan);
+            font-weight: bold;
         }
-
-        .alias-card:nth-child(2) .alias-label { color: var(--accent-cyan); }
-        .alias-card:nth-child(3) .alias-label { color: var(--accent-purple); }
 
         .alias-email {
             font-family: 'Space Mono', monospace;
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: #fff;
             font-weight: bold;
+            letter-spacing: -0.02em;
         }
 
         .alias-desc {
@@ -697,14 +865,15 @@
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
             color: var(--text-muted);
-            padding: 8px 12px;
+            padding: 10px 18px;
             border-radius: 4px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             font-family: 'Space Grotesk', sans-serif;
             letter-spacing: 1px;
+            font-weight: bold;
         }
 
         .copy-btn:hover {
@@ -839,11 +1008,54 @@
                 </div>
             </div>
             
-            <!-- Image 1 of 4: Profile Headshot -->
-            <div class="profile-wrapper">
-                <div class="profile-glow"></div>
-                <div class="profile-container">
-                    <img src="pupstabile_profile_photo_v2.png" alt="pup.STABILE" class="profile-img">
+            <!-- Mainframe Diagnostics Telemetry Panel -->
+            <div class="hero-panel">
+                <div class="panel-header">
+                    <div class="panel-dot-group">
+                        <div class="panel-dot"></div>
+                        <div class="panel-dot"></div>
+                        <div class="panel-dot"></div>
+                    </div>
+                    <div class="panel-title mono">Mainframe Diagnostics</div>
+                </div>
+                <div class="mono">
+                    <div class="diagnostic-line"><span class="label">ARTIST:</span> <span class="value">pup.STABILE</span></div>
+                    <div class="diagnostic-line"><span class="label">GENRE:</span> <span class="value">Architectural Cyber-Trance</span></div>
+                    <div class="diagnostic-line"><span class="label">CITIZENSHIP:</span> <span class="value">United States (Expat)</span></div>
+                    <div class="diagnostic-line"><span class="label">OFFICE:</span> <span class="value">Tallinn, Harju County, EE</span></div>
+                    <div class="diagnostic-line"><span class="label">VOCAL:</span> <span class="value">Bass-Baritone (E2-C#4)</span></div>
+                    
+                    <!-- self-animating telemetry widgets -->
+                    <div class="mainframe-stats">
+                        
+                        <!-- Cyan Fluctuating Listeners -->
+                        <div class="stat-widget w-cyan">
+                            <div class="widget-info">
+                                <span class="widget-label">ACTIVE_SOCKETS</span>
+                                <span class="widget-desc">Live pipeline connections</span>
+                            </div>
+                            <div class="widget-display" id="activeNodes">1438</div>
+                        </div>
+
+                        <!-- Orange Accumulating Data -->
+                        <div class="stat-widget w-orange">
+                            <div class="widget-info">
+                                <span class="widget-label">DATA_DEFRAG</span>
+                                <span class="widget-desc">Sectors resolved (MB)</span>
+                            </div>
+                            <div class="widget-display" id="sectorsResolved">04,110,111.42</div>
+                        </div>
+
+                        <!-- Purple Tempo-Locked Latency -->
+                        <div class="stat-widget w-purple">
+                            <div class="widget-info">
+                                <span class="widget-label">ENGINE_DELAY</span>
+                                <span class="widget-desc">Firewall gateway response</span>
+                            </div>
+                            <div class="widget-display">12.8 ms</div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -868,21 +1080,21 @@
                         <div class="album-glow-indicator">PART 1</div>
                     </div>
                     <h3>System Crash</h3>
-                    <div class="album-subtitle font-tech">The Descent // 95.8 Avg Score</div>
+                    <div class="album-subtitle font-tech">The Descent</div>
                     
                     <div class="track-scroller">
-                        <div class="track-row"><span>01. Black Cloud (The Filter)</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>02. Trickle Down (Faceplanted)</span><span class="track-score">95</span></div>
-                        <div class="track-row"><span>03. Metrics & Needles</span><span class="track-score">94</span></div>
-                        <div class="track-row"><span>04. One-Way Glass (Watch Me Bloom)</span><span class="track-score">91</span></div>
-                        <div class="track-row"><span>05. Anxiety (The Outside Variable)</span><span class="track-score">98</span></div>
-                        <div class="track-row"><span>06. Relapse (The Rage-Baited Mind)</span><span class="track-score">96</span></div>
-                        <div class="track-row"><span>07. Counting all the bruises</span><span class="track-score">94</span></div>
-                        <div class="track-row"><span>08. The Light I left Behind</span><span class="track-score">92</span></div>
-                        <div class="track-row"><span>09. Scars into Thunder</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>10. I'm Not Done Yet!</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>11. Nostalgic (Down my Spine)</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>12. The Angst Synapses</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span class="track-title">Black Cloud (The Filter)</span></div>
+                        <div class="track-row"><span class="track-title">Trickle Down (Faceplanted)</span></div>
+                        <div class="track-row"><span class="track-title">Metrics & Needles</span></div>
+                        <div class="track-row"><span class="track-title">One-Way Glass (Watch Me Bloom)</span></div>
+                        <div class="track-row"><span class="track-title">Anxiety (The Outside Variable)</span></div>
+                        <div class="track-row"><span class="track-title">Relapse (The Rage-Baited Mind)</span></div>
+                        <div class="track-row"><span class="track-title">Counting all the bruises</span></div>
+                        <div class="track-row"><span class="track-title">The Light I left Behind</span></div>
+                        <div class="track-row"><span class="track-title">Scars into Thunder</span></div>
+                        <div class="track-row"><span class="track-title">I'm Not Done Yet!</span></div>
+                        <div class="track-row"><span class="track-title">Nostalgic (Down my Spine)</span></div>
+                        <div class="track-row"><span class="track-title">The Angst Synapses</span></div>
                     </div>
                     
                     <a href="https://release.landr.com/991048977563" class="btn btn-primary" style="padding: 12px 24px;" target="_blank">Pre-Save Single</a>
@@ -895,21 +1107,21 @@
                         <div class="album-glow-indicator" style="border-color: var(--accent-orange); color: var(--accent-orange);">PART 2</div>
                     </div>
                     <h3>System Restore</h3>
-                    <div class="album-subtitle font-tech" style="color: var(--accent-orange);">The Architecture // 94.5 Avg Score</div>
+                    <div class="album-subtitle font-tech" style="color: var(--accent-orange);">The Architecture</div>
                     
                     <div class="track-scroller">
-                        <div class="track-row"><span>01. Where the Machine Stops (Cold Boot)</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>02. The Prescribed Matrix</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>03. Third Rail</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>04. Leaving the Maze</span><span class="track-score">94</span></div>
-                        <div class="track-row"><span>05. Elusive Sanctuary</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>06. Legacy By Design</span><span class="track-score">94</span></div>
-                        <div class="track-row"><span>07. Under my Control</span><span class="track-score">88</span></div>
-                        <div class="track-row"><span>08. I Broke Free!</span><span class="track-score">96</span></div>
-                        <div class="track-row"><span>09. Euphorically Bound</span><span class="track-score">97</span></div>
-                        <div class="track-row"><span>10. The Audacious Bacon-Wrapped Fable</span><span class="track-score">97</span></div>
-                        <div class="track-row"><span>11. The Currency of Truth</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>12. New Found Strength</span><span class="track-score">93</span></div>
+                        <div class="track-row"><span class="track-title">Where the Machine Stops (Cold Boot)</span></div>
+                        <div class="track-row"><span class="track-title">The Prescribed Matrix</span></div>
+                        <div class="track-row"><span class="track-title">Third Rail</span></div>
+                        <div class="track-row"><span class="track-title">Leaving the Maze</span></div>
+                        <div class="track-row"><span class="track-title">Elusive Sanctuary</span></div>
+                        <div class="track-row"><span class="track-title">Legacy By Design</span></div>
+                        <div class="track-row"><span class="track-title">Under my Control</span></div>
+                        <div class="track-row"><span class="track-title">I Broke Free!</span></div>
+                        <div class="track-row"><span class="track-title">Euphorically Bound</span></div>
+                        <div class="track-row"><span class="track-title">The Audacious Bacon-Wrapped Fable</span></div>
+                        <div class="track-row"><span class="track-title">The Currency of Truth</span></div>
+                        <div class="track-row"><span class="track-title">New Found Strength</span></div>
                     </div>
                     
                     <button class="btn btn-secondary" style="padding: 12px 24px; color: var(--accent-orange); border-color: rgba(255, 85, 0, 0.3);" onclick="alert('System Restore mastering session pending.')">Mastering Active</button>
@@ -922,21 +1134,21 @@
                         <div class="album-glow-indicator" style="border-color: var(--accent-purple); color: var(--accent-purple);">PART 3</div>
                     </div>
                     <h3>System Aligned</h3>
-                    <div class="album-subtitle font-tech" style="color: var(--accent-purple);">Internal Resolution // 97.4 Avg Score</div>
+                    <div class="album-subtitle font-tech" style="color: var(--accent-purple);">Internal Resolution</div>
                     
                     <div class="track-scroller">
-                        <div class="track-row"><span>01. Anti-Anything (Firmware Upgrade)</span><span class="track-score">95</span></div>
-                        <div class="track-row"><span>02. The Wrong Train (Expensive Goodbyes)</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>03. Living Rent-Free (The Unhinging Truth)</span><span class="track-score">95</span></div>
-                        <div class="track-row"><span>04. Dropped Packets</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>05. Human in the Loop (Our Shared Code)</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>06. Too Big to Fail (Encrypted Kleptocracy)</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>07. Sentient Jar of Mayonnaise</span><span class="track-score">94</span></div>
-                        <div class="track-row"><span>08. Kleptocratic Scum (Adversarial Attack)</span><span class="track-score">96</span></div>
-                        <div class="track-row"><span>09. Emotional Damage (The Defrag)</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>10. My Own Tormented Bubble</span><span class="track-score">100</span></div>
-                        <div class="track-row"><span>11. I'm Broken, but Healing</span><span class="track-score">94</span></div>
-                        <div class="track-row"><span>12. System Aligned</span><span class="track-score">100</span></div>
+                        <div class="track-row"><span class="track-title">Anti-Anything (Firmware Upgrade)</span></div>
+                        <div class="track-row"><span class="track-title">The Wrong Train (Expensive Goodbyes)</span></div>
+                        <div class="track-row"><span class="track-title">Living Rent-Free (The Unhinging Truth)</span></div>
+                        <div class="track-row"><span class="track-title">Dropped Packets</span></div>
+                        <div class="track-row"><span class="track-title">Human in the Loop (Our Shared Code)</span></div>
+                        <div class="track-row"><span class="track-title">Too Big to Fail (Encrypted Kleptocracy)</span></div>
+                        <div class="track-row"><span class="track-title">Sentient Jar of Mayonnaise</span></div>
+                        <div class="track-row"><span class="track-title">Kleptocratic Scum (Adversarial Attack)</span></div>
+                        <div class="track-row"><span class="track-title">Emotional Damage (The Defrag)</span></div>
+                        <div class="track-row"><span class="track-title">My Own Tormented Bubble</span></div>
+                        <div class="track-row"><span class="track-title">I'm Broken, but Healing</span></div>
+                        <div class="track-row"><span class="track-title">System Aligned</span></div>
                     </div>
                     
                     <button class="btn btn-secondary" style="padding: 12px 24px; color: var(--accent-purple); border-color: rgba(157, 78, 221, 0.3);" onclick="alert('System Aligned production session locked.')">Locked in Vault</button>
@@ -1000,7 +1212,7 @@
                         <div class="timeline-year mono">MAY 2026 // SYSTEM RESTORE</div>
                         <div class="timeline-location">Tallinn, Estonia</div>
                         <div class="timeline-body">
-                            Permanent expat relocation to the Baltics. Purging US consumerist malware, resetting his legal and financial architecture, and establishing aTechnical Office under the 0% corporate tax shield of Harju County.
+                            Permanent expat relocation to the Baltics. Purging US consumerist malware, resetting his legal and financial architecture, and establishing a Technical Office under the 0% corporate tax shield of Harju County.
                         </div>
                     </div>
 
@@ -1009,7 +1221,7 @@
         </div>
     </section>
 
-    <!-- Sound Protocol & Tag Cloud -->
+    <!-- Sound Protocol (Glowing Multi-Color Neon Edition) -->
     <section id="protocol">
         <div class="container">
             <center>
@@ -1020,21 +1232,28 @@
             </center>
 
             <div class="protocol-grid">
-                <div class="glass-card protocol-card">
+                
+                <!-- Protocol 1: Cyan Glow -->
+                <div class="glass-card protocol-card p-cyan">
                     <div class="card-num mono">PROTOCOL_01</div>
                     <h3>The Low-End Throb</h3>
                     <p>Heavy, driving, club-ready Berlin techno and progressive house kick drums that lock in a relentless 126–128 BPM momentum, demanding physical release.</p>
                 </div>
-                <div class="glass-card protocol-card">
+                
+                <!-- Protocol 2: Orange Glow -->
+                <div class="glass-card protocol-card p-orange">
                     <div class="card-num mono">PROTOCOL_02</div>
                     <h3>The Shimmering Grid</h3>
                     <p>Soaring, cascading 90s Euro-trance synthesizer pluck arpeggios and weeping, sidechained analog string pads that create a deep, euphoric melancholy.</p>
                 </div>
-                <div class="glass-card protocol-card">
+                
+                <!-- Protocol 3: Purple Glow -->
+                <div class="glass-card protocol-card p-purple">
                     <div class="card-num mono">PROTOCOL_03</div>
                     <h3>The Biometric Signature</h3>
                     <p>Warm, intimate, close-mic E2 to C#4 bass-baritone vocals, delivered raw and dry without generic tenor pitching to prove authentic human directorship.</p>
                 </div>
+                
             </div>
 
             <!-- Clickable, Glowing Tag Cloud of Verified Inspirations -->
@@ -1056,42 +1275,24 @@
         </div>
     </section>
 
-    <!-- Secure SimpleLogin Contacts Section -->
+    <!-- Consolidated Intake Portal (Single Secure Intake Card) -->
     <section id="connect">
         <div class="container connect-grid">
             <div>
                 <h2 class="section-title">Secure <span>Portals</span></h2>
                 <p class="section-desc">
-                    All administrative traffic and routing requests are processed through secure SimpleLogin aliases to protect personal database integrity.
+                    All administrative traffic and routing requests are processed through a single public intake point to shield backend networks and protect database integrity.
                 </p>
             </div>
             
             <div class="alias-box">
                 <div class="glass-card alias-card">
                     <div class="alias-info">
-                        <div class="alias-label">Administrative Vault</div>
-                        <div class="alias-email">admin@pupstabile.com</div>
-                        <div class="alias-desc">High-security contracts, legal IP registration</div>
+                        <div class="alias-label">Direct Communication Gateway</div>
+                        <div class="alias-email">contact@pupstabile.com</div>
+                        <div class="alias-desc">For booking, label relations, playlist curation, and public inquiries.</div>
                     </div>
-                    <button class="copy-btn" onclick="copyAlias('admin@pupstabile.com')">Copy</button>
-                </div>
-
-                <div class="glass-card alias-card">
-                    <div class="alias-info">
-                        <div class="alias-label">Promo Relay</div>
-                        <div class="alias-email">releases@pupstabile.com</div>
-                        <div class="alias-desc">Playlist curation, label relations, booking</div>
-                    </div>
-                    <button class="copy-btn" onclick="copyAlias('releases@pupstabile.com')">Copy</button>
-                </div>
-
-                <div class="glass-card alias-card">
-                    <div class="alias-info">
-                        <div class="alias-label">Public Portal</div>
-                        <div class="alias-email">hello@pupstabile.com</div>
-                        <div class="alias-desc">General inquiries, community and fan contact</div>
-                    </div>
-                    <button class="copy-btn" onclick="copyAlias('hello@pupstabile.com')">Copy</button>
+                    <button class="copy-btn" onclick="copyAlias('contact@pupstabile.com')">Copy</button>
                 </div>
             </div>
         </div>
@@ -1168,6 +1369,31 @@
         }
 
         setInterval(drawMatrix, 35);
+
+        // Telemetry Engine Animators
+        let nodesBase = 1438;
+        let sectorsBase = 4110111.42;
+
+        function updateTelemetry() {
+            // 1. Fluctuating Cyan Live Nodes (Simulating real network drift)
+            const nodeDrift = Math.floor(Math.random() * 7) - 3; // drift -3 to +3
+            nodesBase = Math.max(1425, Math.min(1455, nodesBase + nodeDrift));
+            document.getElementById('activeNodes').innerText = nodesBase;
+
+            // 2. Accumulating Orange Sectors (Ticks up live data)
+            const sectorIncr = Math.random() * 0.15; // gradual fractional increase
+            sectorsBase += sectorIncr;
+            
+            // Format number to match standard Technical segment formatting: XX,XXX,XXX.XX
+            const formattedSectors = sectorsBase.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            document.getElementById('sectorsResolved').innerText = formattedSectors;
+        }
+
+        // Run the telemetry engine loop every 2.5 seconds
+        setInterval(updateTelemetry, 2500);
 
         // Smooth scroll implementation
         document.querySelectorAll('nav a, .hero-cta a').forEach(anchor => {
