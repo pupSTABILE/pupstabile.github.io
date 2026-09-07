@@ -227,7 +227,7 @@
             filter: drop-shadow(var(--glow-cyan));
         }
 
-        /* NEW INLINE PROFILE POSITIONING */
+        /* INLINE PROFILE POSITIONING */
         .profile-wrapper {
             position: relative;
             width: 220px;
@@ -996,7 +996,7 @@
                 
                 <h1>pup.<span>STABILE</span></h1>
                 
-                <!-- NEW POSITIONED INLINE PROFILE FRAME -->
+                <!-- INLINE PROFILE FRAME -->
                 <div class="profile-wrapper">
                     <div class="profile-glow"></div>
                     <div class="profile-container">
@@ -1067,7 +1067,7 @@
         </div>
     </section>
 
-    <!-- Album Trilogy Grid (Images 2, 3, 4 of 4) -->
+    <!-- Album Trilogy Grid -->
     <section id="albums">
         <div class="container">
             <center>
@@ -1079,7 +1079,7 @@
 
             <div class="albums-grid">
                 
-                <!-- Card 1: SYSTEM CRASH (Image 2/4) -->
+                <!-- Card 1: SYSTEM CRASH -->
                 <div class="glass-card album-card">
                     <div class="album-art-container">
                         <img src="album1.jpg" alt="SYSTEM CRASH Cover" class="album-art">
@@ -1106,7 +1106,7 @@
                     <a href="https://release.landr.com/991048977563" class="btn btn-primary" style="padding: 12px 24px;" target="_blank">Pre-Save Single</a>
                 </div>
 
-                <!-- Card 2: SYSTEM RESTORE (Image 3/4) -->
+                <!-- Card 2: SYSTEM RESTORE -->
                 <div class="glass-card album-card">
                     <div class="album-art-container">
                         <img src="album2.jpg" alt="SYSTEM RESTORE Cover" class="album-art">
@@ -1133,7 +1133,7 @@
                     <button class="btn btn-secondary" style="padding: 12px 24px; color: var(--accent-orange); border-color: rgba(255, 85, 0, 0.3);" onclick="alert('System Restore mastering session pending.')">Mastering Active</button>
                 </div>
 
-                <!-- Card 3: SYSTEM ALIGNED (Image 4/4) -->
+                <!-- Card 3: SYSTEM ALIGNED -->
                 <div class="glass-card album-card">
                     <div class="album-art-container">
                         <img src="album3.jpg" alt="SYSTEM ALIGNED Cover" class="album-art">
@@ -1182,7 +1182,7 @@
                         <div class="timeline-year mono">ORIGINS</div>
                         <div class="timeline-location">New Hampshire, USA</div>
                         <div class="timeline-body">
-                            Born and raised amidst New England winter storms. Trained as a competitive gymnast until a severe high school injury shattered his athletic dreams, driving his kinetic focus into the technical world of cybersecurity.
+                            Born and raised amidst New England winter storms. Trained as a competitive gymnast until a major leg break during a college scouting high school meet shattered his athletic path, ending his chances of pursuing his biggest dream. For years, he struggled to believe he could be a music artist, but he always dreamed of singing, playing the piano, and now—creating the exact style of music he makes using the advanced digital tools that are finally available today, fusing his technical skillset with raw artistic expression.
                         </div>
                     </div>
 
@@ -1218,7 +1218,7 @@
                         <div class="timeline-year mono">MAY 2026 // SYSTEM RESTORE</div>
                         <div class="timeline-location">Tallinn, Estonia</div>
                         <div class="timeline-body">
-                            Permanent expat relocation to the Baltics. Purging US consumerist malware, resetting his legal and financial architecture, and establishing a Technical Office under the 0% corporate tax shield of Harju County.
+                            Permanent expat relocation to the Baltics. Leaving behind the exhausting social environment of the United States to seek sovereign recovery. Intrigued by Estonia's tech-heavy startup culture and the legal/technical infrastructure of the AI-startup ecosystem, Jeremy found in Tallinn a refreshing, clean, and safe sanctuary—safer than anywhere he has ever lived—where his physical and creative reboot could finally bloom in peace.
                         </div>
                     </div>
 
@@ -1227,7 +1227,7 @@
         </div>
     </section>
 
-    <!-- Sound Protocol (Glowing Multi-Color Neon Edition) -->
+    <!-- Sound Protocol -->
     <section id="protocol">
         <div class="container">
             <center>
@@ -1276,12 +1276,14 @@
                     <span class="tag">Meduza</span>
                     <span class="tag">Alice Deejay</span>
                     <span class="tag">Daxson</span>
+                    <span class="tag">Plumb</span>
+                    <span class="tag">Aly & Fila</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Consolidated Intake Portal (Single Secure Intake Card) -->
+    <!-- Consolidated Intake Portal -->
     <section id="connect">
         <div class="container connect-grid">
             <div>
@@ -1423,6 +1425,8 @@
                 tag.style.background = 'rgba(255, 255, 255, 0.05)';
                 tag.style.transform = 'translateY(-2px)';
             });
+
+            tag.style.transition = "all 0.25s ease-out";
 
             tag.addEventListener('mouseleave', () => {
                 // Revert to original styling cleanly
