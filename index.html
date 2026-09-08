@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pup.STABILE | Architectural Cyber-Trance // Official Portal</title>
-    
     <!-- Google Fonts for sharp technical typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --bg-dark: #05070c;
             --bg-glass: rgba(10, 14, 26, 0.45);
             --bg-glass-hover: rgba(16, 22, 42, 0.65);
+            --bg-panel: rgba(10, 14, 26, 0.7);
             --accent-cyan: #00f2f2;
             --accent-orange: #ff5500;
             --accent-purple: #9d4edd;
@@ -27,13 +26,11 @@
             --glow-orange: 0 0 15px rgba(255, 85, 0, 0.25);
             --glow-purple: 0 0 15px rgba(157, 78, 221, 0.25);
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         /* Custom Scrollbar for Cyberpunk Vibe */
         ::-webkit-scrollbar {
             width: 8px;
@@ -49,7 +46,6 @@
             background: var(--accent-cyan);
             box-shadow: var(--glow-cyan);
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
@@ -58,7 +54,6 @@
             overflow-x: hidden;
             position: relative;
         }
-
         /* Fullscreen Matrix Background Canvas */
         #matrix {
             position: fixed;
@@ -70,33 +65,27 @@
             pointer-events: none;
             opacity: 0.25;
         }
-
         h1, h2, h3, h4, .font-tech {
             font-family: 'Space Grotesk', sans-serif;
             letter-spacing: -0.02em;
         }
-
         .mono {
             font-family: 'Space Mono', monospace;
         }
-
         a {
             color: var(--accent-cyan);
             text-decoration: none;
             transition: all 0.3s ease;
         }
-
         a:hover {
             color: #fff;
             text-shadow: 0 0 10px var(--accent-cyan);
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
-
         /* Glassmorphism Rule */
         .glass-card {
             background: var(--bg-glass);
@@ -107,7 +96,6 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
         /* Top Navigation Header */
         header {
             position: fixed;
@@ -120,32 +108,27 @@
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
         }
-
         .nav-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 80px;
         }
-
         .brand {
             font-size: 1.5rem;
             font-weight: 700;
             color: #fff;
             letter-spacing: 2px;
         }
-
         .brand span {
             color: var(--accent-cyan);
             text-shadow: var(--glow-cyan);
         }
-
         nav ul {
             display: flex;
             list-style: none;
             gap: 32px;
         }
-
         nav ul a {
             font-size: 0.9rem;
             font-weight: 500;
@@ -153,12 +136,10 @@
             letter-spacing: 1px;
             color: var(--text-muted);
         }
-
         nav ul a:hover, nav ul a.active {
             color: var(--accent-cyan);
             text-shadow: var(--glow-cyan);
         }
-
         /* Hero Sector */
         .hero {
             position: relative;
@@ -168,20 +149,17 @@
             padding-top: 110px;
             padding-bottom: 60px;
         }
-
         .hero-grid {
             display: grid;
             grid-template-columns: 1.3fr 1fr;
             gap: 60px;
             align-items: center;
         }
-
         .hero-text {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
         .badge-terminal {
             display: inline-flex;
             align-items: center;
@@ -196,7 +174,6 @@
             font-weight: 600;
             letter-spacing: 1px;
         }
-
         .badge-terminal span {
             width: 8px;
             height: 8px;
@@ -206,13 +183,11 @@
             box-shadow: 0 0 8px var(--accent-cyan);
             animation: pulse 1.5s infinite;
         }
-
         @keyframes pulse {
             0% { transform: scale(0.9); opacity: 0.5; }
             50% { transform: scale(1.1); opacity: 1; }
             100% { transform: scale(0.9); opacity: 0.5; }
         }
-
         .hero h1 {
             font-size: 4.8rem;
             line-height: 0.95;
@@ -220,13 +195,11 @@
             text-transform: uppercase;
             color: #fff;
         }
-
         .hero h1 span {
             color: transparent;
             -webkit-text-stroke: 1px rgba(0, 242, 242, 0.8);
             filter: drop-shadow(var(--glow-cyan));
         }
-
         /* INLINE PROFILE POSITIONING */
         .profile-wrapper {
             position: relative;
@@ -234,7 +207,6 @@
             height: 220px;
             margin: 10px 0;
         }
-
         .profile-glow {
             position: absolute;
             top: 0;
@@ -247,12 +219,10 @@
             opacity: 0.45;
             animation: rotateGlow 8s infinite linear;
         }
-
         @keyframes rotateGlow {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         .profile-container {
             position: relative;
             width: 100%;
@@ -262,37 +232,31 @@
             overflow: hidden;
             box-shadow: var(--glow-cyan);
         }
-
         .profile-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: all 0.5s ease;
         }
-
         .profile-container:hover .profile-img {
             transform: scale(1.05);
         }
-
         .hero-subtitle {
             font-size: 1.25rem;
             color: var(--text-muted);
             font-weight: 400;
             margin-top: 5px;
         }
-
         .hero-desc {
             color: var(--text-muted);
             font-size: 1.05rem;
         }
-
         .hero-cta {
             display: flex;
             gap: 16px;
             margin-top: 12px;
             flex-wrap: wrap;
         }
-
         .btn {
             display: inline-flex;
             align-items: center;
@@ -307,14 +271,12 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             font-family: 'Space Grotesk', sans-serif;
         }
-
         .btn-primary {
             background-color: var(--accent-orange);
             color: #fff;
             border: 1px solid var(--accent-orange);
             box-shadow: var(--glow-orange);
         }
-
         .btn-primary:hover {
             background-color: transparent;
             color: var(--accent-orange);
@@ -322,26 +284,21 @@
             border-color: var(--accent-orange);
             transform: translateY(-2px);
         }
-
         .btn-secondary {
             background-color: transparent;
             color: var(--accent-cyan);
             border: 1px solid rgba(0, 242, 242, 0.3);
         }
-
         .btn-secondary:hover {
             background-color: rgba(0, 242, 242, 0.05);
             border-color: var(--accent-cyan);
             box-shadow: var(--glow-cyan);
             transform: translateY(-2px);
         }
-
-        /* Sections General Setup */
         section {
             padding: 100px 0;
             position: relative;
         }
-
         .section-title {
             font-size: 2.8rem;
             font-weight: 700;
@@ -350,19 +307,16 @@
             color: #fff;
             position: relative;
         }
-
         .section-title span {
             color: var(--accent-cyan);
             text-shadow: var(--glow-cyan);
         }
-
         .section-desc {
             color: var(--text-muted);
             font-size: 1.15rem;
             max-width: 650px;
             margin-bottom: 60px;
         }
-
         /* Diagnostic Panel Stats Layout */
         .hero-panel {
             background: var(--bg-panel);
@@ -372,7 +326,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             position: relative;
         }
-
         .panel-header {
             display: flex;
             justify-content: space-between;
@@ -381,45 +334,37 @@
             padding-bottom: 12px;
             margin-bottom: 20px;
         }
-
         .panel-dot-group {
             display: flex;
             gap: 6px;
         }
-
         .panel-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background-color: rgba(255,255,255,0.1);
         }
-
         .panel-dot:nth-child(1) { background-color: var(--accent-orange); }
         .panel-dot:nth-child(2) { background-color: var(--accent-gold); }
         .panel-dot:nth-child(3) { background-color: var(--accent-cyan); }
-
         .panel-title {
             font-size: 0.8rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-
         .diagnostic-line {
             font-size: 0.85rem;
             margin-bottom: 8px;
             color: var(--text-muted);
         }
-
         .diagnostic-line span.label {
             color: var(--accent-cyan);
         }
-
         .diagnostic-line span.value {
             color: #fff;
             font-weight: 600;
         }
-
         /* New Mainframe Monitor Grid */
         .mainframe-stats {
             display: grid;
@@ -429,7 +374,6 @@
             border-top: 1px dashed rgba(0, 242, 242, 0.15);
             padding-top: 20px;
         }
-
         .stat-widget {
             background: rgba(5, 7, 12, 0.6);
             border-radius: 6px;
@@ -440,17 +384,14 @@
             border-left: 3px solid var(--accent-cyan);
             box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
-
         .stat-widget.w-cyan { border-left-color: var(--accent-cyan); }
         .stat-widget.w-orange { border-left-color: var(--accent-orange); }
         .stat-widget.w-purple { border-left-color: var(--accent-purple); }
-
         .widget-info {
             display: flex;
             flex-direction: column;
             gap: 2px;
         }
-
         .widget-label {
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -458,12 +399,10 @@
             color: var(--text-muted);
             font-weight: bold;
         }
-
         .widget-desc {
             font-size: 0.75rem;
             color: rgba(139, 155, 180, 0.6);
         }
-
         .widget-display {
             font-family: 'Space Mono', monospace;
             font-size: 1.25rem;
@@ -476,23 +415,20 @@
             min-width: 120px;
             text-align: right;
         }
-
         .w-cyan .widget-display { color: var(--accent-cyan); text-shadow: var(--glow-cyan); }
         .w-orange .widget-display { color: var(--accent-orange); text-shadow: var(--glow-orange); }
         .w-purple .widget-display { color: var(--accent-purple); text-shadow: var(--glow-purple); }
-
+        
         /* Relocation Timeline */
         .timeline-card {
             padding: 40px;
             margin-bottom: 40px;
         }
-
         .timeline {
             position: relative;
             max-width: 800px;
             margin: 0 auto;
         }
-
         .timeline::before {
             content: '';
             position: absolute;
@@ -503,7 +439,6 @@
             background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-orange), var(--accent-purple));
             transform: translateX(-50%);
         }
-
         .timeline-item {
             position: relative;
             margin-bottom: 48px;
@@ -511,14 +446,12 @@
             padding-right: 40px;
             text-align: right;
         }
-
         .timeline-item:nth-child(even) {
             left: 50%;
             padding-right: 0;
             padding-left: 40px;
             text-align: left;
         }
-
         .timeline-dot {
             position: absolute;
             top: 4px;
@@ -530,64 +463,53 @@
             border-radius: 50%;
             z-index: 10;
         }
-
         .timeline-item:nth-child(even) .timeline-dot {
             left: -9px;
             border-color: var(--accent-orange);
         }
-
         .timeline-item:last-child .timeline-dot {
             border-color: var(--accent-purple);
             box-shadow: var(--glow-purple);
         }
-
         .timeline-year {
             font-size: 0.85rem;
             font-weight: 700;
             color: var(--accent-cyan);
             margin-bottom: 6px;
         }
-
         .timeline-item:nth-child(even) .timeline-year {
             color: var(--accent-orange);
         }
-
         .timeline-item:last-child .timeline-year {
             color: var(--accent-purple);
         }
-
         .timeline-location {
             font-size: 1.35rem;
             font-weight: 700;
             color: #fff;
             margin-bottom: 6px;
         }
-
         .timeline-body {
             color: var(--text-muted);
             font-size: 0.95rem;
         }
-
         /* 3-Column Glassmorphic Albums Grid */
         .albums-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 32px;
         }
-
         .album-card {
             padding: 24px;
             display: flex;
             flex-direction: column;
             height: 100%;
         }
-
         .album-card:hover {
             border-color: var(--border-hover);
             box-shadow: 0 10px 40px rgba(0, 242, 242, 0.08);
             transform: translateY(-4px);
         }
-
         .album-art-container {
             width: 100%;
             aspect-ratio: 1/1;
@@ -598,18 +520,15 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.4);
             position: relative;
         }
-
         .album-art {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
         .album-card:hover .album-art {
             transform: scale(1.04);
         }
-
         .album-glow-indicator {
             position: absolute;
             top: 10px;
@@ -625,17 +544,14 @@
             font-weight: 700;
             letter-spacing: 1px;
         }
-
         .album-card:nth-child(2) .album-glow-indicator { border-color: var(--accent-orange); color: var(--accent-orange); }
         .album-card:nth-child(3) .album-glow-indicator { border-color: var(--accent-purple); color: var(--accent-purple); }
-
         .album-card h3 {
             font-size: 1.6rem;
             color: #fff;
             margin-bottom: 4px;
             text-transform: uppercase;
         }
-
         .album-subtitle {
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -644,10 +560,9 @@
             margin-bottom: 20px;
             font-weight: bold;
         }
-
         .album-card:nth-child(2) .album-subtitle { color: var(--accent-orange); }
         .album-card:nth-child(3) .album-subtitle { color: var(--accent-purple); }
-
+        
         /* Tracklist in Album Cards (Clean, No-BS Public Version) */
         .track-scroller {
             background: rgba(0,0,0,0.25);
@@ -660,7 +575,6 @@
             overflow-y: auto;
             border: 1px solid rgba(255, 255, 255, 0.02);
         }
-
         .track-row {
             display: flex;
             align-items: center;
@@ -669,11 +583,9 @@
             color: var(--text-muted);
             transition: all 0.2s ease;
         }
-
         .track-row:last-child {
             border-bottom: none;
         }
-
         .track-row::before {
             content: '▶';
             font-size: 0.65rem;
@@ -682,43 +594,50 @@
             opacity: 0.5;
             transition: all 0.2s ease;
         }
-
         .album-card:nth-child(2) .track-row::before { color: var(--accent-orange); }
         .album-card:nth-child(3) .track-row::before { color: var(--accent-purple); }
-
         .track-row:hover {
             color: #fff;
             padding-left: 4px;
         }
-
         .track-row:hover::before {
             opacity: 1;
             text-shadow: 0 0 5px var(--accent-cyan);
         }
-
         .album-card:nth-child(2) .track-row:hover::before { text-shadow: 0 0 5px var(--accent-orange); }
         .album-card:nth-child(3) .track-row:hover::before { text-shadow: 0 0 5px var(--accent-purple); }
-
         .track-title {
             color: var(--text-main);
             font-weight: 500;
         }
-
+        /* Custom highlight for active promo single */
+        .track-row.live-single {
+            border: 1px dashed var(--accent-cyan);
+            background: rgba(0, 242, 242, 0.04);
+            border-radius: 4px;
+            padding: 8px;
+            box-shadow: inset 0 0 10px rgba(0, 242, 242, 0.1);
+        }
+        .track-row.live-single .track-title {
+            color: var(--accent-cyan);
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 242, 242, 0.3);
+        }
+        .track-row.live-single::before {
+            content: '🔥';
+            opacity: 1;
+        }
         /* Sound Protocol & Multi-Color Glow Grid */
         .protocol-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-bottom: 48px;
+            gap: 24px;
         }
-
         .protocol-card {
             padding: 32px;
             border-radius: 12px;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
-        /* Protocol 1: Cyan Theme */
         .protocol-card.p-cyan {
             border: 1px solid rgba(0, 242, 242, 0.12);
         }
@@ -730,8 +649,6 @@
         .protocol-card.p-cyan .card-num {
             color: var(--accent-cyan);
         }
-
-        /* Protocol 2: Orange Theme */
         .protocol-card.p-orange {
             border: 1px solid rgba(255, 85, 0, 0.12);
         }
@@ -743,8 +660,6 @@
         .protocol-card.p-orange .card-num {
             color: var(--accent-orange);
         }
-
-        /* Protocol 3: Purple Theme */
         .protocol-card.p-purple {
             border: 1px solid rgba(157, 78, 221, 0.12);
         }
@@ -756,30 +671,25 @@
         .protocol-card.p-purple .card-num {
             color: var(--accent-purple);
         }
-
         .card-num {
             font-size: 0.85rem;
             font-weight: bold;
             margin-bottom: 12px;
             letter-spacing: 2px;
         }
-
         .protocol-card h3 {
             font-size: 1.4rem;
             color: #fff;
             margin-bottom: 12px;
             letter-spacing: -0.01em;
         }
-
         .protocol-card p {
             color: var(--text-muted);
             font-size: 0.95rem;
         }
-
         .inspiration-card {
             padding: 40px;
         }
-
         .tag-cloud {
             display: flex;
             flex-wrap: wrap;
@@ -787,7 +697,6 @@
             margin-top: 24px;
             justify-content: center;
         }
-
         .tag {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -799,7 +708,6 @@
             transition: all 0.3s ease;
             cursor: default;
         }
-
         /* Secure Single-Intake Portal Section */
         .connect-grid {
             display: grid;
@@ -807,12 +715,10 @@
             gap: 60px;
             align-items: center;
         }
-
         .alias-box {
             display: flex;
             flex-direction: column;
         }
-
         .alias-card {
             padding: 28px;
             display: flex;
@@ -821,18 +727,15 @@
             border: 1px solid var(--border-color);
             box-shadow: var(--glow-cyan);
         }
-
         .alias-card:hover {
             border-color: var(--accent-cyan);
             background: var(--bg-glass-hover);
         }
-
         .alias-info {
             display: flex;
             flex-direction: column;
             gap: 6px;
         }
-
         .alias-label {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -840,7 +743,6 @@
             color: var(--accent-cyan);
             font-weight: bold;
         }
-
         .alias-email {
             font-family: 'Space Mono', monospace;
             font-size: 1.2rem;
@@ -848,12 +750,10 @@
             font-weight: bold;
             letter-spacing: -0.02em;
         }
-
         .alias-desc {
             font-size: 0.85rem;
             color: var(--text-muted);
         }
-
         .copy-btn {
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
@@ -868,14 +768,12 @@
             letter-spacing: 1px;
             font-weight: bold;
         }
-
         .copy-btn:hover {
             background: var(--accent-cyan);
             border-color: var(--accent-cyan);
             color: var(--bg-dark);
             box-shadow: var(--glow-cyan);
         }
-
         /* Footer */
         footer {
             background: #030408;
@@ -886,22 +784,18 @@
             color: var(--text-muted);
             letter-spacing: 1px;
         }
-
         footer .credits {
             margin-bottom: 12px;
             text-transform: uppercase;
             font-weight: 500;
         }
-
         footer .credits span {
             color: #fff;
         }
-
         footer .legal {
             font-family: 'Space Mono', monospace;
             opacity: 0.6;
         }
-
         /* Responsive Breakpoints */
         @media (max-width: 1100px) {
             .albums-grid {
@@ -939,7 +833,6 @@
                 margin: 20px auto;
             }
         }
-
         @media (max-width: 768px) {
             nav ul {
                 display: none;
@@ -969,7 +862,6 @@
     </style>
 </head>
 <body>
-
     <!-- Real-time Digital Rain Background Canvas -->
     <canvas id="matrix"></canvas>
 
@@ -993,7 +885,6 @@
         <div class="container hero-grid">
             <div class="hero-text">
                 <div class="badge-terminal"><span></span>VERIFICATION SEQUENCE ACTIVE</div>
-                
                 <h1>pup.<span>STABILE</span></h1>
                 
                 <!-- INLINE PROFILE FRAME -->
@@ -1010,10 +901,10 @@
                 </p>
                 <div class="hero-cta">
                     <a href="https://release.landr.com/991048977563" class="btn btn-primary" target="_blank">DECRYPTION SEQUENCE: 09.15.26</a>
-                    <a href="#protocol" class="btn btn-secondary">System Protocols</a>
+                    <a href="https://youtu.be/FA9e_rxffCo" class="btn btn-secondary" target="_blank">Watch Video</a>
                 </div>
             </div>
-            
+
             <!-- Mainframe Diagnostics Telemetry Panel -->
             <div class="hero-panel">
                 <div class="panel-header">
@@ -1030,10 +921,9 @@
                     <div class="diagnostic-line"><span class="label">CITIZENSHIP:</span> <span class="value">United States (Expat)</span></div>
                     <div class="diagnostic-line"><span class="label">OFFICE:</span> <span class="value">Tallinn, Harju County, EE</span></div>
                     <div class="diagnostic-line"><span class="label">VOCAL:</span> <span class="value">Bass-Baritone (E2-C#4)</span></div>
-                    
+
                     <!-- self-animating telemetry widgets -->
                     <div class="mainframe-stats">
-                        
                         <!-- Cyan Fluctuating Listeners -->
                         <div class="stat-widget w-cyan">
                             <div class="widget-info">
@@ -1060,8 +950,38 @@
                             </div>
                             <div class="widget-display">12.8 ms</div>
                         </div>
-
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED VIDEO EM-BED SECTION -->
+    <section id="video" style="background: rgba(0, 242, 242, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 80px 0;">
+        <div class="container">
+            <center>
+                <span class="section-eyebrow font-tech" style="color: var(--accent-orange); text-shadow: var(--glow-orange); letter-spacing: 2px; font-size: 0.9rem; text-transform: uppercase;">Featured Transmission</span>
+                <h2 class="section-title">Scars into <span>Thunder</span></h2>
+                <p class="section-desc">
+                    Watch the official lyric video for the triumphant lead single from the debut album <strong>SYSTEM CRASH (Part 1)</strong>. Fusing progressive house and dark 80s synthwave.
+                </p>
+            </center>
+
+            <div style="max-width: 800px; margin: 0 auto; background: var(--bg-glass); border: 1px solid var(--accent-cyan); border-radius: 12px; padding: 16px; box-shadow: var(--glow-cyan);">
+                <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px;">
+                    <iframe 
+                        src="https://www.youtube.com/embed/FA9e_rxffCo" 
+                        title="pup.STABILE - Scars into Thunder (Official Lyric Video)" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                    </iframe>
+                </div>
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 24px; flex-wrap: wrap;">
+                    <a href="https://release.landr.com/991048977563" class="btn btn-primary" target="_blank">Pre-Save Single</a>
+                    <a href="https://youtu.be/FA9e_rxffCo" class="btn btn-secondary" target="_blank">Watch on YouTube</a>
                 </div>
             </div>
         </div>
@@ -1078,7 +998,6 @@
             </center>
 
             <div class="albums-grid">
-                
                 <!-- Card 1: SYSTEM CRASH -->
                 <div class="glass-card album-card">
                     <div class="album-art-container">
@@ -1086,7 +1005,7 @@
                         <div class="album-glow-indicator">PART 1</div>
                     </div>
                     <h3>System Crash</h3>
-                    <div class="album-subtitle font-tech">The Descent</div>
+                    <div class="album-subtitle fonttech">The Descent</div>
                     
                     <div class="track-scroller">
                         <div class="track-row"><span class="track-title">Black Cloud (The Filter)</span></div>
@@ -1097,13 +1016,16 @@
                         <div class="track-row"><span class="track-title">Relapse (The Rage-Baited Mind)</span></div>
                         <div class="track-row"><span class="track-title">Counting all the bruises</span></div>
                         <div class="track-row"><span class="track-title">The Light I left Behind</span></div>
-                        <div class="track-row"><span class="track-title">Scars into Thunder</span></div>
+                        <!-- Current featured promo single -->
+                        <div class="track-row live-single" onclick="window.open('https://youtu.be/FA9e_rxffCo','_blank')" style="cursor: pointer;"><span class="track-title">Scars into Thunder</span></div>
                         <div class="track-row"><span class="track-title">I'm Not Done Yet!</span></div>
                         <div class="track-row"><span class="track-title">Nostalgic (Down my Spine)</span></div>
                         <div class="track-row"><span class="track-title">The Angst Synapses</span></div>
                     </div>
-                    
-                    <a href="https://release.landr.com/991048977563" class="btn btn-primary" style="padding: 12px 24px;" target="_blank">Pre-Save Single</a>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://release.landr.com/991048977563" class="btn btn-primary" style="padding: 12px 24px; width: 100%; text-align: center;" target="_blank">Pre-Save Single</a>
+                        <a href="https://youtu.be/FA9e_rxffCo" class="btn btn-secondary" style="padding: 12px 24px; width: 100%; text-align: center; border-color: rgba(0, 242, 242, 0.4);" target="_blank">Watch Lyric Video</a>
+                    </div>
                 </div>
 
                 <!-- Card 2: SYSTEM RESTORE -->
@@ -1129,7 +1051,6 @@
                         <div class="track-row"><span class="track-title">The Currency of Truth</span></div>
                         <div class="track-row"><span class="track-title">New Found Strength</span></div>
                     </div>
-                    
                     <button class="btn btn-secondary" style="padding: 12px 24px; color: var(--accent-orange); border-color: rgba(255, 85, 0, 0.3);" onclick="alert('System Restore mastering session pending.')">Mastering Active</button>
                 </div>
 
@@ -1156,10 +1077,8 @@
                         <div class="track-row"><span class="track-title">I'm Broken, but Healing</span></div>
                         <div class="track-row"><span class="track-title">System Aligned</span></div>
                     </div>
-                    
                     <button class="btn btn-secondary" style="padding: 12px 24px; color: var(--accent-purple); border-color: rgba(157, 78, 221, 0.3);" onclick="alert('System Aligned production session locked.')">Locked in Vault</button>
                 </div>
-
             </div>
         </div>
     </section>
@@ -1176,7 +1095,6 @@
 
             <div class="glass-card timeline-card">
                 <div class="timeline">
-                    
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-year mono">ORIGINS</div>
@@ -1221,7 +1139,6 @@
                             Permanent expat relocation to the Baltics. Leaving behind the exhausting social environment of the United States to seek sovereign recovery. Intrigued by Estonia's tech-heavy startup culture and the legal/technical infrastructure of the AI-startup ecosystem, Jeremy found in Tallinn a refreshing, clean, and safe sanctuary—safer than anywhere he has ever lived—where his physical and creative reboot could finally bloom in peace.
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -1238,33 +1155,31 @@
             </center>
 
             <div class="protocol-grid">
-                
                 <!-- Protocol 1: Cyan Glow -->
                 <div class="glass-card protocol-card p-cyan">
                     <div class="card-num mono">PROTOCOL_01</div>
                     <h3>The Low-End Throb</h3>
                     <p>Heavy, driving, club-ready Berlin techno and progressive house kick drums that lock in a relentless 126–128 BPM momentum, demanding physical release.</p>
                 </div>
-                
+
                 <!-- Protocol 2: Orange Glow -->
                 <div class="glass-card protocol-card p-orange">
                     <div class="card-num mono">PROTOCOL_02</div>
                     <h3>The Shimmering Grid</h3>
                     <p>Soaring, cascading 90s Euro-trance synthesizer pluck arpeggios and weeping, sidechained analog string pads that create a deep, euphoric melancholy.</p>
                 </div>
-                
+
                 <!-- Protocol 3: Purple Glow -->
                 <div class="glass-card protocol-card p-purple">
                     <div class="card-num mono">PROTOCOL_03</div>
                     <h3>The Biometric Signature</h3>
                     <p>Warm, intimate, close-mic E2 to C#4 bass-baritone vocals, delivered raw and dry without generic tenor pitching to prove authentic human directorship.</p>
                 </div>
-                
             </div>
 
             <!-- Clickable, Glowing Tag Cloud of Verified Inspirations -->
-            <div class="glass-card inspiration-card">
-                <center><h4 class="inspiration-title font-tech">Verified Inspirations</h4></center>
+            <div class="glass-card inspiration-card" style="margin-top: 40px;">
+                <center><h4 class="inspiration-title fonttech" style="font-size: 1.25rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Verified Inspirations</h4></center>
                 <div class="tag-cloud">
                     <span class="tag">Armin van Buuren</span>
                     <span class="tag">Evanescence</span>
@@ -1292,7 +1207,7 @@
                     All administrative traffic and routing requests are processed through a single public intake point to shield backend networks and protect database integrity.
                 </p>
             </div>
-            
+
             <div class="alias-box">
                 <div class="glass-card alias-card">
                     <div class="alias-info">
@@ -1309,6 +1224,12 @@
     <!-- Footer containing exact cover art footer lore lines -->
     <footer>
         <div class="container">
+            <!-- Social links integrated directly in footer style -->
+            <div style="display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
+                <a href="https://youtu.be/FA9e_rxffCo" target="_blank" style="color: var(--accent-cyan); text-shadow: var(--glow-cyan);">YouTube</a>
+                <a href="https://instagram.com/pupstabile" target="_blank" style="color: var(--accent-orange); text-shadow: var(--glow-orange);">Instagram</a>
+                <a href="https://release.landr.com/991048977563" target="_blank" style="color: var(--accent-purple); text-shadow: var(--glow-purple);">Pre-Save Campaign</a>
+            </div>
             <div class="credits">
                 A <span>pup.STABILE</span> Production &bull; Managed by pup.STABLE &bull; Directed by pup.STABLE &bull; 2026
             </div>
@@ -1335,10 +1256,9 @@
         const chars = "01";
         const charArray = chars.split("");
         const fontSize = 16;
-        
         let columns = canvas.width / fontSize;
         let drops = [];
-        
+
         // Re-initialize columns on resize
         window.addEventListener('resize', () => {
             columns = canvas.width / fontSize;
@@ -1371,7 +1291,6 @@
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
-                
                 drops[i]++;
             }
         }
@@ -1425,7 +1344,6 @@
                 tag.style.background = 'rgba(255, 255, 255, 0.05)';
                 tag.style.transform = 'translateY(-2px)';
             });
-
             tag.style.transition = "all 0.25s ease-out";
 
             tag.addEventListener('mouseleave', () => {
