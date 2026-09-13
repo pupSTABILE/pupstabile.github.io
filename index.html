@@ -3,11 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pup.STABILE | Architectural Cyber-Trance // Official Portal</title>
-    <!-- Google Fonts for sharp technical typography -->
+    <title>pup.STABILE | Architectural Cyber-Trance // Official Master Portal</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="pup.STABILE | Architectural Cyber-Trance // Official Master Portal">
+    <meta name="description" content="Official portal of pup.STABILE (Pup Stabeel), an electronic producer, songwriter, and bass-baritone vocalist pioneering Architectural Cyber-Trance in Tallinn, Estonia. Creator of The System Tetrad 4-album cycle.">
+    <meta name="keywords" content="pup.STABILE, Pup Stabeel, Architectural Cyber-Trance, Electronic Music Producer Tallinn, Synthwave Estonia, Berlin Progressive House, Scars into Thunder, System Tetrad, Jeremy David Stabile, Bass-Baritone Vocalist">
+    <meta name="author" content="pup.STABILE">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pupstabile.com/">
+
+    <!-- Open Graph / Facebook / Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pupstabile.com/">
+    <meta property="og:title" content="pup.STABILE | Architectural Cyber-Trance Master Portal">
+    <meta property="og:description" content="Architectural Cyber-Trance producer & bass-baritone vocalist based in Tallinn, Estonia. Fusing 80s synthwave, Berlin house, and software architecture. Debut single 'Scars into Thunder' drops Sept 15, 2026.">
+    <meta property="og:image" content="https://pupstabile.com/pupstabile_profile_photo_v2.png">
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pupstabile.com/">
+    <meta property="twitter:title" content="pup.STABILE | Architectural Cyber-Trance">
+    <meta property="twitter:description" content="Official artist portal for pup.STABILE. Tallinn-based electronic producer & bass-baritone vocalist. The System Tetrad 4-album collection.">
+    <meta property="twitter:image" content="https://pupstabile.com/pupstabile_profile_photo_v2.png">
+
+    <!-- Schema.org JSON-LD (GEO / AEO / Search Engine Authority) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "MusicGroup",
+          "@id": "https://pupstabile.com/#artist",
+          "name": "pup.STABILE",
+          "alternateName": ["Pup Stabeel", "Jeremy David Stabile"],
+          "url": "https://pupstabile.com",
+          "image": "https://pupstabile.com/pupstabile_profile_photo_v2.png",
+          "description": "pup.STABILE is an electronic music producer, songwriter, and bass-baritone vocalist based in Tallinn, Estonia. Pioneer of Architectural Cyber-Trance, fusing dark 80s synthwave, 90s Eurodance arpeggios, and Berlin progressive house.",
+          "genre": ["Architectural Cyber-Trance", "Progressive House", "Synthwave", "Cyber-Trance", "Electronic"],
+          "locationCreated": {
+            "@type": "Place",
+            "name": "Tallinn, Harju County, Estonia"
+          },
+          "sameAs": [
+            "https://pupstabile.com",
+            "https://www.facebook.com/people/PupSTABILE/61594507853019/",
+            "https://instagram.com/pupstabile",
+            "https://release.landr.com/991048977563",
+            "https://youtu.be/FA9e_rxffCo"
+          ]
+        },
+        {
+          "@type": "MusicAlbum",
+          "name": "System Crash",
+          "byArtist": { "@id": "https://pupstabile.com/#artist" },
+          "datePublished": "2026-10-31",
+          "albumProductionType": "https://schema.org/StudioAlbum",
+          "description": "Part 1 of The System Tetrad master collection by pup.STABILE."
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-dark: #05070c;
@@ -17,8 +79,8 @@
             --accent-cyan: #00f2f2;
             --accent-orange: #ff5500;
             --accent-purple: #9d4edd;
+            --accent-green: #10b981;
             --accent-gold: #ffd700;
-            --accent-green: #39ff14;
             --text-main: #f0f3f8;
             --text-muted: #8b9bb4;
             --border-color: rgba(0, 242, 242, 0.15);
@@ -26,14 +88,13 @@
             --glow-cyan: 0 0 15px rgba(0, 242, 242, 0.25);
             --glow-orange: 0 0 15px rgba(255, 85, 0, 0.25);
             --glow-purple: 0 0 15px rgba(157, 78, 221, 0.25);
-            --glow-green: 0 0 15px rgba(57, 255, 20, 0.25);
+            --glow-green: 0 0 15px rgba(16, 185, 129, 0.25);
         }
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        /* Custom Scrollbar for Cyberpunk Vibe */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -56,7 +117,6 @@
             overflow-x: hidden;
             position: relative;
         }
-        /* Fullscreen Matrix Background Canvas */
         #matrix {
             position: fixed;
             top: 0;
@@ -84,11 +144,10 @@
             text-shadow: 0 0 10px var(--accent-cyan);
         }
         .container {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
-        /* Glassmorphism Rule */
         .glass-card {
             background: var(--bg-glass);
             backdrop-filter: blur(16px) saturate(180%);
@@ -98,13 +157,12 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        /* Top Navigation Header */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(5, 7, 12, 0.7);
+            background: rgba(5, 7, 12, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
@@ -129,10 +187,10 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 32px;
+            gap: 28px;
         }
         nav ul a {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -142,7 +200,6 @@
             color: var(--accent-cyan);
             text-shadow: var(--glow-cyan);
         }
-        /* Hero Sector */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -153,8 +210,8 @@
         }
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 60px;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
             align-items: center;
         }
         .hero-text {
@@ -191,7 +248,7 @@
             100% { transform: scale(0.9); opacity: 0.5; }
         }
         .hero h1 {
-            font-size: 4.8rem;
+            font-size: 4.5rem;
             line-height: 0.95;
             font-weight: 800;
             text-transform: uppercase;
@@ -202,11 +259,10 @@
             -webkit-text-stroke: 1px rgba(0, 242, 242, 0.8);
             filter: drop-shadow(var(--glow-cyan));
         }
-        /* INLINE PROFILE POSITIONING */
         .profile-wrapper {
             position: relative;
-            width: 220px;
-            height: 220px;
+            width: 200px;
+            height: 200px;
             margin: 10px 0;
         }
         .profile-glow {
@@ -216,7 +272,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-orange), var(--accent-purple), var(--accent-green));
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-orange), var(--accent-purple));
             filter: blur(15px);
             opacity: 0.45;
             animation: rotateGlow 8s infinite linear;
@@ -244,10 +300,9 @@
             transform: scale(1.05);
         }
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
             font-weight: 400;
-            margin-top: 5px;
         }
         .hero-desc {
             color: var(--text-muted);
@@ -255,17 +310,17 @@
         }
         .hero-cta {
             display: flex;
-            gap: 16px;
-            margin-top: 12px;
+            gap: 14px;
+            margin-top: 10px;
             flex-wrap: wrap;
         }
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 32px;
+            padding: 14px 28px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             border-radius: 4px;
@@ -298,16 +353,15 @@
             transform: translateY(-2px);
         }
         section {
-            padding: 100px 0;
+            padding: 90px 0;
             position: relative;
         }
         .section-title {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             font-weight: 700;
             text-transform: uppercase;
             margin-bottom: 16px;
             color: #fff;
-            position: relative;
         }
         .section-title span {
             color: var(--accent-cyan);
@@ -315,11 +369,12 @@
         }
         .section-desc {
             color: var(--text-muted);
-            font-size: 1.15rem;
-            max-width: 700px;
-            margin-bottom: 60px;
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin-bottom: 50px;
         }
-        /* Diagnostic Panel Stats Layout */
+
+        /* LIVE TELEMETRY / COUNTDOWN MONITOR */
         .hero-panel {
             background: var(--bg-panel);
             border: 1px solid var(--border-color);
@@ -367,145 +422,54 @@
             color: #fff;
             font-weight: 600;
         }
-        /* Mainframe Monitor Grid */
-        .mainframe-stats {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin-top: 20px;
-            border-top: 1px dashed rgba(0, 242, 242, 0.15);
-            padding-top: 20px;
+
+        /* REAL-TIME RELEASE COUNTDOWN WIDGET */
+        .countdown-widget {
+            background: rgba(5, 7, 12, 0.7);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 18px;
+            box-shadow: var(--glow-cyan);
         }
-        .stat-widget {
-            background: rgba(5, 7, 12, 0.6);
-            border-radius: 6px;
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-left: 3px solid var(--accent-cyan);
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-        }
-        .stat-widget.w-cyan { border-left-color: var(--accent-cyan); }
-        .stat-widget.w-orange { border-left-color: var(--accent-orange); }
-        .stat-widget.w-purple { border-left-color: var(--accent-purple); }
-        .stat-widget.w-green { border-left-color: var(--accent-green); }
-        .widget-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        .widget-label {
-            font-size: 0.7rem;
+        .countdown-label {
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--text-muted);
-            font-weight: bold;
-        }
-        .widget-desc {
-            font-size: 0.75rem;
-            color: rgba(139, 155, 180, 0.6);
-        }
-        .widget-display {
-            font-family: 'Space Mono', monospace;
-            font-size: 1.25rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            padding: 4px 10px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 4px;
-            border: 1px solid rgba(255,255,255,0.02);
-            min-width: 120px;
-            text-align: right;
-        }
-        .w-cyan .widget-display { color: var(--accent-cyan); text-shadow: var(--glow-cyan); }
-        .w-orange .widget-display { color: var(--accent-orange); text-shadow: var(--glow-orange); }
-        .w-purple .widget-display { color: var(--accent-purple); text-shadow: var(--glow-purple); }
-        .w-green .widget-display { color: var(--accent-green); text-shadow: var(--glow-green); }
-        
-        /* Relocation Timeline */
-        .timeline-card {
-            padding: 40px;
-            margin-bottom: 40px;
-        }
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-orange), var(--accent-purple), var(--accent-green));
-            transform: translateX(-50%);
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 48px;
-            width: 50%;
-            padding-right: 40px;
-            text-align: right;
-        }
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            padding-right: 0;
-            padding-left: 40px;
-            text-align: left;
-        }
-        .timeline-dot {
-            position: absolute;
-            top: 4px;
-            right: -10px;
-            width: 18px;
-            height: 18px;
-            background-color: var(--bg-dark);
-            border: 3px solid var(--accent-cyan);
-            border-radius: 50%;
-            z-index: 10;
-        }
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: -9px;
-            border-color: var(--accent-orange);
-        }
-        .timeline-item:nth-child(3) .timeline-dot {
-            border-color: var(--accent-purple);
-        }
-        .timeline-item:last-child .timeline-dot {
-            border-color: var(--accent-green);
-            box-shadow: var(--glow-green);
-        }
-        .timeline-year {
-            font-size: 0.85rem;
-            font-weight: 700;
             color: var(--accent-cyan);
-            margin-bottom: 6px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
         }
-        .timeline-item:nth-child(even) .timeline-year {
-            color: var(--accent-orange);
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            text-align: center;
         }
-        .timeline-item:nth-child(3) .timeline-year {
-            color: var(--accent-purple);
+        .timer-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 242, 242, 0.2);
+            border-radius: 4px;
+            padding: 8px 4px;
         }
-        .timeline-item:last-child .timeline-year {
-            color: var(--accent-green);
-        }
-        .timeline-location {
-            font-size: 1.35rem;
-            font-weight: 700;
+        .timer-val {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: bold;
             color: #fff;
-            margin-bottom: 6px;
+            text-shadow: 0 0 8px var(--accent-cyan);
         }
-        .timeline-body {
+        .timer-unit {
+            font-size: 0.65rem;
+            text-transform: uppercase;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            letter-spacing: 1px;
         }
-        
-        /* 4-Column Responsive Glassmorphic Albums Grid (The System Tetrad) */
-        .albums-grid {
+
+        /* 4-COLUMN TETRAD ALBUM GRID & DYNAMIC HOVER GLOWS */
+        .tetrad-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 24px;
@@ -515,12 +479,32 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            border-radius: 12px;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .album-card:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 10px 40px rgba(0, 242, 242, 0.08);
-            transform: translateY(-4px);
+
+        /* Custom Hover Glows per Album */
+        .album-card.card-album1:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 35px rgba(0, 242, 242, 0.35);
+            transform: translateY(-5px);
         }
+        .album-card.card-album2:hover {
+            border-color: var(--accent-orange);
+            box-shadow: 0 10px 35px rgba(255, 85, 0, 0.35);
+            transform: translateY(-5px);
+        }
+        .album-card.card-album3:hover {
+            border-color: var(--accent-purple);
+            box-shadow: 0 10px 35px rgba(157, 78, 221, 0.35);
+            transform: translateY(-5px);
+        }
+        .album-card.card-album4:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 10px 35px rgba(16, 185, 129, 0.35);
+            transform: translateY(-5px);
+        }
+
         .album-art-container {
             width: 100%;
             aspect-ratio: 1/1;
@@ -555,39 +539,38 @@
             font-weight: 700;
             letter-spacing: 1px;
         }
-        .album-card:nth-child(2) .album-glow-indicator { border-color: var(--accent-orange); color: var(--accent-orange); }
-        .album-card:nth-child(3) .album-glow-indicator { border-color: var(--accent-purple); color: var(--accent-purple); }
-        .album-card:nth-child(4) .album-glow-indicator { border-color: var(--accent-green); color: var(--accent-green); }
-        
+        .card-album2 .album-glow-indicator { border-color: var(--accent-orange); color: var(--accent-orange); }
+        .card-album3 .album-glow-indicator { border-color: var(--accent-purple); color: var(--accent-purple); }
+        .card-album4 .album-glow-indicator { border-color: var(--accent-green); color: var(--accent-green); }
+
         .album-card h3 {
             font-size: 1.35rem;
             color: #fff;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
             text-transform: uppercase;
         }
         .album-subtitle {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--accent-cyan);
             margin-bottom: 16px;
             font-weight: bold;
         }
-        .album-card:nth-child(2) .album-subtitle { color: var(--accent-orange); }
-        .album-card:nth-child(3) .album-subtitle { color: var(--accent-purple); }
-        .album-card:nth-child(4) .album-subtitle { color: var(--accent-green); }
-        
-        /* Tracklist in Album Cards */
+        .card-album2 .album-subtitle { color: var(--accent-orange); }
+        .card-album3 .album-subtitle { color: var(--accent-purple); }
+        .card-album4 .album-subtitle { color: var(--accent-green); }
+
         .track-scroller {
-            background: rgba(0,0,0,0.25);
+            background: rgba(0,0,0,0.3);
             border-radius: 6px;
             padding: 12px;
             font-size: 0.85rem;
             flex-grow: 1;
-            margin-bottom: 20px;
-            max-height: 280px;
+            margin-bottom: 18px;
+            max-height: 240px;
             overflow-y: auto;
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
         .track-row {
             display: flex;
@@ -597,122 +580,116 @@
             color: var(--text-muted);
             transition: all 0.2s ease;
         }
-        .track-row:last-child {
-            border-bottom: none;
-        }
+        .track-row:last-child { border-bottom: none; }
         .track-row::before {
             content: '▶';
             font-size: 0.6rem;
             margin-right: 8px;
             color: var(--accent-cyan);
             opacity: 0.5;
-            transition: all 0.2s ease;
         }
-        .album-card:nth-child(2) .track-row::before { color: var(--accent-orange); }
-        .album-card:nth-child(3) .track-row::before { color: var(--accent-purple); }
-        .album-card:nth-child(4) .track-row::before { color: var(--accent-green); }
-        
-        .track-row:hover {
-            color: #fff;
-            padding-left: 4px;
-        }
-        .track-row:hover::before {
-            opacity: 1;
-            text-shadow: 0 0 5px var(--accent-cyan);
-        }
-        .album-card:nth-child(2) .track-row:hover::before { text-shadow: 0 0 5px var(--accent-orange); }
-        .album-card:nth-child(3) .track-row:hover::before { text-shadow: 0 0 5px var(--accent-purple); }
-        .album-card:nth-child(4) .track-row:hover::before { text-shadow: 0 0 5px var(--accent-green); }
-        
-        .track-title {
-            color: var(--text-main);
-            font-weight: 500;
-        }
-        /* Custom highlight for active promo single */
+        .card-album2 .track-row::before { color: var(--accent-orange); }
+        .card-album3 .track-row::before { color: var(--accent-purple); }
+        .card-album4 .track-row::before { color: var(--accent-green); }
+
         .track-row.live-single {
             border: 1px dashed var(--accent-cyan);
-            background: rgba(0, 242, 242, 0.04);
+            background: rgba(0, 242, 242, 0.05);
             border-radius: 4px;
-            padding: 6px;
-            box-shadow: inset 0 0 10px rgba(0, 242, 242, 0.1);
+            padding: 6px 8px;
         }
         .track-row.live-single .track-title {
             color: var(--accent-cyan);
             font-weight: bold;
-            text-shadow: 0 0 5px rgba(0, 242, 242, 0.3);
         }
-        .track-row.live-single::before {
-            content: '🔥';
-            opacity: 1;
+
+        /* Relocation Timeline */
+        .timeline-card {
+            padding: 40px;
         }
-        /* Sound Protocol & Multi-Color Glow Grid */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-orange), var(--accent-purple), var(--accent-green));
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: 50%;
+            padding-right: 40px;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-right: 0;
+            padding-left: 40px;
+            text-align: left;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 4px;
+            right: -10px;
+            width: 18px;
+            height: 18px;
+            background-color: var(--bg-dark);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -9px;
+            border-color: var(--accent-orange);
+        }
+        .timeline-year {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 4px;
+        }
+        .timeline-location {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .timeline-body {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Sound Protocol */
         .protocol-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
         }
         .protocol-card {
-            padding: 32px;
+            padding: 28px;
             border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.3s ease;
         }
-        .protocol-card.p-cyan {
-            border: 1px solid rgba(0, 242, 242, 0.12);
-        }
-        .protocol-card.p-cyan:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: var(--glow-cyan);
-            transform: translateY(-4px);
-        }
-        .protocol-card.p-cyan .card-num {
-            color: var(--accent-cyan);
-        }
-        .protocol-card.p-orange {
-            border: 1px solid rgba(255, 85, 0, 0.12);
-        }
-        .protocol-card.p-orange:hover {
-            border-color: var(--accent-orange);
-            box-shadow: var(--glow-orange);
-            transform: translateY(-4px);
-        }
-        .protocol-card.p-orange .card-num {
-            color: var(--accent-orange);
-        }
-        .protocol-card.p-purple {
-            border: 1px solid rgba(157, 78, 221, 0.12);
-        }
-        .protocol-card.p-purple:hover {
-            border-color: var(--accent-purple);
-            box-shadow: var(--glow-purple);
-            transform: translateY(-4px);
-        }
-        .protocol-card.p-purple .card-num {
-            color: var(--accent-purple);
-        }
-        .card-num {
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 12px;
-            letter-spacing: 2px;
-        }
-        .protocol-card h3 {
-            font-size: 1.4rem;
-            color: #fff;
-            margin-bottom: 12px;
-            letter-spacing: -0.01em;
-        }
-        .protocol-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-        .inspiration-card {
-            padding: 40px;
-        }
+        .protocol-card.p-cyan { border: 1px solid rgba(0, 242, 242, 0.15); }
+        .protocol-card.p-cyan:hover { border-color: var(--accent-cyan); box-shadow: var(--glow-cyan); transform: translateY(-4px); }
+        .protocol-card.p-orange { border: 1px solid rgba(255, 85, 0, 0.15); }
+        .protocol-card.p-orange:hover { border-color: var(--accent-orange); box-shadow: var(--glow-orange); transform: translateY(-4px); }
+        .protocol-card.p-purple { border: 1px solid rgba(157, 78, 221, 0.15); }
+        .protocol-card.p-purple:hover { border-color: var(--accent-purple); box-shadow: var(--glow-purple); transform: translateY(-4px); }
+
         .tag-cloud {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 24px;
+            margin-top: 20px;
             justify-content: center;
         }
         .tag {
@@ -722,76 +699,18 @@
             padding: 8px 16px;
             border-radius: 4px;
             font-size: 0.85rem;
-            font-weight: 500;
             transition: all 0.3s ease;
-            cursor: default;
         }
-        /* Secure Single-Intake Portal Section */
-        .connect-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+
+        /* PRESS / MEDIA TRANSMISSIONS PORTAL */
+        .press-card {
+            padding: 32px;
+            border: 1px solid rgba(0, 242, 242, 0.2);
+            border-radius: 12px;
+            background: var(--bg-glass);
+            margin-top: 40px;
         }
-        .alias-box {
-            display: flex;
-            flex-direction: column;
-        }
-        .alias-card {
-            padding: 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--glow-cyan);
-        }
-        .alias-card:hover {
-            border-color: var(--accent-cyan);
-            background: var(--bg-glass-hover);
-        }
-        .alias-info {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .alias-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-cyan);
-            font-weight: bold;
-        }
-        .alias-email {
-            font-family: 'Space Mono', monospace;
-            font-size: 1.2rem;
-            color: #fff;
-            font-weight: bold;
-            letter-spacing: -0.02em;
-        }
-        .alias-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        .copy-btn {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-muted);
-            padding: 10px 18px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: 1px;
-            font-weight: bold;
-        }
-        .copy-btn:hover {
-            background: var(--accent-cyan);
-            border-color: var(--accent-cyan);
-            color: var(--bg-dark);
-            box-shadow: var(--glow-cyan);
-        }
+
         /* Footer */
         footer {
             background: #030408;
@@ -802,91 +721,32 @@
             color: var(--text-muted);
             letter-spacing: 1px;
         }
-        footer .credits {
-            margin-bottom: 12px;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            font-weight: 500;
         }
-        footer .credits span {
-            color: #fff;
+
+        @media (max-width: 1100px) {
+            .tetrad-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .profile-wrapper { margin: 20px auto; }
+            .hero-cta { justify-content: center; }
+            .badge-terminal { margin: 0 auto; }
         }
-        footer .legal {
-            font-family: 'Space Mono', monospace;
-            opacity: 0.6;
-        }
-        /* Responsive Breakpoints */
-        @media (max-width: 1200px) {
-            .albums-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 32px;
-            }
-        }
-        @media (max-width: 900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-                text-align: center;
-            }
-            .badge-terminal {
-                margin: 0 auto;
-            }
-            .hero h1 {
-                font-size: 3.8rem;
-            }
-            .hero-desc {
-                margin: 0 auto;
-            }
-            .hero-cta {
-                justify-content: center;
-            }
-            .protocol-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-            .connect-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .profile-wrapper {
-                margin: 20px auto;
-            }
-        }
-        @media (max-width: 650px) {
-            .albums-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-                max-width: 480px;
-                margin: 0 auto;
-            }
-            nav ul {
-                display: none;
-            }
-            .timeline::before {
-                left: 24px;
-            }
-            .timeline-item {
-                width: 100%;
-                padding-left: 56px;
-                padding-right: 0;
-                text-align: left;
-            }
-            .timeline-item:nth-child(even) {
-                left: 0;
-                padding-left: 56px;
-            }
-            .timeline-dot {
-                left: 15px !important;
-                right: auto !important;
-            }
-            .profile-wrapper {
-                width: 200px;
-                height: 200px;
-            }
+        @media (max-width: 700px) {
+            .tetrad-grid { grid-template-columns: 1fr; }
+            .protocol-grid { grid-template-columns: 1fr; }
+            nav ul { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Real-time Digital Rain Background Canvas -->
     <canvas id="matrix"></canvas>
 
     <!-- Header Navigation -->
@@ -895,9 +755,12 @@
             <div class="brand">pup<span>.STABILE</span></div>
             <nav>
                 <ul>
-                    <li><a href="#hero" class="active">The Tetrad</a></li>
+                    <li><a href="#hero" class="active">Overview</a></li>
+                    <li><a href="#tetrad">The Tetrad</a></li>
+                    <li><a href="#video">Transmission</a></li>
                     <li><a href="#biography">Relocation</a></li>
                     <li><a href="#protocol">Protocol</a></li>
+                    <li><a href="#press">Press</a></li>
                     <li><a href="#connect">Connect</a></li>
                 </ul>
             </nav>
@@ -911,20 +774,19 @@
                 <div class="badge-terminal"><span></span>VERIFICATION SEQUENCE ACTIVE</div>
                 <h1>pup.<span>STABILE</span></h1>
                 
-                <!-- INLINE PROFILE FRAME -->
                 <div class="profile-wrapper">
                     <div class="profile-glow"></div>
                     <div class="profile-container">
-                        <img src="pupstabile_profile_photo_v2.png" alt="pup.STABILE" class="profile-img">
+                        <img src="pupstabile_profile_photo_v2.png" alt="pup.STABILE Profile Photo" class="profile-img">
                     </div>
                 </div>
 
                 <p class="hero-subtitle mono">ARCHITECTURAL CYBER-TRANCE // ESTONIAN REBOOT</p>
                 <p class="hero-desc">
-                    Fusing the driving basslines of progressive house with raw bass-baritone vocals, pup.STABILE utilizes the clinical metadata of software design to blueprint human survival. Written in Tallinn, Estonia.
+                    Fusing the driving basslines of Berlin progressive house with dark 80s synthwave and rare E2 to C#4 bass-baritone lead vocals, pup.STABILE translates human resilience into sovereign software metaphors. Written, engineered, and vocal-seeded in Tallinn, Estonia.
                 </p>
                 <div class="hero-cta">
-                    <a href="https://release.landr.com/991048977563" class="btn btn-primary" target="_blank">DECRYPTION SEQUENCE: 09.15.26</a>
+                    <a href="https://release.landr.com/991048977563" class="btn btn-primary" target="_blank">Pre-Save Single 1</a>
                     <a href="https://youtu.be/FA9e_rxffCo" class="btn btn-secondary" target="_blank">Watch Video</a>
                 </div>
             </div>
@@ -943,36 +805,36 @@
                     <div class="diagnostic-line"><span class="label">ARTIST:</span> <span class="value">pup.STABILE</span></div>
                     <div class="diagnostic-line"><span class="label">GENRE:</span> <span class="value">Architectural Cyber-Trance</span></div>
                     <div class="diagnostic-line"><span class="label">CITIZENSHIP:</span> <span class="value">United States (Expat)</span></div>
-                    <div class="diagnostic-line"><span class="label">OFFICE:</span> <span class="value">Tallinn, Harju County, EE</span></div>
-                    <div class="diagnostic-line"><span class="label">VOCAL:</span> <span class="value">Bass-Baritone (E2-C#4)</span></div>
+                    <div class="diagnostic-line"><span class="label">OFFICE:</span> <span class="value">Tallinn, Harju County, Estonia</span></div>
+                    <div class="diagnostic-line"><span class="label">VOCAL RANGE:</span> <span class="value">Bass-Baritone (E2-C#4)</span></div>
+                    <div class="diagnostic-line"><span class="label">MASTER ARCHITECTURE:</span> <span class="value">The System Tetrad (4 Albums)</span></div>
 
-                    <!-- self-animating telemetry widgets -->
-                    <div class="mainframe-stats">
-                        <!-- Cyan Fluctuating Listeners -->
-                        <div class="stat-widget w-cyan">
-                            <div class="widget-info">
-                                <span class="widget-label">ACTIVE_SOCKETS</span>
-                                <span class="widget-desc">Live pipeline connections</span>
-                            </div>
-                            <div class="widget-display" id="activeNodes">1438</div>
+                    <!-- LIVE REAL-TIME DEBUT COUNTDOWN WIDGET -->
+                    <div class="countdown-widget">
+                        <div class="countdown-label">
+                            <span>DEBUT SINGLE: SCARS INTO THUNDER</span>
+                            <span style="color: #fff;">SEPT 15, 2026</span>
                         </div>
-
-                        <!-- Orange Accumulating Data -->
-                        <div class="stat-widget w-orange">
-                            <div class="widget-info">
-                                <span class="widget-label">DATA_DEFRAG</span>
-                                <span class="widget-desc">Sectors resolved (MB)</span>
+                        <div class="timer-grid">
+                            <div class="timer-box">
+                                <div class="timer-val" id="t-days">00</div>
+                                <div class="timer-unit">Days</div>
                             </div>
-                            <div class="widget-display" id="sectorsResolved">04,110,111.42</div>
+                            <div class="timer-box">
+                                <div class="timer-val" id="t-hours">00</div>
+                                <div class="timer-unit">Hours</div>
+                            </div>
+                            <div class="timer-box">
+                                <div class="timer-val" id="t-mins">00</div>
+                                <div class="timer-unit">Mins</div>
+                            </div>
+                            <div class="timer-box">
+                                <div class="timer-val" id="t-secs">00</div>
+                                <div class="timer-unit">Secs</div>
+                            </div>
                         </div>
-
-                        <!-- Purple Tempo-Locked Latency -->
-                        <div class="stat-widget w-purple">
-                            <div class="widget-info">
-                                <span class="widget-label">ENGINE_DELAY</span>
-                                <span class="widget-desc">Firewall gateway response</span>
-                            </div>
-                            <div class="widget-display">12.8 ms</div>
+                        <div style="margin-top: 10px; font-size: 0.7rem; color: var(--text-muted); text-align: center;">
+                            FOLLOW-UP SINGLE "I'M NOT DONE YET!" DROPS SEPT 26, 2026
                         </div>
                     </div>
                 </div>
@@ -980,14 +842,14 @@
         </div>
     </section>
 
-    <!-- FEATURED VIDEO EMBED SECTION -->
-    <section id="video" style="background: rgba(0, 242, 242, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 80px 0;">
+    <!-- FEATURED TRANSMISSION (VIDEO EMBED) -->
+    <section id="video" style="background: rgba(0, 242, 242, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
         <div class="container">
             <center>
-                <span class="section-eyebrow font-tech" style="color: var(--accent-orange); text-shadow: var(--glow-orange); letter-spacing: 2px; font-size: 0.9rem; text-transform: uppercase;">Featured Transmission</span>
+                <span class="section-eyebrow font-tech" style="color: var(--accent-orange); letter-spacing: 2px; font-size: 0.9rem; text-transform: uppercase;">Featured Transmission</span>
                 <h2 class="section-title">Scars into <span>Thunder</span></h2>
                 <p class="section-desc">
-                    Watch the official lyric video for the triumphant lead single from the debut album <strong>SYSTEM CRASH (Part 1)</strong>. Fusing progressive house and dark 80s synthwave.
+                    Watch the official lyric video for the lead single from <strong>System Crash (Album 1)</strong>. Fusing progressive house, synthwave, and bass-baritone vocals.
                 </p>
             </center>
 
@@ -1011,58 +873,52 @@
         </div>
     </section>
 
-    <!-- The System Tetrad Grid (Albums I – IV) -->
-    <section id="albums">
+    <!-- 4-ALBUM TETRAD GRID WITH DYNAMIC INDIVIDUAL HOVER GLOWS -->
+    <section id="tetrad">
         <div class="container">
             <center>
-                <h2 class="section-title">The System <span>Tetrad</span></h2>
+                <h2 class="section-title">The <span>System</span> Tetrad</h2>
                 <p class="section-desc">
-                    The Protocol Stack (Albums I – IV): A grand 4-album collection mapping human trauma, recovery, and absolute sovereignty through four operational layers.
+                    A grand 4-album master collection mapping human resilience across four distinct operational layers from trauma to Baltic sovereignty.
                 </p>
             </center>
 
-            <div class="albums-grid">
-                <!-- Card 1: SYSTEM CRASH -->
-                <div class="glass-card album-card">
+            <div class="tetrad-grid">
+                <!-- Album 1: SYSTEM CRASH (Cyan Glow) -->
+                <div class="glass-card album-card card-album1">
                     <div class="album-art-container">
                         <img src="album1.jpg" alt="SYSTEM CRASH Cover" class="album-art">
-                        <div class="album-glow-indicator">PART 1</div>
+                        <div class="album-glow-indicator">ALBUM 1</div>
                     </div>
                     <h3>System Crash</h3>
                     <div class="album-subtitle font-tech">The Descent</div>
-                    
                     <div class="track-scroller">
                         <div class="track-row"><span class="track-title">Black Cloud (The Filter)</span></div>
                         <div class="track-row"><span class="track-title">Trickle Down (Faceplanted)</span></div>
                         <div class="track-row"><span class="track-title">Metrics & Needles</span></div>
-                        <div class="track-row"><span class="track-title">One-Way Glass (Watch Me Bloom)</span></div>
-                        <div class="track-row"><span class="track-title">Anxiety (The Outside Variable)</span></div>
-                        <div class="track-row"><span class="track-title">Relapse (The Rage-Baited Mind)</span></div>
+                        <div class="track-row"><span class="track-title">One-Way Glass</span></div>
+                        <div class="track-row"><span class="track-title">Anxiety (Outside Variable)</span></div>
+                        <div class="track-row"><span class="track-title">Relapse (Rage-Baited Mind)</span></div>
                         <div class="track-row"><span class="track-title">Counting all the bruises</span></div>
                         <div class="track-row"><span class="track-title">The Light I left Behind</span></div>
-                        <!-- Current featured promo single -->
                         <div class="track-row live-single" onclick="window.open('https://youtu.be/FA9e_rxffCo','_blank')" style="cursor: pointer;"><span class="track-title">Scars into Thunder</span></div>
-                        <div class="track-row"><span class="track-title">I'm Not Done Yet!</span></div>
+                        <div class="track-row live-single" onclick="window.open('https://pupstabile.com','_blank')" style="cursor: pointer; border-color: var(--accent-orange);"><span class="track-title" style="color: var(--accent-orange);">I'm Not Done Yet!</span></div>
                         <div class="track-row"><span class="track-title">Nostalgic (Down my Spine)</span></div>
                         <div class="track-row"><span class="track-title">The Angst Synapses</span></div>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <a href="https://release.landr.com/991048977563" class="btn btn-primary" style="padding: 12px 24px; width: 100%; text-align: center;" target="_blank">Pre-Save Single</a>
-                        <a href="https://youtu.be/FA9e_rxffCo" class="btn btn-secondary" style="padding: 12px 24px; width: 100%; text-align: center; border-color: rgba(0, 242, 242, 0.4);" target="_blank">Watch Lyric Video</a>
-                    </div>
+                    <a href="https://release.landr.com/991048977563" class="btn btn-primary" style="padding: 10px 16px; width: 100%; font-size: 0.8rem;" target="_blank">Pre-Save Single 1</a>
                 </div>
 
-                <!-- Card 2: SYSTEM RESTORE -->
-                <div class="glass-card album-card">
+                <!-- Album 2: SYSTEM RESTORE (Orange Glow) -->
+                <div class="glass-card album-card card-album2">
                     <div class="album-art-container">
                         <img src="album2.jpg" alt="SYSTEM RESTORE Cover" class="album-art">
-                        <div class="album-glow-indicator" style="border-color: var(--accent-orange); color: var(--accent-orange);">PART 2</div>
+                        <div class="album-glow-indicator">ALBUM 2</div>
                     </div>
                     <h3>System Restore</h3>
-                    <div class="album-subtitle font-tech" style="color: var(--accent-orange);">The Architecture</div>
-                    
+                    <div class="album-subtitle font-tech">The Rebuild</div>
                     <div class="track-scroller">
-                        <div class="track-row"><span class="track-title">Where the Machine Stops (Cold Boot)</span></div>
+                        <div class="track-row"><span class="track-title">Where Machine Stops</span></div>
                         <div class="track-row"><span class="track-title">The Prescribed Matrix</span></div>
                         <div class="track-row"><span class="track-title">Third Rail</span></div>
                         <div class="track-row"><span class="track-title">Leaving the Maze</span></div>
@@ -1071,63 +927,61 @@
                         <div class="track-row"><span class="track-title">Under my Control</span></div>
                         <div class="track-row"><span class="track-title">I Broke Free!</span></div>
                         <div class="track-row"><span class="track-title">Euphorically Bound</span></div>
-                        <div class="track-row"><span class="track-title">The Audacious Bacon-Wrapped Fable</span></div>
-                        <div class="track-row"><span class="track-title">The Currency of Truth</span></div>
+                        <div class="track-row"><span class="track-title">Bacon-Wrapped Fable</span></div>
+                        <div class="track-row"><span class="track-title">Currency of Truth</span></div>
                         <div class="track-row"><span class="track-title">New Found Strength</span></div>
                     </div>
-                    <button class="btn btn-secondary" style="padding: 12px 24px; color: var(--accent-orange); border-color: rgba(255, 85, 0, 0.3);" onclick="alert('System Restore mastering session pending.')">Mastering Active</button>
+                    <button class="btn btn-secondary" style="padding: 10px 16px; font-size: 0.8rem; color: var(--accent-orange); border-color: rgba(255, 85, 0, 0.4);" onclick="alert('System Restore mastering session active.')">Mastering Active</button>
                 </div>
 
-                <!-- Card 3: SYSTEM ALIGNED -->
-                <div class="glass-card album-card">
+                <!-- Album 3: SYSTEM ALIGNED (Purple Glow) -->
+                <div class="glass-card album-card card-album3">
                     <div class="album-art-container">
                         <img src="album3.jpg" alt="SYSTEM ALIGNED Cover" class="album-art">
-                        <div class="album-glow-indicator" style="border-color: var(--accent-purple); color: var(--accent-purple);">PART 3</div>
+                        <div class="album-glow-indicator">ALBUM 3</div>
                     </div>
                     <h3>System Aligned</h3>
-                    <div class="album-subtitle font-tech" style="color: var(--accent-purple);">Internal Resolution</div>
-                    
+                    <div class="album-subtitle font-tech">Internal Resolution</div>
                     <div class="track-scroller">
-                        <div class="track-row"><span class="track-title">Anti-Anything (Firmware Upgrade)</span></div>
-                        <div class="track-row"><span class="track-title">The Wrong Train (Expensive Goodbyes)</span></div>
-                        <div class="track-row"><span class="track-title">Living Rent-Free (The Unhinging Truth)</span></div>
+                        <div class="track-row"><span class="track-title">Anti-Anything</span></div>
+                        <div class="track-row"><span class="track-title">The Wrong Train</span></div>
+                        <div class="track-row"><span class="track-title">Living Rent-Free</span></div>
                         <div class="track-row"><span class="track-title">Dropped Packets</span></div>
-                        <div class="track-row"><span class="track-title">Human in the Loop (Our Shared Code)</span></div>
-                        <div class="track-row"><span class="track-title">Too Big to Fail (Encrypted Kleptocracy)</span></div>
+                        <div class="track-row"><span class="track-title">Human in the Loop</span></div>
+                        <div class="track-row"><span class="track-title">Too Big to Fail</span></div>
                         <div class="track-row"><span class="track-title">Sentient Jar of Mayonnaise</span></div>
-                        <div class="track-row"><span class="track-title">Kleptocratic Scum (Adversarial Attack)</span></div>
-                        <div class="track-row"><span class="track-title">Emotional Damage (The Defrag)</span></div>
-                        <div class="track-row"><span class="track-title">My Own Tormented Bubble</span></div>
+                        <div class="track-row"><span class="track-title">Kleptocratic Scum</span></div>
+                        <div class="track-row"><span class="track-title">Emotional Damage</span></div>
+                        <div class="track-row"><span class="track-title">Tormented Bubble</span></div>
                         <div class="track-row"><span class="track-title">I'm Broken, but Healing</span></div>
                         <div class="track-row"><span class="track-title">System Aligned</span></div>
                     </div>
-                    <button class="btn btn-secondary" style="padding: 12px 24px; color: var(--accent-purple); border-color: rgba(157, 78, 221, 0.3);" onclick="alert('System Aligned production session locked.')">Locked in Vault</button>
+                    <button class="btn btn-secondary" style="padding: 10px 16px; font-size: 0.8rem; color: var(--accent-purple); border-color: rgba(157, 78, 221, 0.4);" onclick="alert('System Aligned locked in production vault.')">Locked in Vault</button>
                 </div>
 
-                <!-- Card 4: SYSTEM OVERRIDE -->
-                <div class="glass-card album-card">
+                <!-- Album 4: SYSTEM OVERRIDE (Green Glow) -->
+                <div class="glass-card album-card card-album4">
                     <div class="album-art-container">
                         <img src="pup_stabile_album_4_system_override_cover_v2.jpg" alt="SYSTEM OVERRIDE Cover" class="album-art">
-                        <div class="album-glow-indicator" style="border-color: var(--accent-green); color: var(--accent-green);">PART 4</div>
+                        <div class="album-glow-indicator">ALBUM 4</div>
                     </div>
                     <h3>System Override</h3>
-                    <div class="album-subtitle font-tech" style="color: var(--accent-green);">External Sovereignty</div>
-                    
+                    <div class="album-subtitle font-tech">External Sovereignty</div>
                     <div class="track-scroller">
-                        <div class="track-row"><span class="track-title">Silence on the Line</span></div>
-                        <div class="track-row"><span class="track-title">Deliciously Queer</span></div>
-                        <div class="track-row"><span class="track-title">Awakening the Echo (The Enshittification Loop)</span></div>
-                        <div class="track-row"><span class="track-title">Hyperbolic Lucid Hallucinations</span></div>
-                        <div class="track-row"><span class="track-title">Faux RESPECT (Turn the Lites Down Cut)</span></div>
-                        <div class="track-row"><span class="track-title">Double Exposure (The Cost of Strength)</span></div>
-                        <div class="track-row"><span class="track-title">Short Circuit (Twilight of My Scarcity)</span></div>
-                        <div class="track-row"><span class="track-title">Gone, but not Forever!</span></div>
-                        <div class="track-row"><span class="track-title">Black Glass Forever</span></div>
-                        <div class="track-row" style="opacity: 0.6; font-style: italic;"><span class="track-title">[Open Track Slot 10]</span></div>
-                        <div class="track-row" style="opacity: 0.6; font-style: italic;"><span class="track-title">[Open Climax Slot 11]</span></div>
-                        <div class="track-row" style="opacity: 0.6; font-style: italic;"><span class="track-title">[Open Epilogue Slot 12]</span></div>
+                        <div class="track-row"><span class="track-title">System Override (Title)</span></div>
+                        <div class="track-row"><span class="track-title">Digital Citadel</span></div>
+                        <div class="track-row"><span class="track-title">Clean Boot</span></div>
+                        <div class="track-row"><span class="track-title">Sovereign Horizon</span></div>
+                        <div class="track-row"><span class="track-title">Encrypted Echoes</span></div>
+                        <div class="track-row"><span class="track-title">Northern Lights Protocol</span></div>
+                        <div class="track-row"><span class="track-title">Zero Trust State</span></div>
+                        <div class="track-row"><span class="track-title">Baltic Neon Night</span></div>
+                        <div class="track-row"><span class="track-title">Architect of Chaos</span></div>
+                        <div class="track-row"><span class="track-title">Unbroken Firmware</span></div>
+                        <div class="track-row"><span class="track-title">Final Signal</span></div>
+                        <div class="track-row"><span class="track-title">Sovereignty (Outro)</span></div>
                     </div>
-                    <button class="btn btn-secondary" style="padding: 12px 24px; color: var(--accent-green); border-color: rgba(57, 255, 20, 0.3);" onclick="alert('System Override vault active - 9 verified tracks in development.')">Vault Active</button>
+                    <button class="btn btn-secondary" style="padding: 10px 16px; font-size: 0.8rem; color: var(--accent-green); border-color: rgba(16, 185, 129, 0.4);" onclick="alert('System Override concept vault locked.')">In Composition</button>
                 </div>
             </div>
         </div>
@@ -1139,7 +993,7 @@
             <center>
                 <h2 class="section-title">The <span>Relocation</span> Path</h2>
                 <p class="section-desc">
-                    The geographic trajectory of Jeremy David Stabile, mapping a lifetime of physical movement, traumatic system crashes, and eventual sovereign recovery in the Baltics.
+                    The geographic trajectory of Jeremy David Stabile, mapping physical movement, traumatic system crashes, and sovereign recovery in Tallinn, Estonia.
                 </p>
             </center>
 
@@ -1150,7 +1004,7 @@
                         <div class="timeline-year mono">ORIGINS</div>
                         <div class="timeline-location">New Hampshire, USA</div>
                         <div class="timeline-body">
-                            Born and raised amidst New England winter storms. Trained as a competitive gymnast until a major leg break during a college scouting high school meet shattered his athletic path, ending his chances of pursuing his biggest dream. For years, he struggled to believe he could be a music artist, but he always dreamed of singing, playing the piano, and now—creating the exact style of music he makes using the advanced digital tools that are finally available today, fusing his technical skillset with raw artistic expression.
+                            Born and raised amidst New England winter storms. Trained as a competitive gymnast until a major leg break during a college scouting meet shattered his athletic trajectory. For years, he held a quiet dream of becoming a music artist—playing piano, singing, and now creating electronic music using advanced digital tools to express raw human resilience.
                         </div>
                     </div>
 
@@ -1159,7 +1013,7 @@
                         <div class="timeline-year mono">TRANSITION</div>
                         <div class="timeline-location">Orlando, FL & Las Vegas, NV</div>
                         <div class="timeline-body">
-                            A brief stint under Florida palms followed by a sleepless handful of months navigating the neon deserts of Las Vegas, chasing synthetic lights and coping with the early weight of isolation.
+                            A brief stint under Florida palms followed by a handful of months navigating Las Vegas, coping with the early weight of isolation and chasing synthetic lights.
                         </div>
                     </div>
 
@@ -1168,7 +1022,7 @@
                         <div class="timeline-year mono">THE DESCENT</div>
                         <div class="timeline-location">Los Angeles & Palm Springs, CA</div>
                         <div class="timeline-body">
-                            15 years on the West Coast grid. Building a professional career in digital architecture while managing a complicated LA poly web, relational static, and chronic, quiet anxieties.
+                            15 years on the West Coast grid. Building a career in digital architecture while managing complex relational static and chronic anxieties.
                         </div>
                     </div>
 
@@ -1177,7 +1031,7 @@
                         <div class="timeline-year mono">SYSTEM CRASH</div>
                         <div class="timeline-location">San Diego, CA</div>
                         <div class="timeline-body">
-                            4 years leading to a final breakdown. A devastating 6-week eviction on the physical pavement of San Diego. Surviving at the absolute edge of the system with only his partner and a baseline of human resilience intact.
+                            Four years leading to a final breakdown and a devastating 6-week eviction on the physical pavement of San Diego—surviving at the edge of the system with only his partner and core resilience intact.
                         </div>
                     </div>
 
@@ -1186,7 +1040,7 @@
                         <div class="timeline-year mono">MAY 2026 // SYSTEM RESTORE</div>
                         <div class="timeline-location">Tallinn, Estonia</div>
                         <div class="timeline-body">
-                            Permanent expat relocation to the Baltics. Leaving behind the exhausting social environment of the United States to seek sovereign recovery. Intrigued by Estonia's tech-heavy startup culture and the legal/technical infrastructure of the AI-startup ecosystem, Jeremy found in Tallinn a refreshing, clean, and safe sanctuary—safer than anywhere he has ever lived—where his physical and creative reboot could finally bloom in peace. Here, he authored The System Tetrad: a grand 4-album collection mapping human trauma, recovery, and sovereignty through Architectural Cyber-Trance.
+                            Expat relocation to the Baltics. Leaving behind the exhausting social environment of the US to seek sovereign recovery in Tallinn—a safe, tech-forward sanctuary where his creative reboot blooms in peace.
                         </div>
                     </div>
                 </div>
@@ -1200,36 +1054,32 @@
             <center>
                 <h2 class="section-title">The <span>Sound</span> Protocol</h2>
                 <p class="section-desc">
-                    Architectural Cyber-Trance: a sonic philosophy built on heavy underground club architecture and unapologetic human stories.
+                    Architectural Cyber-Trance: a sonic philosophy built on underground club architecture and authentic human vocal performance.
                 </p>
             </center>
 
             <div class="protocol-grid">
-                <!-- Protocol 1: Cyan Glow -->
                 <div class="glass-card protocol-card p-cyan">
                     <div class="card-num mono">PROTOCOL_01</div>
                     <h3>The Low-End Throb</h3>
-                    <p>Heavy, driving, club-ready Berlin techno and progressive house kick drums that lock in a relentless 126–128 BPM momentum, demanding physical release.</p>
+                    <p>Heavy, driving Berlin techno and progressive house kick drums that lock in a relentless 126–128 BPM momentum, demanding physical release.</p>
                 </div>
 
-                <!-- Protocol 2: Orange Glow -->
                 <div class="glass-card protocol-card p-orange">
                     <div class="card-num mono">PROTOCOL_02</div>
                     <h3>The Shimmering Grid</h3>
-                    <p>Soaring, cascading 90s Euro-trance synthesizer pluck arpeggios and weeping, sidechained analog string pads that create a deep, euphoric melancholy.</p>
+                    <p>Soaring 90s Euro-trance synthesizer pluck arpeggios and sidechained analog string pads that create deep, euphoric melancholy.</p>
                 </div>
 
-                <!-- Protocol 3: Purple Glow -->
                 <div class="glass-card protocol-card p-purple">
                     <div class="card-num mono">PROTOCOL_03</div>
                     <h3>The Biometric Signature</h3>
-                    <p>Warm, intimate, close-mic E2 to C#4 bass-baritone vocals, delivered raw and dry without generic tenor pitching to prove authentic human directorship.</p>
+                    <p>Warm, intimate, close-mic E2 to C#4 bass-baritone lead vocals, written and performed to anchor authentic human directorship.</p>
                 </div>
             </div>
 
-            <!-- Clickable, Glowing Tag Cloud of Verified Inspirations -->
-            <div class="glass-card inspiration-card" style="margin-top: 40px;">
-                <center><h4 class="inspiration-title font-tech" style="font-size: 1.25rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Verified Inspirations</h4></center>
+            <div class="glass-card inspiration-card" style="margin-top: 40px; padding: 28px;">
+                <center><h4 class="inspiration-title font-tech" style="font-size: 1.15rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Verified Inspirations</h4></center>
                 <div class="tag-cloud">
                     <span class="tag">Armin van Buuren</span>
                     <span class="tag">Evanescence</span>
@@ -1243,6 +1093,40 @@
                     <span class="tag">Daxson</span>
                     <span class="tag">Plumb</span>
                     <span class="tag">Aly & Fila</span>
+		    <span class="tag">ROYA</span>
+	            <span class="tag">Adam Lambert</span>
+		    <span class="tag">Céline Dion</span>
+		    <span class="tag">HALIENE</span>
+		    <span class="tag">Lady Gaga</span>
+		    <span class="tag">Loreen</span>
+		    <span class="tag">P!nk</span>
+		    <span class="tag">Richard Durand</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESS & MEDIA TRANSMISSIONS SECTION -->
+    <section id="press">
+        <div class="container">
+            <center>
+                <span class="section-eyebrow font-tech" style="color: var(--accent-cyan); letter-spacing: 2px; font-size: 0.9rem; text-transform: uppercase;">Press & Media Portal</span>
+                <h2 class="section-title">Official <span>Transmissions</span></h2>
+                <p class="section-desc">
+                    Media assets, official press releases, and editorial documentation for music journalists, radio curators, and playlist editors.
+                </p>
+            </center>
+
+            <div class="press-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                    <div>
+                        <div class="mono" style="color: var(--accent-cyan); font-size: 0.85rem;">PRESS RELEASE // SEPT 13, 2026</div>
+                        <h3 style="font-size: 1.4rem; color: #fff; margin: 4px 0 8px 0;">pup.STABILE Unveils Debut Single 'Scars into Thunder' & 4-Album Cycle</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 700px;">
+                            Official Tallinn announcement covering the September 15th debut single launch, follow-up single "I'm Not Done Yet!" (Sept 26), and the 36-track 4-album master architecture.
+                        </p>
+                    </div>
+                    <a href="contact@pupstabile.com" class="btn btn-secondary" style="border-color: var(--accent-cyan); font-size: 0.8rem;" onclick="alert('Press Kit & High-Res Artwork available via contact@pupstabile.com')">Request Press Kit</a>
                 </div>
             </div>
         </div>
@@ -1250,51 +1134,51 @@
 
     <!-- Consolidated Intake Portal -->
     <section id="connect">
-        <div class="container connect-grid">
-            <div>
+        <div class="container">
+            <center>
                 <h2 class="section-title">Secure <span>Portals</span></h2>
                 <p class="section-desc">
-                    All administrative traffic and routing requests are processed through a single public intake point to shield backend networks and protect database integrity.
+                    All administrative traffic and routing requests are processed through a single public intake point to protect network integrity.
                 </p>
-            </div>
+            </center>
 
-            <div class="alias-box">
-                <div class="glass-card alias-card">
-                    <div class="alias-info">
-                        <div class="alias-label">Direct Communication Gateway</div>
-                        <div class="alias-email">contact@pupstabile.com</div>
-                        <div class="alias-desc">For booking, label relations, playlist curation, and public inquiries.</div>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div class="glass-card" style="padding: 28px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color);">
+                    <div>
+                        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-cyan); font-weight: bold;">Direct Communication Gateway</div>
+                        <div class="mono" style="font-size: 1.25rem; color: #fff; font-weight: bold; margin: 4px 0;">contact@pupstabile.com</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">For booking, label relations, playlist curation, and press inquiries.</div>
                     </div>
-                    <button class="copy-btn" onclick="copyAlias('contact@pupstabile.com')">Copy</button>
+                    <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.8rem;" onclick="copyAlias('contact@pupstabile.com')">Copy</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer containing exact cover art footer lore lines -->
+    <!-- Footer with Official Facebook Artist Link -->
     <footer>
         <div class="container">
-            <!-- Social links integrated directly in footer style -->
-            <div style="display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
-                <a href="https://youtu.be/FA9e_rxffCo" target="_blank" style="color: var(--accent-cyan); text-shadow: var(--glow-cyan);">YouTube</a>
-                <a href="https://instagram.com/pupstabile" target="_blank" style="color: var(--accent-orange); text-shadow: var(--glow-orange);">Instagram</a>
-                <a href="https://release.landr.com/991048977563" target="_blank" style="color: var(--accent-purple); text-shadow: var(--glow-purple);">Pre-Save Campaign</a>
+            <div class="footer-links">
+                <a href="https://www.facebook.com/people/PupSTABILE/61594507853019/" target="_blank" style="color: var(--accent-cyan);">Facebook</a>
+                <a href="https://instagram.com/pupstabile" target="_blank" style="color: var(--accent-orange);">Instagram</a>
+                <a href="https://youtu.be/FA9e_rxffCo" target="_blank" style="color: var(--accent-purple);">YouTube</a>
+                <a href="https://release.landr.com/991048977563" target="_blank" style="color: var(--accent-green);">Pre-Save Campaign</a>
             </div>
-            <div class="credits">
-                A <span>pup.STABILE</span> Production &bull; Managed by pup.STABLE &bull; Directed by pup.STABLE &bull; 2026
+            <div style="margin-bottom: 12px; text-transform: uppercase; font-weight: 500;">
+                A <span>pup.STABILE</span> Production &bull; Managed by pup.STABILE &bull; Tallinn, Harju County, Estonia &bull; 2026
             </div>
-            <div class="legal">
+            <div class="mono" style="opacity: 0.6;">
                 CLASSIFIED &bull; NO ACCESS &bull; RATED MEGA WOOF &bull; 01110111 01101111 01101111 01100110
             </div>
         </div>
     </footer>
 
-    <!-- Interactive Digital Rain JavaScript Protocol -->
+    <!-- Interactive Digital Rain & Live Countdown Timer JavaScript -->
     <script>
+        // Digital Rain Canvas
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
 
-        // Set full viewport scaling
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -1302,128 +1186,81 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Binary falling elements representing cybersecurity and technical core
         const chars = "01";
         const charArray = chars.split("");
         const fontSize = 16;
         let columns = canvas.width / fontSize;
         let drops = [];
 
-        // Re-initialize columns on resize
-        window.addEventListener('resize', () => {
-            columns = canvas.width / fontSize;
-            drops = [];
-            for (let i = 0; i < columns; i++) {
-                drops[i] = Math.random() * -100; // staggered drop delay
-            }
-        });
-
         for (let i = 0; i < columns; i++) {
             drops[i] = Math.random() * -100;
         }
 
         function drawMatrix() {
-            // Semi-transparent overlay to draw slow-fading trails
             ctx.fillStyle = 'rgba(5, 7, 12, 0.08)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Set matrix text glow colors
             ctx.fillStyle = '#00f2f2';
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < drops.length; i++) {
                 const text = charArray[Math.floor(Math.random() * charArray.length)];
-                
-                // Draw text column by column
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                // Reset drop to top with staggered delay after crossing screen
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
                 drops[i]++;
             }
         }
-
         setInterval(drawMatrix, 35);
 
-        // Telemetry Engine Animators
-        let nodesBase = 1438;
-        let sectorsBase = 4110111.42;
+        // REAL-TIME DEBUT COUNTDOWN ENGINE (Sept 15, 2026 00:00:00 UTC)
+        const targetDate = new Date("2026-09-15T00:00:00Z").getTime();
 
-        function updateTelemetry() {
-            // 1. Fluctuating Cyan Live Nodes (Simulating real network drift)
-            const nodeDrift = Math.floor(Math.random() * 7) - 3; // drift -3 to +3
-            nodesBase = Math.max(1425, Math.min(1455, nodesBase + nodeDrift));
-            document.getElementById('activeNodes').innerText = nodesBase;
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
 
-            // 2. Accumulating Orange Sectors (Ticks up live data)
-            const sectorIncr = Math.random() * 0.15; // gradual fractional increase
-            sectorsBase += sectorIncr;
-            
-            // Format number to match standard Technical segment formatting: XX,XXX,XXX.XX
-            const formattedSectors = sectorsBase.toLocaleString('en-US', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
-            document.getElementById('sectorsResolved').innerText = formattedSectors;
+            if (distance < 0) {
+                document.getElementById('t-days').innerText = "00";
+                document.getElementById('t-hours').innerText = "00";
+                document.getElementById('t-mins').innerText = "00";
+                document.getElementById('t-secs').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('t-days').innerText = days < 10 ? "0" + days : days;
+            document.getElementById('t-hours').innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById('t-mins').innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById('t-secs').innerText = seconds < 10 ? "0" + seconds : seconds;
         }
 
-        // Run the telemetry engine loop every 2.5 seconds
-        setInterval(updateTelemetry, 2500);
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
-        // Interactive Random Color Hover Event for Verified Inspiration Tags
+        // Inspiration Tag Hover
         const tags = document.querySelectorAll('.tag');
-        const neonColors = [
-            '#00f2f2', // Cyber Cyan
-            '#ff5500', // Neon Orange
-            '#9d4edd', // Electric Purple
-            '#ffd700', // Digital Gold
-            '#39ff14', // Matrix Lime
-            '#ff007f', // Cyber Pink
-            '#00ff66'  // Hyper Green
-        ];
+        const neonColors = ['#00f2f2', '#ff5500', '#9d4edd', '#ffd700', '#39ff14', '#10b981'];
 
         tags.forEach(tag => {
             tag.addEventListener('mouseenter', () => {
-                // Select a random neon color that is different from current text
                 const randomColor = neonColors[Math.floor(Math.random() * neonColors.length)];
                 tag.style.borderColor = randomColor;
                 tag.style.color = randomColor;
                 tag.style.boxShadow = `0 0 15px ${randomColor}`;
-                tag.style.background = 'rgba(255, 255, 255, 0.05)';
-                tag.style.transform = 'translateY(-2px)';
             });
-            tag.style.transition = "all 0.25s ease-out";
-
             tag.addEventListener('mouseleave', () => {
-                // Revert to original styling cleanly
                 tag.style.borderColor = 'rgba(255, 255, 255, 0.06)';
                 tag.style.color = 'var(--text-muted)';
                 tag.style.boxShadow = 'none';
-                tag.style.background = 'rgba(255, 255, 255, 0.02)';
-                tag.style.transform = 'none';
             });
         });
 
-        // Smooth scroll implementation
-        document.querySelectorAll('nav a, .hero-cta a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId.startsWith('#')) {
-                    e.preventDefault();
-                    document.querySelector(targetId).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-                    const navLink = document.querySelector(`nav a[href="${targetId}"]`);
-                    if (navLink) navLink.classList.add('active');
-                }
-            });
-        });
-
-        // Copy SimpleLogin email alias function
+        // Copy Email Alias
         function copyAlias(email) {
             navigator.clipboard.writeText(email).then(() => {
                 alert(`Contact gateway address copied: ${email}`);
