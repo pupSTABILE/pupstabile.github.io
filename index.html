@@ -420,6 +420,7 @@
         .clock-widget.w-cyan { border-left-color: var(--accent-cyan); }
         .clock-widget.w-orange { border-left-color: var(--accent-orange); }
         .clock-widget.w-purple { border-left-color: var(--accent-purple); }
+        .clock-widget.w-gold { border-left-color: var(--accent-gold); }
         
         .clock-info {
             display: flex;
@@ -451,6 +452,7 @@
         .w-cyan .clock-timer { color: var(--accent-cyan); text-shadow: var(--glow-cyan); }
         .w-orange .clock-timer { color: var(--accent-orange); text-shadow: var(--glow-orange); }
         .w-purple .clock-timer { color: var(--accent-purple); text-shadow: var(--glow-purple); }
+        .w-gold .clock-timer { color: var(--accent-gold); text-shadow: var(--glow-gold); }
 
         /* Animated Audio Equalizer Bars */
         .eq-bar-container {
@@ -915,7 +917,7 @@
     <!-- Top Terminal Ticker Banner -->
     <div class="terminal-banner mono">
         <div class="ticker-text">
-            &gt; SYSTEM ALIGNED // TALLINN NODE ACTIVE &bull; SINGLE 1: SCARS INTO THUNDER [RELEASED 09.15.26] &bull; SINGLE 2: I'M NOT DONE YET! [DROPPING 09.26.26] &bull; DEBUT ALBUM: SYSTEM CRASH [DROPPING HALLOWEEN 10.31.26] &bull; ARCHITECTURAL CYBER-TRANCE // E2-C#4 BASS-BARITONE LEAD &bull;
+            &gt; SYSTEM ALIGNED // TALLINN NODE ACTIVE &bull; SINGLE 1: SCARS INTO THUNDER [RELEASED 09.15.26] &bull; SINGLE 2: I'M NOT DONE YET! [DROPPING 09.26.26] &bull; SINGLE 3: BLACK CLOUD (THE FILTER) [DROPPING 10.04.26] &bull; DEBUT ALBUM: SYSTEM CRASH [DROPPING HALLOWEEN 10.31.26] &bull; ARCHITECTURAL CYBER-TRANCE // E2-C#4 BASS-BARITONE LEAD &bull;
         </div>
     </div>
 
@@ -1004,7 +1006,7 @@
                     <div class="diagnostic-line"><span class="label">STUDIO NODE:</span> <span class="value">Tallinn, Harju County, EE</span></div>
                     <div class="diagnostic-line"><span class="label">VOCAL RANGE:</span> <span class="value">Bass-Baritone (E2–C#4)</span></div>
 
-                    <!-- 3 DYNAMIC REAL-TIME COUNTDOWN CLOCKS -->
+                    <!-- 4 DYNAMIC REAL-TIME COUNTDOWN CLOCKS -->
                     <div class="countdown-grid">
                         <!-- Clock 1: Single 1 Live -->
                         <div class="clock-widget w-cyan">
@@ -1021,16 +1023,25 @@
                                 <span class="clock-label">SINGLE 2: I'M NOT DONE YET!</span>
                                 <span class="clock-sub">LANDR Drop // Sept 26</span>
                             </div>
-                            <div class="clock-timer" id="single2Timer">09d 18h 33m 12s</div>
+                            <div class="clock-timer" id="single2Timer">00d 00h 00m 00s</div>
                         </div>
 
-                        <!-- Clock 3: Album 1 Drop -->
+                        <!-- Clock 3: Single 3 Pre-Save -->
+                        <div class="clock-widget w-gold">
+                            <div class="clock-info">
+                                <span class="clock-label">SINGLE 3: BLACK CLOUD (THE FILTER)</span>
+                                <span class="clock-sub">LANDR Drop // Oct 04</span>
+                            </div>
+                            <div class="clock-timer" id="single3Timer">00d 00h 00m 00s</div>
+                        </div>
+
+                        <!-- Clock 4: Album 1 Drop -->
                         <div class="clock-widget w-purple">
                             <div class="clock-info">
                                 <span class="clock-label">ALBUM 1: SYSTEM CRASH</span>
                                 <span class="clock-sub">Halloween Drop // Oct 31</span>
                             </div>
-                            <div class="clock-timer" id="album1Timer">44d 18h 33m 12s</div>
+                            <div class="clock-timer" id="album1Timer">00d 00h 00m 00s</div>
                         </div>
                     </div>
 
@@ -1067,7 +1078,7 @@
                     <div class="album-subtitle font-tech">The Descent</div>
                     
                     <div class="track-scroller">
-                        <div class="track-row"><span class="track-title">Black Cloud (The Filter)</span></div>
+                        <div class="track-row live-single-3" onclick="window.open('https://release.landr.com/user/black-cloud','_blank')" style="cursor: pointer;"><span class="track-title">⚡ Black Cloud (The Filter) [OCT 04]</span></div>
                         <div class="track-row"><span class="track-title">Trickle Down (Faceplanted)</span></div>
                         <div class="track-row"><span class="track-title">Metrics & Needles</span></div>
                         <div class="track-row"><span class="track-title">One-Way Glass (Watch Me Bloom)</span></div>
@@ -1082,7 +1093,8 @@
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
                         <a href="https://release.landr.com/991048977563" class="btn btn-secondary" style="padding: 8px 12px; width: 100%; text-align: center; font-size: 0.78rem; border-color: var(--accent-cyan); color: var(--accent-cyan);" target="_blank">🔥 "Scars into Thunder" (OUT NOW)</a>
-                        <a href="https://release.landr.com/991061126498" class="btn btn-primary" style="padding: 10px 12px; width: 100%; text-align: center; font-size: 0.8rem; background-color: var(--accent-orange); border-color: var(--accent-orange);" target="_blank">⚡ Pre-Save Single 2: "I'm Not Done Yet!"</a>
+                        <a href="https://release.landr.com/991061126498" class="btn btn-primary" style="padding: 8px 12px; width: 100%; text-align: center; font-size: 0.78rem; background-color: var(--accent-orange); border-color: var(--accent-orange);" target="_blank">⚡ Pre-Save Single 2: "I'm Not Done Yet!" [Sept 26]</a>
+                        <a href="https://release.landr.com/user/black-cloud" class="btn btn-primary" style="padding: 10px 12px; width: 100%; text-align: center; font-size: 0.8rem; background-color: var(--accent-gold); border-color: var(--accent-gold); color: #000; font-weight: bold;" target="_blank">⚡ Pre-Save Single 3: "Black Cloud (The Filter)" [Oct 04]</a>
                     </div>
                 </div>
 
@@ -1175,6 +1187,19 @@
                 <h2 class="section-title">Canvas & <span>Lyric Streams</span></h2>
                 <p class="section-desc">Experience the visual narrative arc accompanying the music of pup.STABILE across Spotify Canvas and official video releases.</p>
             </center>
+
+            <!-- Single 3 Artwork Spotlight Banner -->
+            <div style="margin-bottom: 30px; text-align: center; background: rgba(5, 7, 12, 0.85); border: 1px solid var(--accent-gold); border-radius: 16px; padding: 20px; box-shadow: var(--glow-gold);">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px;">
+                    <img src="BlackCloudArtWorkSmaller.png" alt="Black Cloud (The Filter) Single Cover Artwork" style="width: 220px; height: 220px; border-radius: 12px; border: 2px solid var(--accent-gold); box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); object-fit: cover;">
+                    <div style="text-align: left; max-width: 500px;">
+                        <span class="font-tech" style="color: var(--accent-gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">SINGLE #3 MASTER COVER ARTWORK</span>
+                        <h3 style="font-size: 1.5rem; margin: 6px 0; color: #fff;">Black Cloud <span style="color: var(--accent-gold);">(The Filter)</span></h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">Single 3 dropping October 4, 2026 on all major streaming platforms. Rebuilt piano-to-sub-bass pattern-interrupt opener from debut album <em>SYSTEM CRASH</em>.</p>
+                        <a href="https://release.landr.com/user/black-cloud" class="btn btn-primary" style="margin-top: 10px; display: inline-block; padding: 8px 16px; font-size: 0.8rem; background-color: var(--accent-gold); border-color: var(--accent-gold); color: #000; font-weight: bold;" target="_blank">⚡ Pre-Save Single 3 Now</a>
+                    </div>
+                </div>
+            </div>
 
             <div class="transmissions-grid">
                 <!-- 9:16 Canvas Vertical Video Mockup -->
@@ -1461,6 +1486,19 @@
                 document.getElementById('single2Timer').innerText = `${String(d).padStart(2,'0')}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
             } else {
                 document.getElementById('single2Timer').innerText = 'LIVE NOW';
+            }
+
+            // Single 3: Oct 04, 2026 00:00:00 UTC
+            const single3Date = new Date('2026-10-04T00:00:00Z');
+            const diff3 = single3Date - now;
+            if (diff3 > 0) {
+                const d = Math.floor(diff3 / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff3 / (1000 * 60 * 60)) % 24);
+                const m = Math.floor((diff3 / 1000 / 60) % 60);
+                const s = Math.floor((diff3 / 1000) % 60);
+                document.getElementById('single3Timer').innerText = `${String(d).padStart(2,'0')}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+            } else {
+                document.getElementById('single3Timer').innerText = 'LIVE NOW';
             }
 
             // Album 1: Oct 31, 2026 00:00:00 UTC
