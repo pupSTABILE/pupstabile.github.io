@@ -1016,20 +1016,30 @@
             .timeline-dot { left: 12px !important; right: auto !important; }
         }
     
+        
+        @media (max-width: 768px) {
+            
+        }
+
+    
         .hero-brand-logo {
-            height: 110px;
-            width: auto;
-            max-width: 500px;
+            width: 100%;
+            max-width: 680px;
+            height: auto;
+            max-height: none !important;
             object-fit: contain;
             display: block;
-            margin: 10px 0;
-            filter: drop-shadow(0 0 22px rgba(0, 242, 242, 0.55));
+            margin: 15px auto;
+            filter: drop-shadow(0 0 25px rgba(0, 242, 242, 0.65));
+            transform: scale(1.15);
+            transform-origin: center;
             transition: all 0.3s ease;
         }
         @media (max-width: 768px) {
             .hero-brand-logo {
-                height: 70px;
-                max-width: 320px;
+                width: 95%;
+                max-width: 380px;
+                transform: scale(1.0);
                 margin: 10px auto;
             }
         }
@@ -1069,7 +1079,7 @@
         <div class="container hero-grid">
             <div class="hero-text">
                 <div class="badge-terminal"><span></span>VERIFICATION SEQUENCE ACTIVE</div>
-                <img src="pup_stabile_apple_music_artist_logo_v4.png" alt="pup.STABILE" class="hero-brand-logo">
+                <img src="pup_stabile_apple_music_artist_logo_v5_cropped.png" alt="pup.STABILE" class="hero-brand-logo">
                 
                 <!-- INLINE PROFILE FRAME WITH SOCIAL EMBEDDED BUTTONS DIRECTLY UNDER HEADSHOT -->
                 <div class="profile-section-wrapper">
