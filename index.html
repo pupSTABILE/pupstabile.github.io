@@ -1015,6 +1015,25 @@
             .timeline-item:nth-child(even) { left: 0; padding-left: 45px; }
             .timeline-dot { left: 12px !important; right: auto !important; }
         }
+    
+        .hero-brand-logo {
+            height: 110px;
+            width: auto;
+            max-width: 500px;
+            object-fit: contain;
+            display: block;
+            margin: 10px 0;
+            filter: drop-shadow(0 0 22px rgba(0, 242, 242, 0.55));
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .hero-brand-logo {
+                height: 70px;
+                max-width: 320px;
+                margin: 10px auto;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1031,7 +1050,7 @@
     <!-- Header Navigation -->
     <header>
         <div class="container nav-wrapper">
-            <div class="brand"><a href="#hero"><img src="pup_stabile_apple_music_artist_logo_v4.png" alt="pup.STABILE" style="height: 70px; width: auto; max-height: 78px; max-width: 320px; object-fit: contain; display: block; filter: drop-shadow(0 0 14px rgba(0,242,242,0.6));"></a></div>
+            <div class="brand">pup<span>.STABILE</span></div>
             <nav>
                 <ul>
                     <li><a href="#hero" class="active">Mainframe</a></li>
@@ -1050,7 +1069,7 @@
         <div class="container hero-grid">
             <div class="hero-text">
                 <div class="badge-terminal"><span></span>VERIFICATION SEQUENCE ACTIVE</div>
-                <h1>pup.<span>STABILE</span></h1>
+                <img src="pup_stabile_apple_music_artist_logo_v4.png" alt="pup.STABILE" class="hero-brand-logo">
                 
                 <!-- INLINE PROFILE FRAME WITH SOCIAL EMBEDDED BUTTONS DIRECTLY UNDER HEADSHOT -->
                 <div class="profile-section-wrapper">
