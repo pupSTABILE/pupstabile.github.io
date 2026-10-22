@@ -27,6 +27,7 @@
             --accent-orange: #ff5500;
             --accent-purple: #9d4edd;
             --accent-gold: #ffd700;
+            --accent-pink: #ff3366;
             --text-main: #f0f3f8;
             --text-muted: #8b9bb4;
             --border-color: rgba(0, 242, 242, 0.18);
@@ -35,6 +36,7 @@
             --glow-orange: 0 0 18px rgba(255, 85, 0, 0.3);
             --glow-purple: 0 0 18px rgba(157, 78, 221, 0.3);
             --glow-gold: 0 0 18px rgba(255, 215, 0, 0.3);
+            --glow-pink: 0 0 18px rgba(255, 51, 102, 0.3);
         }
         * {
             box-sizing: border-box;
@@ -42,108 +44,32 @@
             padding: 0;
         }
         
-        /* STREAMLINED HERO LAUNCHPAD STYLES */
-        .hero-stream-launchpad {
-            margin-top: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .launchpad-title {
-            font-size: 0.78rem;
-            color: var(--accent-cyan);
-            letter-spacing: 1.5px;
-            font-weight: bold;
-        }
-        .launchpad-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .launchpad-card {
+        /* STREAMLINED HERO SPOTIFY PLAYER CONTAINER */
+        .hero-player-wrapper {
+            margin-top: 10px;
             background: rgba(10, 14, 26, 0.75);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 10px 14px;
+            border: 1px solid rgba(29, 185, 84, 0.4);
+            border-radius: 14px;
+            padding: 12px;
+            box-shadow: 0 0 22px rgba(29, 185, 84, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .hero-player-wrapper:hover {
+            border-color: #1db954;
+            box-shadow: 0 0 28px rgba(29, 185, 84, 0.35);
+        }
+        .player-header-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
-        }
-        .launchpad-card:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: var(--glow-cyan);
-        }
-        .launchpad-card.active-release {
-            border-color: var(--accent-orange);
-            background: rgba(255, 85, 0, 0.08);
-            box-shadow: var(--glow-orange);
-        }
-        .card-header {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        .card-badge {
-            font-size: 0.65rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .badge-cyan { color: var(--accent-cyan); }
-        .badge-orange { color: var(--accent-orange); }
-        .badge-gold { color: var(--accent-gold); }
-        
-        .card-song-title {
-            font-size: 0.95rem;
+            margin-bottom: 8px;
+            padding: 0 4px;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            color: #1db954;
             font-weight: 700;
-            color: #fff;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        .card-btn-group {
-            display: flex;
-            gap: 8px;
-        }
-        .btn-dsp {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            border-radius: 4px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.25s ease;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-        }
-        .btn-dsp.sp:hover, .btn-dsp.sp.active {
-            background: #1db954;
-            border-color: #1db954;
-            color: #000;
-            box-shadow: 0 0 12px rgba(29, 185, 84, 0.5);
-        }
-        .btn-dsp.am:hover, .btn-dsp.am.active {
-            background: #fc3c44;
-            border-color: #fc3c44;
-            color: #fff;
-            box-shadow: 0 0 12px rgba(252, 60, 68, 0.5);
-        }
-        .btn-dsp.gold {
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
-            color: #000;
-        }
-        .btn-dsp.gold:hover {
-            box-shadow: var(--glow-gold);
-            transform: translateY(-2px);
-        }
-        @media (max-width: 600px) {
-            .launchpad-card { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .card-btn-group { width: 100%; justify-content: flex-start; }
         }
 
         /* Custom Scrollbar */
@@ -215,7 +141,7 @@
         }
         .ticker-text {
             display: inline-block;
-            animation: ticker 25s linear infinite;
+            animation: ticker 28s linear infinite;
         }
         @keyframes ticker {
             0% { transform: translateX(100%); }
@@ -281,7 +207,7 @@
             display: grid;
             grid-template-columns: 1.25fr 1fr;
             gap: 50px;
-            align-items: center;
+            align-items: start;
         }
         .hero-text {
             display: flex;
@@ -417,12 +343,6 @@
             color: var(--text-muted);
             font-size: 1.02rem;
         }
-        .hero-cta {
-            display: flex;
-            gap: 14px;
-            margin-top: 8px;
-            flex-wrap: wrap;
-        }
         .btn {
             display: inline-flex;
             align-items: center;
@@ -505,7 +425,7 @@
             font-weight: 600;
         }
 
-        /* 3 REAL-TIME COUNTDOWN CLOCKS GRID */
+        /* REAL-TIME COUNTDOWN CLOCKS GRID */
         .countdown-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -522,11 +442,16 @@
             justify-content: space-between;
             align-items: center;
             border-left: 4px solid var(--accent-cyan);
+            transition: all 0.25s ease;
+        }
+        .clock-widget:hover {
+            background: rgba(16, 22, 42, 0.85);
+            transform: translateX(3px);
         }
         .clock-widget.w-cyan { border-left-color: var(--accent-cyan); }
         .clock-widget.w-orange { border-left-color: var(--accent-orange); }
         .clock-widget.w-purple { border-left-color: var(--accent-purple); }
-.w-pink { border-left-color: #ff3366; }
+        .clock-widget.w-pink { border-left-color: var(--accent-pink); }
         .clock-widget.w-gold { border-left-color: var(--accent-gold); }
         
         .clock-info {
@@ -560,6 +485,7 @@
         .w-orange .clock-timer { color: var(--accent-orange); text-shadow: var(--glow-orange); }
         .w-purple .clock-timer { color: var(--accent-purple); text-shadow: var(--glow-purple); }
         .w-gold .clock-timer { color: var(--accent-gold); text-shadow: var(--glow-gold); }
+        .w-pink .clock-timer { color: var(--accent-pink); text-shadow: var(--glow-pink); }
 
         /* Animated Audio Equalizer Bars */
         .eq-bar-container {
@@ -709,7 +635,7 @@
             padding: 12px;
             font-size: 0.85rem;
             flex-grow: 1;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             max-height: 250px;
             overflow-y: auto;
             border: 1px solid rgba(255, 255, 255, 0.03);
@@ -740,6 +666,7 @@
             background: rgba(0, 242, 242, 0.06);
             border-radius: 4px;
             padding: 6px 8px;
+            margin: 3px 0;
         }
         .track-row.live-single .track-title { color: var(--accent-cyan); font-weight: bold; }
         .track-row.live-single::before { content: '🔥'; opacity: 1; }
@@ -749,27 +676,52 @@
             background: rgba(255, 85, 0, 0.06);
             border-radius: 4px;
             padding: 6px 8px;
+            margin: 3px 0;
         }
         .track-row.live-single-2 .track-title { color: var(--accent-orange); font-weight: bold; }
         .track-row.live-single-2::before { content: '⚡'; opacity: 1; }
 
+        .track-row.live-single-3 {
+            border: 1px dashed var(--accent-gold);
+            background: rgba(255, 215, 0, 0.06);
+            border-radius: 4px;
+            padding: 6px 8px;
+            margin: 3px 0;
+        }
+        .track-row.live-single-3 .track-title { color: var(--accent-gold); font-weight: bold; }
+        .track-row.live-single-3::before { content: '⚡'; opacity: 1; }
+
+        .track-row.live-single-4 {
+            border: 1px dashed var(--accent-pink);
+            background: rgba(255, 51, 102, 0.08);
+            border-radius: 4px;
+            padding: 6px 8px;
+            margin: 3px 0;
+        }
+        .track-row.live-single-4 .track-title { color: var(--accent-pink); font-weight: bold; }
+        .track-row.live-single-4::before { content: '🚨'; opacity: 1; }
+
         /* VISUAL TRANSMISSIONS (CANVAS VIDEO PREVIEW) */
         .transmissions-grid {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
+            grid-template-columns: 1.3fr 1.2fr;
+            gap: 32px;
             align-items: center;
         }
         .canvas-phone-mockup {
-            width: 260px;
-            height: 480px;
+            width: 195px;
+            height: 355px;
             margin: 0 auto;
-            border-radius: 32px;
+            border-radius: 26px;
             border: 3px solid var(--accent-orange);
             box-shadow: var(--glow-orange);
             overflow: hidden;
             position: relative;
             background: #000;
+            transition: transform 0.3s ease;
+        }
+        .canvas-phone-mockup:hover {
+            transform: translateY(-5px) scale(1.02);
         }
         .canvas-video {
             width: 100%;
@@ -995,6 +947,20 @@
             text-transform: uppercase;
         }
 
+        .hero-brand-logo {
+            width: 100%;
+            max-width: 680px;
+            height: auto;
+            max-height: none !important;
+            object-fit: contain;
+            display: block;
+            margin: 15px auto;
+            filter: drop-shadow(0 0 25px rgba(0, 242, 242, 0.65));
+            transform: scale(1.15);
+            transform-origin: center;
+            transition: all 0.3s ease;
+        }
+
         /* Responsive Breakpoints */
         @media (max-width: 1100px) {
             .albums-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1014,28 +980,6 @@
             .timeline-item { width: 100%; padding-left: 45px; padding-right: 0; text-align: left; }
             .timeline-item:nth-child(even) { left: 0; padding-left: 45px; }
             .timeline-dot { left: 12px !important; right: auto !important; }
-        }
-    
-        
-        @media (max-width: 768px) {
-            
-        }
-
-    
-        .hero-brand-logo {
-            width: 100%;
-            max-width: 680px;
-            height: auto;
-            max-height: none !important;
-            object-fit: contain;
-            display: block;
-            margin: 15px auto;
-            filter: drop-shadow(0 0 25px rgba(0, 242, 242, 0.65));
-            transform: scale(1.15);
-            transform-origin: center;
-            transition: all 0.3s ease;
-        }
-        @media (max-width: 768px) {
             .hero-brand-logo {
                 width: 95%;
                 max-width: 380px;
@@ -1043,8 +987,11 @@
                 margin: 10px auto;
             }
         }
-
     </style>
+
+    <!-- GoatCounter Privacy-First Analytics Telemetry -->
+    <script data-goatcounter="https://pupstabile.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
     <!-- Real-time Rainbow Matrix Background Canvas -->
@@ -1053,7 +1000,7 @@
     <!-- Top Terminal Ticker Banner -->
     <div class="terminal-banner mono">
         <div class="ticker-text">
-            &gt; SYSTEM ALIGNED // TALLINN NODE ACTIVE &bull; SINGLE 1: SCARS INTO THUNDER [OUT NOW] &bull; SINGLE 2: I'M NOT DONE YET! [OUT NOW // RELEASED 09.26.26] &bull; SINGLE 3: BLACK CLOUD (THE FILTER) [DROPPING 10.04.26] &bull; DEBUT LP: SYSTEM CRASH [DROPPING HALLOWEEN 10.31.26] &bull; ARCHITECTURAL CYBER-TRANCE // E2-C#4 BASS-BARITONE VOCAL &bull;
+            &gt; SYSTEM ALIGNED // TALLINN NODE ACTIVE &bull; SINGLE 1: SCARS INTO THUNDER [OUT NOW] &bull; SINGLE 2: I'M NOT DONE YET! [OUT NOW] &bull; SINGLE 3: BLACK CLOUD (THE FILTER) [OUT NOW] &bull; SINGLE 4: RELAPSE (THE RAGE-BAITED MIND) [OUT NOW] &bull; DEBUT LP: SYSTEM CRASH [DROPPING HALLOWEEN 10.31.26] &bull; ARCHITECTURAL CYBER-TRANCE // E2-C#4 BASS-BARITONE VOCAL &bull;
         </div>
     </div>
 
@@ -1090,7 +1037,7 @@
                         </div>
                     </div>
 
-                    <!-- HERO SOCIAL GLYPH BUTTONS WITH CORRECT ARTIST LINK FOR YOUTUBE -->
+                    <!-- HERO SOCIAL GLYPH BUTTONS WITH OFFICIAL ARTIST LINKS -->
                     <div class="hero-social-links">
                         <a href="https://www.youtube.com/@pup.STABILE" target="_blank" class="social-icon-btn yt" title="YouTube Official Artist Channel">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -1108,578 +1055,4 @@
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.32c.67-.82 1.13-1.97.99-3.12-1 .04-2.22.67-2.93 1.5-.64.74-1.2 1.92-1.05 3.06 1.12.09 2.27-.58 2.99-1.44z"/></svg>
                         </a>
                         <a href="https://soundcloud.com/pupstabile" target="_blank" class="social-icon-btn sc" title="SoundCloud Artist Profile">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225a3.81 3.81 0 0 0 .396 1.737c.228.435.534.81.905 1.103.37.293.799.508 1.261.632.462.124.945.163 1.42.115V8.625a3.83 3.83 0 0 0-1.42.387 3.86 3.86 0 0 0-1.15 1.025 3.73 3.73 0 0 0-.687 1.488 3.93 3.93 0 0 0-.725.7zm3.982 3.588h1.226V7.472a3.8 3.8 0 0 0-1.226.23v10.111zm2.453 0h1.226V6.666a3.8 3.8 0 0 0-1.226.042v10.105zm2.453 0h1.226V6.289c-.396-.062-.803-.082-1.226-.062v10.586zm2.453 0h1.226V6.166a10.1 10.1 0 0 0-1.226.124v10.522zm2.453 0h1.226V6.789c-.407.124-.817.283-1.226.475v10.548zm2.453 0h.407c.877 0 1.723-.332 2.366-.928a3.25 3.25 0 0 0 1.002-2.316c0-.895-.357-1.748-.992-2.367a3.42 3.42 0 0 0-2.383-.984c-.218 0-.437.021-.652.062a5.45 5.45 0 0 0-5.068-3.322c-.63 0-1.25.105-1.838.31a5.48 5.48 0 0 0-1.554.897v11.188z"/></svg>
-                        </a>
-                        <a href="https://www.mixcloud.com/pupSTABILE" target="_blank" class="social-icon-btn mc" title="Mixcloud Profile">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.2 12c0 2.2 1.8 4 4 4h1.6v-2H6.2c-1.1 0-2-.9-2-2s.9-2 2-2h1.6V8H6.2c-2.2 0-4 1.8-4 4zm8.8 4h2l2.2-5.4 2.2 5.4h2l2.6-8h-2.1l-1.5 5.1-2.1-5.1h-2.2l-2.1 5.1-1.5-5.1H8.4l2.6 8zm-5.8 2H3.6c-.9 0-1.6-.7-1.6-1.6s.7-1.6 1.6-1.6h1.6v-2H3.6C1.6 12.8 0 14.4 0 16.4S1.6 20 3.6 20h1.6v-2z"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <p class="hero-subtitle mono">ARCHITECTURAL CYBER-TRANCE // TALLINN, ESTONIA</p>
-                <p class="hero-desc">
-                    In an electronic music landscape dominated by airy tenors and pitched-up vocal chops, pup.STABILE anchors driving 126–128 BPM progressive house with a rare, resonant E2–C#4 bass-baritone register—bringing the brooding, cinematic weight of Dave Gahan and Johnny Cash to the club. Written and produced in Tallinn, Estonia.
-                </p>
-                <div class="hero-cta">
-                    <a href="https://open.spotify.com/track/7fEgWI0mP3q0x1bcN6YpGU?si=453718598ef54372" class="btn btn-primary" style="background-color: #1db954; border-color: #1db954; box-shadow: 0 0 18px rgba(29, 185, 84, 0.4);" target="_blank">🔥 Stream Single 2: I'm Not Done Yet! (Spotify)</a>
-                    <a href="https://music.apple.com/ee/song/im-not-done-yet/6811077899" class="btn btn-secondary" style="border-color: #fc3c44; color: #fc3c44;" target="_blank">🍎 Apple Music</a>
-                    <a href="https://release.landr.com/991048977563" class="btn btn-secondary" target="_blank">Single 1: Scars Into Thunder</a>
-                </div>
-            </div>
-
-            <!-- DIAGNOSTIC TELEMETRY PANEL WITH NEON-ORANGE GLOW BORDER -->
-            <div class="hero-panel">
-                <div class="panel-header">
-                    <div class="panel-dot-group">
-                        <div class="panel-dot"></div>
-                        <div class="panel-dot"></div>
-                        <div class="panel-dot"></div>
-                    </div>
-                    <div class="panel-title mono" style="color: var(--accent-orange); font-weight: bold;">Mainframe Release Telemetry</div>
-                </div>
-                <div class="mono">
-                    <div class="diagnostic-line"><span class="label">ARTIST:</span> <span class="value">pup.STABILE</span></div>
-                    <div class="diagnostic-line"><span class="label">GENRE:</span> <span class="value">Architectural Cyber-Trance</span></div>
-                    <div class="diagnostic-line"><span class="label">STUDIO NODE:</span> <span class="value">Tallinn, Harju County, EE</span></div>
-                    <div class="diagnostic-line"><span class="label">VOCAL DIFFERENTIATOR:</span> <span class="value">Rare E2–C#4 Bass-Baritone (Low-end chest voice cutting through EDM tenors)</span></div>
-
-                    <!-- 4 DYNAMIC REAL-TIME COUNTDOWN CLOCKS -->
-                    <div class="countdown-grid">
-                        <!-- Clock 1: Single 1 Live -->
-                        <div class="clock-widget w-cyan">
-                            <div class="clock-info">
-                                <span class="clock-label">SINGLE 1: SCARS INTO THUNDER</span>
-                                <span class="clock-sub">Global Release // Sept 15</span>
-                            </div>
-                            <div class="clock-timer">LIVE NOW</div>
-                        </div>
-
-                        <!-- Clock 2: Single 2 Live -->
-                        <div class="clock-widget w-orange">
-                            <div class="clock-info">
-                                <span class="clock-label">SINGLE 2: I'M NOT DONE YET!</span>
-                                <span class="clock-sub">Global Release // Sept 26</span>
-                            </div>
-                            <div class="clock-timer" style="color: var(--accent-orange); text-shadow: var(--glow-orange);">LIVE NOW</div>
-                        </div>
-
-                        <!-- Clock 3: Single 3 Pre-Save -->
-                        <div class="clock-widget w-gold">
-                            <div class="clock-info">
-                                <span class="clock-label">SINGLE 3: BLACK CLOUD (THE FILTER)</span>
-                                <span class="clock-sub">LANDR Drop // Oct 04</span>
-                            </div>
-                            <div class="clock-timer" id="single3Timer">00d 00h 00m 00s</div>
-                        </div>
-
-                        <!-- Clock 4: Single 4 Pre-Save Target -->
-                        <div class="clock-widget w-pink">
-                            <div class="clock-info">
-                                <span class="clock-label">SINGLE 4: RELAPSE</span>
-                                <span class="clock-sub">LANDR Target // Oct 16</span>
-                            </div>
-                            <div class="clock-timer" id="single4Timer">00d 00h 00m 00s</div>
-                        </div>
-
-                        <!-- Clock 5: Album 1 Drop -->
-                        <div class="clock-widget w-purple">
-                            <div class="clock-info">
-                                <span class="clock-label">ALBUM 1: SYSTEM CRASH</span>
-                                <span class="clock-sub">Halloween Drop // Oct 31</span>
-                            </div>
-                            <div class="clock-timer" id="album1Timer">00d 00h 00m 00s</div>
-                        </div>
-                    </div>
-
-                    <!-- Animated Audio Equalizer Bars -->
-                    <div class="eq-bar-container">
-                        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-                        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-                        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ALBUM TETRAD SECTION (4-ALBUM UNIVERSE ARCHITECTURE) -->
-    <section id="albums">
-        <div class="container">
-            <center>
-                <h2 class="section-title">The System <span>Tetrad</span></h2>
-                <p class="section-desc">
-                    A grand 48-track master collection mapping an unfiltered journey from West Coast trauma to sovereign Baltic resolution in Tallinn, Estonia.
-                </p>
-            </center>
-
-            <div class="albums-grid">
-                <!-- Card 1: SYSTEM CRASH (Cyber Cyan Glow) -->
-                <div class="glass-card album-card a-cyan">
-                    <div class="album-art-container">
-                        <img src="album1.jpg" alt="SYSTEM CRASH Cover" class="album-art">
-                        <div class="album-glow-badge">PART 1</div>
-                    </div>
-                    <h3>System Crash</h3>
-                    <div class="album-subtitle font-tech">The Descent</div>
-                    
-                    <div class="track-scroller">
-                        <div class="track-row live-single-3" onclick="window.open('https://release.landr.com/991061231499','_blank')" style="cursor: pointer;"><span class="track-title">⚡ Black Cloud (The Filter) [OCT 04]</span></div>
-                        <div class="track-row"><span class="track-title">Trickle Down (Faceplanted)</span></div>
-                        <div class="track-row"><span class="track-title">Metrics & Needles</span></div>
-                        <div class="track-row"><span class="track-title">One-Way Glass (Watch Me Bloom)</span></div>
-                        <div class="track-row"><span class="track-title">Anxiety (The Outside Variable)</span></div>
-                        <div class="track-row"><span class="track-title">Relapse (The Rage-Baited Mind)</span></div>
-                        <div class="track-row"><span class="track-title">Counting all the bruises</span></div>
-                        <div class="track-row"><span class="track-title">The Light I left Behind</span></div>
-                        <div class="track-row live-single" onclick="window.open('https://release.landr.com/991048977563','_blank')" style="cursor: pointer;"><span class="track-title">Scars into Thunder</span></div>
-                        <div class="track-row live-single-2" onclick="window.open('https://release.landr.com/991061126498','_blank')" style="cursor: pointer;"><span class="track-title">I'm Not Done Yet!</span></div>
-                        <div class="track-row"><span class="track-title">Nostalgic (Down my Spine)</span></div>
-                        <div class="track-row"><span class="track-title">The Angst Synapses</span></div>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
-                        <a href="https://release.landr.com/991048977563" class="btn btn-secondary" style="padding: 8px 12px; width: 100%; text-align: center; font-size: 0.78rem; border-color: var(--accent-cyan); color: var(--accent-cyan);" target="_blank">🔥 "Scars into Thunder" (OUT NOW)</a>
-                        <a href="https://open.spotify.com/track/7fEgWI0mP3q0x1bcN6YpGU?si=453718598ef54372" class="btn btn-primary" style="padding: 8px 12px; width: 100%; text-align: center; font-size: 0.78rem; background-color: var(--accent-orange); border-color: var(--accent-orange);" target="_blank">⚡ Stream Single 2: "I'm Not Done Yet!" (OUT NOW)</a>
-                        <a href="https://release.landr.com/991061231499" class="btn btn-primary" style="padding: 10px 12px; width: 100%; text-align: center; font-size: 0.8rem; background-color: var(--accent-gold); border-color: var(--accent-gold); color: #000; font-weight: bold;" target="_blank">⚡ Pre-Save Single 3: "Black Cloud (The Filter)" [Oct 04]</a>
-                    </div>
-                </div>
-
-                <!-- Card 2: SYSTEM RESTORE (Neon Orange Glow) -->
-                <div class="glass-card album-card a-orange">
-                    <div class="album-art-container">
-                        <img src="album2.jpg" alt="SYSTEM RESTORE Cover" class="album-art">
-                        <div class="album-glow-badge">PART 2</div>
-                    </div>
-                    <h3>System Restore</h3>
-                    <div class="album-subtitle font-tech">The Architecture</div>
-                    
-                    <div class="track-scroller">
-                        <div class="track-row"><span class="track-title">Where Machine Stops (Cold Boot)</span></div>
-                        <div class="track-row"><span class="track-title">The Prescribed Matrix</span></div>
-                        <div class="track-row"><span class="track-title">Third Rail</span></div>
-                        <div class="track-row"><span class="track-title">Leaving the Maze</span></div>
-                        <div class="track-row"><span class="track-title">Elusive Sanctuary</span></div>
-                        <div class="track-row"><span class="track-title">Legacy By Design</span></div>
-                        <div class="track-row"><span class="track-title">Under my Control</span></div>
-                        <div class="track-row"><span class="track-title">I Broke Free!</span></div>
-                        <div class="track-row"><span class="track-title">Euphorically Bound</span></div>
-                        <div class="track-row"><span class="track-title">The Audacious Fable</span></div>
-                        <div class="track-row"><span class="track-title">The Currency of Truth</span></div>
-                        <div class="track-row"><span class="track-title">New Found Strength</span></div>
-                    </div>
-                    <button class="btn btn-secondary" style="padding: 10px; font-size: 0.8rem; color: var(--accent-orange); border-color: rgba(255,85,0,0.3);" onclick="alert('System Restore mastering session active.')">Mastering Active</button>
-                </div>
-
-                <!-- Card 3: SYSTEM ALIGNED (Electric Purple Glow) -->
-                <div class="glass-card album-card a-purple">
-                    <div class="album-art-container">
-                        <img src="album3.jpg" alt="SYSTEM ALIGNED Cover" class="album-art">
-                        <div class="album-glow-badge">PART 3</div>
-                    </div>
-                    <h3>System Aligned</h3>
-                    <div class="album-subtitle font-tech">Internal Resolution</div>
-                    
-                    <div class="track-scroller">
-                        <div class="track-row"><span class="track-title">Anti-Anything (Firmware)</span></div>
-                        <div class="track-row"><span class="track-title">The Wrong Train</span></div>
-                        <div class="track-row"><span class="track-title">Living Rent-Free</span></div>
-                        <div class="track-row"><span class="track-title">Dropped Packets</span></div>
-                        <div class="track-row"><span class="track-title">Human in the Loop</span></div>
-                        <div class="track-row"><span class="track-title">Too Big to Fail</span></div>
-                        <div class="track-row"><span class="track-title">Sentient Jar of Mayonnaise</span></div>
-                        <div class="track-row"><span class="track-title">Kleptocratic Scum</span></div>
-                        <div class="track-row"><span class="track-title">Emotional Damage</span></div>
-                        <div class="track-row"><span class="track-title">My Own Tormented Bubble</span></div>
-                        <div class="track-row"><span class="track-title">I'm Broken, but Healing</span></div>
-                        <div class="track-row"><span class="track-title">System Aligned</span></div>
-                    </div>
-                    <button class="btn btn-secondary" style="padding: 10px; font-size: 0.8rem; color: var(--accent-purple); border-color: rgba(157,78,221,0.3);" onclick="alert('System Aligned vault locked.')">Vault Locked</button>
-                </div>
-
-                <!-- Card 4: SYSTEM OVERRIDE (Digital Gold Glow) -->
-                <div class="glass-card album-card a-gold">
-                    <div class="album-art-container">
-                        <img src="pup_stabile_album_4_system_override_cover_v2.jpg" alt="SYSTEM OVERRIDE Cover" class="album-art">
-                        <div class="album-glow-badge">PART 4</div>
-                    </div>
-                    <h3>System Override</h3>
-                    <div class="album-subtitle font-tech">External Sovereignty</div>
-                    
-                    <div class="track-scroller">
-                        <div class="track-row"><span class="track-title">Silence on the Line</span></div>
-                        <div class="track-row"><span class="track-title">Deliciously Queer</span></div>
-                        <div class="track-row"><span class="track-title">Hyperbolic Lucid Hallucinations</span></div>
-                        <div class="track-row"><span class="track-title">Awakening the Echo</span></div>
-                        <div class="track-row live-single-2" onclick="window.open('https://soundcloud.com/pupstabile/faux-respect-turn-the-lites','_blank')" style="cursor: pointer;"><span class="track-title">Faux RESPECT (Turn the Lites Down) [Demo]</span></div>
-                        <div class="track-row"><span class="track-title">Double Exposure (The Cost of Strength)</span></div>
-                        <div class="track-row"><span class="track-title">Short Circuit (Twilight of My Scarcity)</span></div>
-                        <div class="track-row"><span class="track-title">Gone, but not Forever!</span></div>
-                        <div class="track-row"><span class="track-title">Black Glass, Forever (OLED Reboot)</span></div>
-                        <div class="track-row"><span class="track-title">My Own Tormented Bubble</span></div>
-                        <div class="track-row"><span class="track-title">The Oligarch's Bible</span></div>
-                        <div class="track-row"><span class="track-title">Twin Imprint</span></div>
-                    </div></div>
-                    <button class="btn btn-secondary" style="padding: 10px; font-size: 0.8rem; color: var(--accent-gold); border-color: rgba(255,215,0,0.3);" onclick="alert('System Override development active.')">Vault Open</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- VISUAL TRANSMISSIONS (CANVAS VIDEO PREVIEW & LYRIC VIDEO) -->
-    <section id="transmissions" style="background: rgba(0, 242, 242, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-        <div class="container">
-            <center>
-                <span class="font-tech" style="color: var(--accent-orange); text-shadow: var(--glow-orange); letter-spacing: 2px; font-size: 0.85rem; text-transform: uppercase;">Visual Transmissions</span>
-                <h2 class="section-title">Canvas & <span>Lyric Streams</span></h2>
-                <p class="section-desc">Experience the visual narrative arc accompanying the music of pup.STABILE across Spotify Canvas and official video releases.</p>
-            </center>
-
-            <!-- Single 3 Artwork Spotlight Banner -->
-            <div style="margin-bottom: 30px; text-align: center; background: rgba(5, 7, 12, 0.85); border: 1px solid var(--accent-gold); border-radius: 16px; padding: 20px; box-shadow: var(--glow-gold);">
-                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px;">
-                    <img src="BlackCloudArtWorkSmaller.png" alt="Black Cloud (The Filter) Single Cover Artwork" style="width: 220px; height: 220px; border-radius: 12px; border: 2px solid var(--accent-gold); box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); object-fit: cover;">
-                    <div style="text-align: left; max-width: 500px;">
-                        <span class="font-tech" style="color: var(--accent-gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">SINGLE #3 MASTER COVER ARTWORK</span>
-                        <h3 style="font-size: 1.5rem; margin: 6px 0; color: #fff;">Black Cloud <span style="color: var(--accent-gold);">(The Filter)</span></h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">Single 3 dropping October 4, 2026 on all major streaming platforms. Rebuilt piano-to-sub-bass pattern-interrupt opener from debut album <em>SYSTEM CRASH</em>.</p>
-                        <a href="https://release.landr.com/991061231499" class="btn btn-primary" style="margin-top: 10px; display: inline-block; padding: 8px 16px; font-size: 0.8rem; background-color: var(--accent-gold); border-color: var(--accent-gold); color: #000; font-weight: bold;" target="_blank">⚡ Pre-Save Single 3 Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="transmissions-grid">
-                <!-- Dual 9:16 Spotify Canvas Phone Mockups -->
-                <div style="display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap;">
-                    <!-- Canvas Video 1: Single 2 -->
-                    <div class="canvas-phone-mockup" style="width: 220px; height: 400px; border-color: var(--accent-orange); box-shadow: var(--glow-orange);">
-                        <video class="canvas-video" autoplay loop muted playsinline poster="scars_into_thunder_thumbnail.png">
-                            <source src="pup_stabile_im_not_done_yet_canvas.mp4" type="video/mp4">
-                        </video>
-                        <div style="position: absolute; bottom: 8px; left: 0; width: 100%; text-align: center; background: rgba(0,0,0,0.7); color: var(--accent-orange); font-size: 0.68rem; font-family: 'Space Mono', monospace; font-weight: bold; padding: 4px 0;">SINGLE 2: I'M NOT DONE YET!</div>
-                    </div>
-
-                    <!-- Canvas Video 2: Single 3 -->
-                    <div class="canvas-phone-mockup" style="width: 220px; height: 400px; border-color: var(--accent-gold); box-shadow: var(--glow-gold);">
-                        <video class="canvas-video" autoplay loop muted playsinline poster="BlackCloudArtWorkSmaller.png">
-                            <source src="BlackCloud(TheFilter).mp4" type="video/mp4">
-                        </video>
-                        <div style="position: absolute; bottom: 8px; left: 0; width: 100%; text-align: center; background: rgba(0,0,0,0.7); color: var(--accent-gold); font-size: 0.68rem; font-family: 'Space Mono', monospace; font-weight: bold; padding: 4px 0;">SINGLE 3: BLACK CLOUD (OCT 04)</div>
-                    </div>
-                </div>
-
-                <!-- YouTube Lyric Video Embed -->
-                <div style="background: var(--bg-glass); border: 1px solid var(--accent-cyan); border-radius: 12px; padding: 16px; box-shadow: var(--glow-cyan);">
-                    <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px;">
-                        <iframe src="https://www.youtube.com/embed/FA9e_rxffCo" title="pup.STABILE - Scars into Thunder (Official Lyric Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-                    </div>
-                    <div style="display: flex; justify-content: center; gap: 16px; margin-top: 16px;">
-                        <a href="https://youtu.be/FA9e_rxffCo" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.8rem;" target="_blank">Watch on YouTube</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BIOGRAPHY RELOCATION TIMELINE WITH GLASSY HOVER CARDS -->
-    <section id="biography">
-        <div class="container">
-            <center>
-                <h2 class="section-title">The <span>Relocation</span> Path</h2>
-                <p class="section-desc">The geographic trajectory of Jeremy David Stabile, mapping physical movement, traumatic system crashes, and sovereign recovery in Estonia.</p>
-            </center>
-
-            <div class="glass-card timeline-card">
-                <div class="timeline">
-                    <!-- City 1 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-box">
-                            <div class="timeline-year mono">ORIGINS</div>
-                            <div class="timeline-location">New Hampshire, USA</div>
-                            <div class="timeline-body">
-                                Born amidst New England storms. Trained as a competitive gymnast until a major leg break during a college scouting meet shattered his athletic path. Fused technical computer skillsets with piano and vocal passion to begin composing.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- City 2 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-box">
-                            <div class="timeline-year mono">TRANSITION</div>
-                            <div class="timeline-location">Orlando, FL & Las Vegas, NV</div>
-                            <div class="timeline-body">
-                                Brief stint under Florida palms followed by months navigating Las Vegas, chasing synthetic lights while developing digital architecture skills.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- City 3 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-box">
-                            <div class="timeline-year mono">THE DESCENT</div>
-                            <div class="timeline-location">Los Angeles & Palm Springs, CA</div>
-                            <div class="timeline-body">
-                                15 years building a digital architecture career while managing West Coast relational static and chronic anxieties.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- City 4 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-box">
-                            <div class="timeline-year mono">SYSTEM CRASH</div>
-                            <div class="timeline-location">San Diego, CA</div>
-                            <div class="timeline-body">
-                                Final breakdown leading to a devastating 6-week eviction on the physical pavement of San Diego. Surviving at the system's edge with resilience intact.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- City 5 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-box">
-                            <div class="timeline-year mono">MAY 2026 // SYSTEM RESTORE</div>
-                            <div class="timeline-location">Tallinn, Estonia</div>
-                            <div class="timeline-body">
-                                Permanent expat relocation to the Baltics. Intrigued by Estonia's tech startup infrastructure, Jeremy found in Tallinn a clean, safe sanctuary where his creative reboot could bloom in peace.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOUND PROTOCOL CARDS 1-3 -->
-    <section id="protocol">
-        <div class="container">
-            <center>
-                <h2 class="section-title">The <span>Sound</span> Protocol</h2>
-                <p class="section-desc">Architectural Cyber-Trance: a sonic philosophy built on heavy underground club architecture and unapologetic human stories.</p>
-            </center>
-
-            <div class="protocol-grid">
-                <div class="glass-card protocol-card p-cyan">
-                    <div class="card-num mono">PROTOCOL_01</div>
-                    <h3>The Low-End Throb</h3>
-                    <p>Heavy, driving, club-ready Berlin techno and progressive house kick drums locking in 126–128 BPM momentum.</p>
-                </div>
-
-                <div class="glass-card protocol-card p-orange">
-                    <div class="card-num mono">PROTOCOL_02</div>
-                    <h3>The Shimmering Grid</h3>
-                    <p>Soaring, cascading 90s Euro-trance plucks and weeping, sidechained analog string pads creating deep euphoric melancholy.</p>
-                </div>
-
-                <div class="glass-card protocol-card p-purple">
-                    <div class="card-num mono">PROTOCOL_03</div>
-                    <h3>The Biometric Signature</h3>
-                    <p>Warm, intimate, close-mic E2 to C#4 bass-baritone vocals delivered raw and dry without generic tenor pitching.</p>
-                </div>
-            </div>
-
-            <!-- ALL 20 ARTIST INSPIRATIONS TAG CLOUD WITH DYNAMIC RANDOM NEON HOVER -->
-            <div class="glass-card inspiration-card">
-                <center><h4 class="font-tech" style="font-size: 1.25rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">20 Verified Inspirations</h4></center>
-                <div class="tag-cloud" id="tagCloud">
-                    <span class="tag">Armin van Buuren</span>
-                    <span class="tag">Evanescence</span>
-                    <span class="tag">Kelly Clarkson</span>
-                    <span class="tag">Josh Groban</span>
-                    <span class="tag">Kaskade</span>
-                    <span class="tag">Tiësto</span>
-                    <span class="tag">Richard Marx</span>
-                    <span class="tag">Meduza</span>
-                    <span class="tag">Alice Deejay</span>
-                    <span class="tag">Daxson</span>
-                    <span class="tag">Plumb</span>
-                    <span class="tag">Aly & Fila</span>
-                    <span class="tag">ROYA</span>
-                    <span class="tag">Adam Lambert</span>
-                    <span class="tag">Céline Dion</span>
-                    <span class="tag">HALIENE</span>
-                    <span class="tag">Lady Gaga</span>
-                    <span class="tag">Loreen</span>
-                    <span class="tag">P!nk</span>
-                    <span class="tag">Richard Durand</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- INTAKE PORTAL -->
-    <section id="connect">
-        <div class="container connect-grid">
-            <div>
-                <h2 class="section-title">Secure <span>Portals</span></h2>
-                <p class="section-desc">All administrative traffic and routing requests are processed through a single public intake point.</p>
-            </div>
-
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div class="glass-card alias-card">
-                    <div>
-                        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-cyan); font-weight: bold;">Direct Intake Gateway</div>
-                        <div class="alias-email">contact@pupstabile.com</div>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">For booking, label relations, playlist curation, and press.</div>
-                    </div>
-                    <button class="copy-btn" onclick="navigator.clipboard.writeText('contact@pupstabile.com'); alert('Copied intake gateway: contact@pupstabile.com');">Copy</button>
-                </div>
-
-                <div class="glass-card alias-card" style="border-color: var(--accent-purple); box-shadow: var(--glow-purple);">
-                    <div>
-                        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); font-weight: bold;">Press & Media Kit (EPK)</div>
-                        <div class="alias-email" style="font-size: 0.95rem;">pup.STABILE Electronic Press Kit</div>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">High-res logos, official photos, bio, and release specs for press & curators.</div>
-                    </div>
-                    <a href="https://pupstabile.com/epk" class="copy-btn" style="border-color: var(--accent-purple); color: var(--accent-purple);" target="_blank">Access EPK</a>
-                </div>
-
-                <div class="glass-card" style="padding: 24px; border: 1px solid var(--accent-gold); box-shadow: var(--glow-gold);">
-                    <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); font-weight: bold; margin-bottom: 6px;">Join the Sub-System // Fan Club</div>
-                    <div style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 12px;">Subscribe for exclusive pre-release stems, secret Tallinn studio logs, and VIP LP access.</div>
-                    <form onsubmit="event.preventDefault(); alert('Subscribed to pup.STABILE Sub-System!');" style="display: flex; gap: 10px;">
-                        <input type="email" placeholder="enter_your_email@domain.com" required style="flex-grow: 1; padding: 10px 14px; background: rgba(5,7,12,0.85); border: 1px solid var(--border-color); border-radius: 4px; color: #fff; font-family: 'Space Mono', monospace; font-size: 0.85rem;">
-                        <button type="submit" class="btn btn-primary" style="padding: 10px 18px; font-size: 0.8rem; background-color: var(--accent-gold); border-color: var(--accent-gold); color: #000; font-weight: bold;">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="https://music.apple.com/us/artist/pup-stabile/6807095499" target="_blank" style="color: var(--accent-cyan);">Apple Music</a>
-                <a href="https://open.spotify.com/artist/2vALW0nYzAkezZBVPSb4RP" target="_blank" style="color: var(--accent-orange);">Spotify</a>
-                <a href="https://www.youtube.com/@pup.STABILE" target="_blank" style="color: var(--accent-purple);">YouTube</a>
-                <a href="https://soundcloud.com/pupstabile" target="_blank" style="color: #ff5500;">SoundCloud</a>
-                <a href="https://www.mixcloud.com/pupSTABILE" target="_blank" style="color: #5000ff;">Mixcloud</a>
-                <a href="https://instagram.com/pup.stabile" target="_blank" style="color: #e1306c;">Instagram</a>
-                <a href="https://www.facebook.com/profile.php?id=61594507853019" target="_blank" style="color: #1877f2;">Facebook</a>
-            </div>
-            <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">
-                A <span>pup.STABILE</span> Production &bull; Managed by pup.STABLE &bull; Tallinn, Estonia &bull; 2026
-            </div>
-            <div style="font-family: 'Space Mono', monospace; font-size: 0.75rem; opacity: 0.5; margin-top: 6px;">
-                CLASSIFIED &bull; NO ACCESS &bull; RATED MEGA WOOF &bull; 01110111 01101111 01101111 01100110
-            </div>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT: RAINBOW MATRIX DIGITAL RAIN & DYNAMIC HOVER LISTENERS -->
-    <script>
-        // 1. RAINBOW MATRIX DIGITAL RAIN CANVAS SCRIPT
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        const chars = "01";
-        const charArray = chars.split("");
-        const fontSize = 16;
-        let columns = Math.floor(canvas.width / fontSize);
-        let drops = [];
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * -100;
-        }
-
-        let hueOffset = 0;
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(5, 7, 12, 0.08)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            hueOffset = (hueOffset + 0.5) % 360;
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = charArray[Math.floor(Math.random() * charArray.length)];
-                
-                // Calculate hue based on column and time for flowing rainbow effect
-                const colHue = (hueOffset + (i * 3)) % 360;
-                ctx.fillStyle = `hsl(${colHue}, 100%, 65%)`;
-                ctx.font = fontSize + 'px monospace';
-                
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-        setInterval(drawMatrix, 35);
-
-        // 2. DYNAMIC RANDOM NEON HOVER LISTENER FOR ALL 20 ARTIST TAGS
-        const neonColors = [
-            '#00f2f2', // Cyber Cyan
-            '#ff5500', // Neon Orange
-            '#9d4edd', // Electric Purple
-            '#ffd700', // Digital Gold
-            '#39ff14', // Matrix Lime
-            '#ff007f', // Cyber Pink
-            '#00ff66'  // Hyper Green
-        ];
-
-        document.querySelectorAll('.tag').forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                const randomColor = neonColors[Math.floor(Math.random() * neonColors.length)];
-                this.style.borderColor = randomColor;
-                this.style.color = randomColor;
-                this.style.boxShadow = `0 0 16px ${randomColor}`;
-                this.style.background = 'rgba(255, 255, 255, 0.08)';
-                this.style.transform = 'translateY(-3px)';
-            });
-            tag.addEventListener('mouseleave', function() {
-                this.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                this.style.color = 'var(--text-muted)';
-                this.style.boxShadow = 'none';
-                this.style.background = 'rgba(255, 255, 255, 0.03)';
-                this.style.transform = 'none';
-            });
-        });
-
-        // 3. ROBUST REAL-TIME COUNTDOWN CLOCKS FOR ALL RELEASES
-        function updateTimerElement(elementId, targetIsoString, liveText) {
-            const el = document.getElementById(elementId);
-            if (!el) return;
-            try {
-                const now = new Date();
-                const target = new Date(targetIsoString);
-                const diff = target - now;
-                if (diff <= 0) {
-                    el.innerText = liveText || 'LIVE NOW';
-                    el.style.color = '#00f2f2';
-                    el.style.textShadow = '0 0 10px rgba(0, 242, 242, 0.5)';
-                } else {
-                    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                    const m = Math.floor((diff / (1000 * 60) ) % 60);
-                    const s = Math.floor((diff / 1000) % 60);
-                    el.innerText = `${String(d).padStart(2,'0')}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
-                }
-            } catch (err) {
-                console.error('Timer error for ' + elementId, err);
-            }
-        }
-
-        function updateCountdowns() {
-            updateTimerElement('single2Timer', '2026-09-26T00:00:00Z', 'LIVE NOW ⚡');
-            updateTimerElement('single3Timer', '2026-10-04T00:00:00Z', 'LIVE NOW ⚡');
-            updateTimerElement('single4Timer', '2026-10-16T00:00:00Z', 'LIVE NOW ⚡');
-            updateTimerElement('album1Timer', '2026-10-31T00:00:00Z', 'SYSTEM DROPPED');
-        }
-        setInterval(updateCountdowns, 1000);
-        updateCountdowns();
-    </script>
-</body>
-</html>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225a3.81 3.81 0 0 0 .396 1.737c.228.435.534.81.905 1.103.37.293.799.508 1.261.632.462.124.945.163 1.42.115V8.625a3.83 3.83 0 0 0-1.42.387 3.86 3.86 0 0 0-1.15 1.025 3.73 3.73 0 0 0-.687 1.488 3.93 3.93 0 0 0-.72
