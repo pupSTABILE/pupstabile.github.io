@@ -36,7 +36,7 @@
             --glow-orange: 0 0 18px rgba(255, 85, 0, 0.3);
             --glow-purple: 0 0 18px rgba(157, 78, 221, 0.3);
             --glow-gold: 0 0 18px rgba(255, 215, 0, 0.3);
-            --glow-pink: 0 0 18px rgba(255, 51, 102, 0.3);
+            --glow-pink: 0 0 18px rgba(255, 51, 102, 0.35);
         }
         * {
             box-sizing: border-box;
@@ -44,32 +44,108 @@
             padding: 0;
         }
         
-        /* STREAMLINED HERO SPOTIFY PLAYER CONTAINER */
-        .hero-player-wrapper {
-            margin-top: 10px;
+        /* STREAMLINED HERO LAUNCHPAD STYLES */
+        .hero-stream-launchpad {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .launchpad-title {
+            font-size: 0.78rem;
+            color: var(--accent-cyan);
+            letter-spacing: 1.5px;
+            font-weight: bold;
+        }
+        .launchpad-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .launchpad-card {
             background: rgba(10, 14, 26, 0.75);
-            border: 1px solid rgba(29, 185, 84, 0.4);
-            border-radius: 14px;
-            padding: 12px;
-            box-shadow: 0 0 22px rgba(29, 185, 84, 0.2);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        .hero-player-wrapper:hover {
-            border-color: #1db954;
-            box-shadow: 0 0 28px rgba(29, 185, 84, 0.35);
-        }
-        .player-header-bar {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
-            padding: 0 4px;
-            font-size: 0.72rem;
-            letter-spacing: 1.5px;
-            color: #1db954;
-            font-weight: 700;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+        .launchpad-card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: var(--glow-cyan);
+        }
+        .launchpad-card.active-release {
+            border-color: var(--accent-orange);
+            background: rgba(255, 85, 0, 0.08);
+            box-shadow: var(--glow-orange);
+        }
+        .card-header {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .card-badge {
+            font-size: 0.65rem;
+            font-weight: bold;
+            letter-spacing: 1px;
             text-transform: uppercase;
+        }
+        .badge-cyan { color: var(--accent-cyan); }
+        .badge-orange { color: var(--accent-orange); }
+        .badge-gold { color: var(--accent-gold); }
+        
+        .card-song-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .card-btn-group {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-dsp {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.25s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+        .btn-dsp.sp:hover, .btn-dsp.sp.active {
+            background: #1db954;
+            border-color: #1db954;
+            color: #000;
+            box-shadow: 0 0 12px rgba(29, 185, 84, 0.5);
+        }
+        .btn-dsp.am:hover, .btn-dsp.am.active {
+            background: #fc3c44;
+            border-color: #fc3c44;
+            color: #fff;
+            box-shadow: 0 0 12px rgba(252, 60, 68, 0.5);
+        }
+        .btn-dsp.gold {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: #000;
+        }
+        .btn-dsp.gold:hover {
+            box-shadow: var(--glow-gold);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 600px) {
+            .launchpad-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .card-btn-group { width: 100%; justify-content: flex-start; }
         }
 
         /* Custom Scrollbar */
@@ -141,7 +217,7 @@
         }
         .ticker-text {
             display: inline-block;
-            animation: ticker 28s linear infinite;
+            animation: ticker 25s linear infinite;
         }
         @keyframes ticker {
             0% { transform: translateX(100%); }
@@ -343,6 +419,12 @@
             color: var(--text-muted);
             font-size: 1.02rem;
         }
+        .hero-cta {
+            display: flex;
+            gap: 14px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
         .btn {
             display: inline-flex;
             align-items: center;
@@ -380,6 +462,32 @@
             border-color: var(--accent-cyan);
             box-shadow: var(--glow-cyan);
             transform: translateY(-2px);
+        }
+
+        /* EMBEDDED SPOTIFY ARTIST PLAYER CONTAINER */
+        .spotify-player-wrapper {
+            margin-top: 12px;
+            background: rgba(10, 14, 26, 0.75);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px;
+            box-shadow: var(--glow-cyan);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .spotify-player-wrapper:hover {
+            border-color: var(--accent-cyan);
+        }
+        .spotify-player-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
         /* Diagnostic Telemetry Panel with Neon-Orange Glow Border */
@@ -442,11 +550,6 @@
             justify-content: space-between;
             align-items: center;
             border-left: 4px solid var(--accent-cyan);
-            transition: all 0.25s ease;
-        }
-        .clock-widget:hover {
-            background: rgba(16, 22, 42, 0.85);
-            transform: translateX(3px);
         }
         .clock-widget.w-cyan { border-left-color: var(--accent-cyan); }
         .clock-widget.w-orange { border-left-color: var(--accent-orange); }
@@ -485,574 +588,4 @@
         .w-orange .clock-timer { color: var(--accent-orange); text-shadow: var(--glow-orange); }
         .w-purple .clock-timer { color: var(--accent-purple); text-shadow: var(--glow-purple); }
         .w-gold .clock-timer { color: var(--accent-gold); text-shadow: var(--glow-gold); }
-        .w-pink .clock-timer { color: var(--accent-pink); text-shadow: var(--glow-pink); }
-
-        /* Animated Audio Equalizer Bars */
-        .eq-bar-container {
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 18px;
-            margin-top: 14px;
-            justify-content: center;
-        }
-        .eq-bar {
-            width: 4px;
-            background: var(--accent-cyan);
-            border-radius: 2px;
-            animation: eqAnim 1.2s ease-in-out infinite alternate;
-        }
-        .eq-bar:nth-child(2n) { background: var(--accent-orange); animation-delay: 0.2s; }
-        .eq-bar:nth-child(3n) { background: var(--accent-purple); animation-delay: 0.4s; }
-        .eq-bar:nth-child(4n) { background: var(--accent-gold); animation-delay: 0.6s; }
-        @keyframes eqAnim {
-            0% { height: 3px; }
-            100% { height: 18px; }
-        }
-
-        section {
-            padding: 90px 0;
-            position: relative;
-        }
-        .section-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-            color: #fff;
-        }
-        .section-title span {
-            color: var(--accent-cyan);
-            text-shadow: var(--glow-cyan);
-        }
-        .section-desc {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 650px;
-            margin-bottom: 50px;
-        }
-
-        /* 4-COLUMN GLASSMORPHIC ALBUMS GRID (THE SYSTEM TETRAD) */
-        .albums-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-        .glass-card {
-            background: var(--bg-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        .album-card {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        /* INDIVIDUAL HOVER COLORS FOR THE SYSTEM TETRAD */
-        .album-card.a-cyan:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: var(--glow-cyan);
-            transform: translateY(-5px);
-        }
-        .album-card.a-orange:hover {
-            border-color: var(--accent-orange);
-            box-shadow: var(--glow-orange);
-            transform: translateY(-5px);
-        }
-        .album-card.a-purple:hover {
-            border-color: var(--accent-purple);
-            box-shadow: var(--glow-purple);
-            transform: translateY(-5px);
-        }
-        .album-card.a-gold:hover {
-            border-color: var(--accent-gold);
-            box-shadow: var(--glow-gold);
-            transform: translateY(-5px);
-        }
-
-        .album-art-container {
-            width: 100%;
-            aspect-ratio: 1/1;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
-            margin-bottom: 16px;
-            position: relative;
-        }
-        .album-art {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .album-card:hover .album-art {
-            transform: scale(1.05);
-        }
-        .album-glow-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(5,7,12,0.85);
-            backdrop-filter: blur(4px);
-            border: 1px solid var(--accent-cyan);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.68rem;
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-        .a-orange .album-glow-badge { border-color: var(--accent-orange); color: var(--accent-orange); }
-        .a-purple .album-glow-badge { border-color: var(--accent-purple); color: var(--accent-purple); }
-        .a-gold .album-glow-badge { border-color: var(--accent-gold); color: var(--accent-gold); }
-
-        .album-card h3 {
-            font-size: 1.35rem;
-            color: #fff;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
-        .album-subtitle {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-cyan);
-            margin-bottom: 16px;
-            font-weight: bold;
-        }
-        .a-orange .album-subtitle { color: var(--accent-orange); }
-        .a-purple .album-subtitle { color: var(--accent-purple); }
-        .a-gold .album-subtitle { color: var(--accent-gold); }
-
-        .track-scroller {
-            background: rgba(0,0,0,0.3);
-            border-radius: 6px;
-            padding: 12px;
-            font-size: 0.85rem;
-            flex-grow: 1;
-            margin-bottom: 14px;
-            max-height: 250px;
-            overflow-y: auto;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-        .track-row {
-            display: flex;
-            align-items: center;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            color: var(--text-muted);
-            transition: all 0.2s ease;
-        }
-        .track-row:last-child { border-bottom: none; }
-        .track-row::before {
-            content: '▶';
-            font-size: 0.6rem;
-            margin-right: 8px;
-            color: var(--accent-cyan);
-            opacity: 0.6;
-        }
-        .a-orange .track-row::before { color: var(--accent-orange); }
-        .a-purple .track-row::before { color: var(--accent-purple); }
-        .a-gold .track-row::before { color: var(--accent-gold); }
-        .track-row:hover { color: #fff; padding-left: 3px; }
-        
-        .track-row.live-single {
-            border: 1px dashed var(--accent-cyan);
-            background: rgba(0, 242, 242, 0.06);
-            border-radius: 4px;
-            padding: 6px 8px;
-            margin: 3px 0;
-        }
-        .track-row.live-single .track-title { color: var(--accent-cyan); font-weight: bold; }
-        .track-row.live-single::before { content: '🔥'; opacity: 1; }
-
-        .track-row.live-single-2 {
-            border: 1px dashed var(--accent-orange);
-            background: rgba(255, 85, 0, 0.06);
-            border-radius: 4px;
-            padding: 6px 8px;
-            margin: 3px 0;
-        }
-        .track-row.live-single-2 .track-title { color: var(--accent-orange); font-weight: bold; }
-        .track-row.live-single-2::before { content: '⚡'; opacity: 1; }
-
-        .track-row.live-single-3 {
-            border: 1px dashed var(--accent-gold);
-            background: rgba(255, 215, 0, 0.06);
-            border-radius: 4px;
-            padding: 6px 8px;
-            margin: 3px 0;
-        }
-        .track-row.live-single-3 .track-title { color: var(--accent-gold); font-weight: bold; }
-        .track-row.live-single-3::before { content: '⚡'; opacity: 1; }
-
-        .track-row.live-single-4 {
-            border: 1px dashed var(--accent-pink);
-            background: rgba(255, 51, 102, 0.08);
-            border-radius: 4px;
-            padding: 6px 8px;
-            margin: 3px 0;
-        }
-        .track-row.live-single-4 .track-title { color: var(--accent-pink); font-weight: bold; }
-        .track-row.live-single-4::before { content: '🚨'; opacity: 1; }
-
-        /* VISUAL TRANSMISSIONS (CANVAS VIDEO PREVIEW) */
-        .transmissions-grid {
-            display: grid;
-            grid-template-columns: 1.3fr 1.2fr;
-            gap: 32px;
-            align-items: center;
-        }
-        .canvas-phone-mockup {
-            width: 195px;
-            height: 355px;
-            margin: 0 auto;
-            border-radius: 26px;
-            border: 3px solid var(--accent-orange);
-            box-shadow: var(--glow-orange);
-            overflow: hidden;
-            position: relative;
-            background: #000;
-            transition: transform 0.3s ease;
-        }
-        .canvas-phone-mockup:hover {
-            transform: translateY(-5px) scale(1.02);
-        }
-        .canvas-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* RELOCATION TIMELINE WITH GLASSY CITY HOVER CARDS */
-        .timeline-card {
-            padding: 40px;
-        }
-        .timeline {
-            position: relative;
-            max-width: 850px;
-            margin: 0 auto;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-orange), var(--accent-purple), var(--accent-gold));
-            transform: translateX(-50%);
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            width: 50%;
-            padding-right: 35px;
-            text-align: right;
-        }
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            padding-right: 0;
-            padding-left: 35px;
-            text-align: left;
-        }
-        .timeline-dot {
-            position: absolute;
-            top: 20px;
-            right: -9px;
-            width: 16px;
-            height: 16px;
-            background-color: var(--bg-dark);
-            border: 3px solid var(--accent-cyan);
-            border-radius: 50%;
-            z-index: 10;
-        }
-        .timeline-item:nth-child(2) .timeline-dot { border-color: var(--accent-orange); }
-        .timeline-item:nth-child(3) .timeline-dot { border-color: var(--accent-purple); }
-        .timeline-item:nth-child(4) .timeline-dot { border-color: var(--accent-gold); }
-        .timeline-item:nth-child(5) .timeline-dot { border-color: var(--accent-cyan); box-shadow: var(--glow-cyan); }
-        .timeline-item:nth-child(even) .timeline-dot { left: -8px; }
-
-        /* GLASSY CITY HOVER BOX */
-        .timeline-box {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 20px;
-            transition: all 0.35s ease;
-        }
-        .timeline-box:hover {
-            transform: translateY(-4px);
-            background: var(--bg-glass-hover);
-            border-color: var(--accent-cyan);
-            box-shadow: var(--glow-cyan);
-        }
-        .timeline-item:nth-child(2) .timeline-box:hover { border-color: var(--accent-orange); box-shadow: var(--glow-orange); }
-        .timeline-item:nth-child(3) .timeline-box:hover { border-color: var(--accent-purple); box-shadow: var(--glow-purple); }
-        .timeline-item:nth-child(4) .timeline-box:hover { border-color: var(--accent-gold); box-shadow: var(--glow-gold); }
-        .timeline-item:nth-child(5) .timeline-box:hover { border-color: var(--accent-cyan); box-shadow: var(--glow-cyan); }
-
-        .timeline-year {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--accent-cyan);
-            margin-bottom: 4px;
-        }
-        .timeline-item:nth-child(2) .timeline-year { color: var(--accent-orange); }
-        .timeline-item:nth-child(3) .timeline-year { color: var(--accent-purple); }
-        .timeline-item:nth-child(4) .timeline-year { color: var(--accent-gold); }
-        .timeline-location {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 6px;
-        }
-        .timeline-body {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* SOUND PROTOCOL CARDS 1-3 WITH DISTINCT HOVER COLORS */
-        .protocol-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-        .protocol-card {
-            padding: 28px;
-            border-radius: 12px;
-            transition: all 0.35s ease;
-        }
-        .protocol-card.p-cyan { border: 1px solid rgba(0, 242, 242, 0.2); }
-        .protocol-card.p-cyan:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: var(--glow-cyan);
-            transform: translateY(-4px);
-        }
-        .protocol-card.p-cyan .card-num { color: var(--accent-cyan); }
-
-        .protocol-card.p-orange { border: 1px solid rgba(255, 85, 0, 0.2); }
-        .protocol-card.p-orange:hover {
-            border-color: var(--accent-orange);
-            box-shadow: var(--glow-orange);
-            transform: translateY(-4px);
-        }
-        .protocol-card.p-orange .card-num { color: var(--accent-orange); }
-
-        .protocol-card.p-purple { border: 1px solid rgba(157, 78, 221, 0.2); }
-        .protocol-card.p-purple:hover {
-            border-color: var(--accent-purple);
-            box-shadow: var(--glow-purple);
-            transform: translateY(-4px);
-        }
-        .protocol-card.p-purple .card-num { color: var(--accent-purple); }
-
-        .card-num {
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-        .protocol-card h3 {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .protocol-card p {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-        }
-
-        /* ALL 20 ARTIST INSPIRATIONS TAG CLOUD */
-        .inspiration-card {
-            padding: 32px;
-            margin-top: 40px;
-        }
-        .tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-        }
-        .tag {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-muted);
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.25s ease-out;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        /* INTAKE PORTAL & FOOTER */
-        .connect-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        .alias-card {
-            padding: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--glow-cyan);
-        }
-        .alias-email {
-            font-family: 'Space Mono', monospace;
-            font-size: 1.15rem;
-            color: #fff;
-            font-weight: bold;
-        }
-        .copy-btn {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: var(--accent-cyan);
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-        .copy-btn:hover {
-            background: var(--accent-cyan);
-            color: var(--bg-dark);
-            box-shadow: var(--glow-cyan);
-        }
-
-        footer {
-            background: #030408;
-            border-top: 1px solid var(--border-color);
-            padding: 40px 0;
-            text-align: center;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 20px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-        }
-
-        .hero-brand-logo {
-            width: 100%;
-            max-width: 680px;
-            height: auto;
-            max-height: none !important;
-            object-fit: contain;
-            display: block;
-            margin: 15px auto;
-            filter: drop-shadow(0 0 25px rgba(0, 242, 242, 0.65));
-            transform: scale(1.15);
-            transform-origin: center;
-            transition: all 0.3s ease;
-        }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 1100px) {
-            .albums-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .badge-terminal { margin: 0 auto; }
-            .hero-social-links { justify-content: center; }
-            .profile-section-wrapper { align-items: center; }
-            .transmissions-grid { grid-template-columns: 1fr; }
-            .connect-grid { grid-template-columns: 1fr; }
-            .protocol-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 768px) {
-            .albums-grid { grid-template-columns: 1fr; }
-            nav ul { display: none; }
-            .hero h1 { font-size: 3.2rem; }
-            .timeline::before { left: 20px; }
-            .timeline-item { width: 100%; padding-left: 45px; padding-right: 0; text-align: left; }
-            .timeline-item:nth-child(even) { left: 0; padding-left: 45px; }
-            .timeline-dot { left: 12px !important; right: auto !important; }
-            .hero-brand-logo {
-                width: 95%;
-                max-width: 380px;
-                transform: scale(1.0);
-                margin: 10px auto;
-            }
-        }
-    </style>
-
-    <!-- GoatCounter Privacy-First Analytics Telemetry -->
-    <script data-goatcounter="https://pupstabile.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
-</head>
-<body>
-    <!-- Real-time Rainbow Matrix Background Canvas -->
-    <canvas id="matrix"></canvas>
-
-    <!-- Top Terminal Ticker Banner -->
-    <div class="terminal-banner mono">
-        <div class="ticker-text">
-            &gt; SYSTEM ALIGNED // TALLINN NODE ACTIVE &bull; SINGLE 1: SCARS INTO THUNDER [OUT NOW] &bull; SINGLE 2: I'M NOT DONE YET! [OUT NOW] &bull; SINGLE 3: BLACK CLOUD (THE FILTER) [OUT NOW] &bull; SINGLE 4: RELAPSE (THE RAGE-BAITED MIND) [OUT NOW] &bull; DEBUT LP: SYSTEM CRASH [DROPPING HALLOWEEN 10.31.26] &bull; ARCHITECTURAL CYBER-TRANCE // E2-C#4 BASS-BARITONE VOCAL &bull;
-        </div>
-    </div>
-
-    <!-- Header Navigation -->
-    <header>
-        <div class="container nav-wrapper">
-            <div class="brand">pup<span>.STABILE</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#hero" class="active">Mainframe</a></li>
-                    <li><a href="#albums">Tetrad</a></li>
-                    <li><a href="#transmissions">Visuals</a></li>
-                    <li><a href="#biography">Relocation</a></li>
-                    <li><a href="#protocol">Protocol</a></li>
-                    <li><a href="#connect">Connect</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Sector -->
-    <section id="hero" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <div class="badge-terminal"><span></span>VERIFICATION SEQUENCE ACTIVE</div>
-                <img src="pup_stabile_apple_music_artist_logo_v5_cropped.png" alt="pup.STABILE" class="hero-brand-logo">
-                
-                <!-- INLINE PROFILE FRAME WITH SOCIAL EMBEDDED BUTTONS DIRECTLY UNDER HEADSHOT -->
-                <div class="profile-section-wrapper">
-                    <div class="profile-wrapper">
-                        <div class="profile-glow"></div>
-                        <div class="profile-container">
-                            <img src="pupstabile_profile_photo_v2.png" alt="pup.STABILE" class="profile-img">
-                        </div>
-                    </div>
-
-                    <!-- HERO SOCIAL GLYPH BUTTONS WITH OFFICIAL ARTIST LINKS -->
-                    <div class="hero-social-links">
-                        <a href="https://www.youtube.com/@pup.STABILE" target="_blank" class="social-icon-btn yt" title="YouTube Official Artist Channel">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        </a>
-                        <a href="https://instagram.com/pup.stabile" target="_blank" class="social-icon-btn ig" title="Instagram">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61594507853019" target="_blank" class="social-icon-btn fb" title="Facebook">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v10.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                        <a href="https://open.spotify.com/artist/2vALW0nYzAkezZBVPSb4RP" target="_blank" class="social-icon-btn sp" title="Spotify Artist Profile">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-                        </a>
-                        <a href="https://music.apple.com/us/artist/pup-stabile/6807095499" target="_blank" class="social-icon-btn am" title="Apple Music Profile">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.32c.67-.82 1.13-1.97.99-3.12-1 .04-2.22.67-2.93 1.5-.64.74-1.2 1.92-1.05 3.06 1.12.09 2.27-.58 2.99-1.44z"/></svg>
-                        </a>
-                        <a href="https://soundcloud.com/pupstabile" target="_blank" class="social-icon-btn sc" title="SoundCloud Artist Profile">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225a3.81 3.81 0 0 0 .396 1.737c.228.435.534.81.905 1.103.37.293.799.508 1.261.632.462.124.945.163 1.42.115V8.625a3.83 3.83 0 0 0-1.42.387 3.86 3.86 0 0 0-1.15 1.025 3.73 3.73 0 0 0-.687 1.488 3.93 3.93 0 0 0-.72
+        .w-pink .clock-timer { color: var(--accent-pink);
