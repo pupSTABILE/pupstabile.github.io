@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pup.STABILE | Architectural Cyber-Trance // Official Portal</title>
+    <meta name="description" content="Official portal of pup.STABILE. Architectural Cyber-Trance and 126–128 BPM progressive house anchored by a rare E2–C#4 bass-baritone vocal register. Produced in Tallinn, Estonia.">
+
+    <!-- Open Graph / Facebook / Discord / iMessage Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pupstabile.com/">
+    <meta property="og:site_name" content="pup.STABILE Official Portal">
+    <meta property="og:title" content="pup.STABILE | Architectural Cyber-Trance // Official Portal">
+    <meta property="og:description" content="Driving 126–128 BPM progressive house & cyber-trance anchored by a rare E2–C#4 bass-baritone vocal register. Stream the singles from debut LP 'SYSTEM CRASH'—written & produced in Tallinn, Estonia.">
+    <meta property="og:image" content="https://pupstabile.com/pupstabile_profile_photo_v2.png">
+    <meta property="og:image:alt" content="pup.STABILE Official Artist Portrait">
+
+    <!-- Twitter / X Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://pupstabile.com/">
+    <meta name="twitter:title" content="pup.STABILE | Architectural Cyber-Trance // Official Portal">
+    <meta name="twitter:description" content="Driving 126–128 BPM progressive house & cyber-trance anchored by a rare E2–C#4 bass-baritone vocal register. Written & produced in Tallinn, Estonia.">
+    <meta name="twitter:image" content="https://pupstabile.com/pupstabile_profile_photo_v2.png">
     
     <!-- Custom Favicon Suite Links -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -16,6 +33,72 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD MusicGroup Structured Data for Google Knowledge Graph -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicGroup",
+      "@id": "https://pupstabile.com/#artist",
+      "name": "pup.STABILE",
+      "alternateName": "Jeremy David Stabile",
+      "url": "https://pupstabile.com/",
+      "image": "https://pupstabile.com/pupstabile_profile_photo_v2.png",
+      "logo": "https://pupstabile.com/pup_stabile_apple_music_artist_logo_v5_cropped.png",
+      "description": "Electronic music producer and vocalist creating Architectural Cyber-Trance and 126–128 BPM progressive house anchored by a rare E2–C#4 bass-baritone vocal register. Based in Tallinn, Estonia.",
+      "genre": [
+        "Architectural Cyber-Trance",
+        "Progressive House",
+        "Dark Synthpop",
+        "Electronic",
+        "Trance"
+      ],
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Tallinn, Estonia"
+      },
+      "email": "contact@pupstabile.com",
+      "sameAs": [
+        "https://open.spotify.com/artist/2vALW0nYzAkezZBVPSb4RP",
+        "https://music.apple.com/us/artist/pup-stabile/6807095499",
+        "https://www.youtube.com/@pup.STABILE",
+        "https://soundcloud.com/pupstabile",
+        "https://www.mixcloud.com/pupSTABILE",
+        "https://instagram.com/pup.stabile",
+        "https://www.facebook.com/profile.php?id=61594507853019"
+      ],
+      "album": {
+        "@type": "MusicAlbum",
+        "name": "SYSTEM CRASH",
+        "albumProductionType": "https://schema.org/StudioAlbum",
+        "datePublished": "2026-10-31",
+        "image": "https://pupstabile.com/album1.jpg",
+        "url": "https://release.landr.com/991061592439"
+      },
+      "track": [
+        {
+          "@type": "MusicRecording",
+          "name": "Scars into Thunder",
+          "url": "https://open.spotify.com/track/0OtrH7bAQAMrQ7OmDMam2y"
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "I'm Not Done Yet!",
+          "url": "https://open.spotify.com/track/7fEgWI0mP3q0x1bcN6YpGU"
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Black Cloud (The Filter)",
+          "url": "https://open.spotify.com/track/7pGreqDi9iWhasfH6oiFwu"
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Relapse (The Rage-Baited Mind)",
+          "url": "https://open.spotify.com/track/5il2zy8aAS8kkAYI5gGvic"
+        }
+      ]
+    }
+    </script>
     
     <style>
         :root {
@@ -462,6 +545,54 @@
             border-color: var(--accent-cyan);
             box-shadow: var(--glow-cyan);
             transform: translateY(-2px);
+        }
+
+        /* STANDOUT ALBUM PRE-SAVE BUTTON */
+        .btn-album-presave {
+            position: relative;
+            margin-top: 6px;
+            padding: 12px 12px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #fff;
+            background: linear-gradient(135deg, #9d4edd 0%, #ff3366 50%, #ff5500 100%);
+            background-size: 200% 200%;
+            border: 2px solid var(--accent-cyan);
+            border-radius: 6px;
+            box-shadow: 0 0 20px rgba(0, 242, 242, 0.45), 0 0 30px rgba(157, 78, 221, 0.4);
+            animation: presaveGradient 4s ease infinite, presavePulse 2s ease-in-out infinite alternate;
+            overflow: hidden;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .btn-album-presave .presave-sub {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.64rem;
+            color: var(--accent-cyan);
+            letter-spacing: 1.5px;
+            font-weight: bold;
+        }
+        .btn-album-presave:hover {
+            transform: translateY(-3px) scale(1.02);
+            color: #fff;
+            border-color: #fff;
+            box-shadow: 0 0 28px rgba(0, 242, 242, 0.85), 0 0 40px rgba(255, 51, 102, 0.7);
+            text-shadow: 0 0 10px #fff;
+        }
+        @keyframes presaveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes presavePulse {
+            0% { box-shadow: 0 0 14px rgba(0, 242, 242, 0.35), 0 0 22px rgba(157, 78, 221, 0.35); }
+            100% { box-shadow: 0 0 24px rgba(0, 242, 242, 0.75), 0 0 35px rgba(255, 51, 102, 0.6); }
         }
 
         /* EMBEDDED SPOTIFY ARTIST PLAYER CONTAINER */
@@ -1072,6 +1203,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            white-space: nowrap;
         }
         .copy-btn:hover {
             background: var(--accent-cyan);
@@ -1148,7 +1280,7 @@
     <!-- Top Terminal Ticker Banner -->
     <div class="terminal-banner mono">
         <div class="ticker-text">
-            &gt; SYSTEM ALIGNED // TALLINN NODE ACTIVE &bull; SINGLE 1: SCARS INTO THUNDER [OUT NOW] &bull; SINGLE 2: I'M NOT DONE YET! [OUT NOW] &bull; SINGLE 3: BLACK CLOUD (THE FILTER) [OUT NOW] &bull; SINGLE 4: RELAPSE (THE RAGE-BAITED MIND) [OUT NOW] &bull; DEBUT LP: SYSTEM CRASH [DROPPING HALLOWEEN 10.31.26] &bull; ARCHITECTURAL CYBER-TRANCE // E2-C#4 BASS-BARITONE VOCAL &bull;
+            &gt; SYSTEM ALIGNED // TALLINN NODE ACTIVE &bull; SINGLE 1: SCARS INTO THUNDER [OUT NOW] &bull; SINGLE 2: I'M NOT DONE YET! [OUT NOW] &bull; SINGLE 3: BLACK CLOUD (THE FILTER) [OUT NOW] &bull; SINGLE 4: RELAPSE (THE RAGE-BAITED MIND) [OUT NOW] &bull; DEBUT LP: SYSTEM CRASH [PRE-SAVE ACTIVE // DROPPING HALLOWEEN 10.31.26] &bull; ARCHITECTURAL CYBER-TRANCE // E2-C#4 BASS-BARITONE VOCAL &bull;
         </div>
     </div>
 
@@ -1337,12 +1469,18 @@
                         <div class="track-row"><span class="track-title">The Angst Synapses</span></div>
                     </div>
 
-                    <!-- DIRECT SPOTIFY TRACK LINKS FOR ALL 4 AVAILABLE SINGLES WITH GOATCOUNTER TRACKING -->
+                    <!-- DIRECT SPOTIFY TRACK LINKS FOR ALL 4 AVAILABLE SINGLES + STANDOUT ALBUM PRE-SAVE -->
                     <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
                         <a href="https://open.spotify.com/track/0OtrH7bAQAMrQ7OmDMam2y?si=3f9bc037cabb4ef0" data-goatcounter-click="spotify-btn-single-1-scars" data-goatcounter-title="Spotify Button: Single 1 Scars into Thunder" class="btn btn-secondary" style="padding: 8px 10px; width: 100%; text-align: center; font-size: 0.75rem; border-color: var(--accent-cyan); color: var(--accent-cyan);" target="_blank">🔥 Single 1: "Scars into Thunder"</a>
                         <a href="https://open.spotify.com/track/7fEgWI0mP3q0x1bcN6YpGU?si=dc17c4b184d64ff4" data-goatcounter-click="spotify-btn-single-2-not-done-yet" data-goatcounter-title="Spotify Button: Single 2 Im Not Done Yet" class="btn btn-primary" style="padding: 8px 10px; width: 100%; text-align: center; font-size: 0.75rem; background-color: var(--accent-orange); border-color: var(--accent-orange);" target="_blank">⚡ Single 2: "I'm Not Done Yet!"</a>
                         <a href="https://open.spotify.com/track/7pGreqDi9iWhasfH6oiFwu?si=66109c5d838b4ee8" data-goatcounter-click="spotify-btn-single-3-black-cloud" data-goatcounter-title="Spotify Button: Single 3 Black Cloud" class="btn btn-primary" style="padding: 8px 10px; width: 100%; text-align: center; font-size: 0.75rem; background-color: var(--accent-gold); border-color: var(--accent-gold); color: #000; font-weight: bold;" target="_blank">⚡ Single 3: "Black Cloud (The Filter)"</a>
                         <a href="https://open.spotify.com/track/5il2zy8aAS8kkAYI5gGvic?si=d704fe5a11f34e96" data-goatcounter-click="spotify-btn-single-4-relapse" data-goatcounter-title="Spotify Button: Single 4 Relapse" class="btn btn-primary" style="padding: 8px 10px; width: 100%; text-align: center; font-size: 0.75rem; background-color: var(--accent-pink); border-color: var(--accent-pink); color: #fff; box-shadow: var(--glow-pink); font-weight: bold;" target="_blank">🚨 Single 4: "Relapse (Rage-Baited Mind)"</a>
+                        
+                        <!-- STANDOUT FULL ALBUM PRE-SAVE BUTTON -->
+                        <a href="https://release.landr.com/991061592439" data-goatcounter-click="presave-album-1-system-crash" data-goatcounter-title="Pre-Save Full Album: SYSTEM CRASH Pt. 1" class="btn-album-presave font-tech" target="_blank" rel="noopener">
+                            <span>💿 PRE-SAVE ALBUM: SYSTEM CRASH, PT. 1</span>
+                            <span class="presave-sub">// FULL 12-TRACK LP DROPS HALLOWEEN 10.31 //</span>
+                        </a>
                     </div>
                 </div>
 
@@ -1439,11 +1577,12 @@
             <div class="transmissions-grid">
                 <!-- All 4 9:16 Clickable Spotify Canvas Phone Mockups (4-Across Horizontal Row on Desktop) -->
                 <div class="canvas-grid-4">
-                    <!-- Canvas Video 1: Single 1 (Scars Into Thunder - Cyber Cyan Border) -->
+                    <!-- Canvas Video 1: Single 1 (Scars Into Thunder - Cyber Cyan Border - ScarsIntoThunder.MP4) -->
                     <a href="https://open.spotify.com/track/0OtrH7bAQAMrQ7OmDMam2y?si=3f9bc037cabb4ef0" target="_blank" rel="noopener" class="canvas-phone-mockup" style="border-color: var(--accent-cyan); box-shadow: var(--glow-cyan);" title="Click to Stream 'Scars into Thunder' on Spotify" data-goatcounter-click="canvas-click-single-1-scars" data-goatcounter-title="Canvas Video Click: Single 1 Scars into Thunder">
                         <span class="canvas-spotify-pill">↗ STREAM ON SPOTIFY</span>
                         <video class="canvas-video" autoplay loop muted playsinline poster="scars_into_thunder_thumbnail.png">
                             <source src="ScarsIntoThunder.MP4" type="video/mp4">
+                            <source src="ScarsIntoThunder.mp4" type="video/mp4">
                         </video>
                         <div style="position: absolute; bottom: 8px; left: 0; width: 100%; text-align: center; background: rgba(0,0,0,0.82); color: var(--accent-cyan); font-size: 0.62rem; font-family: 'Space Mono', monospace; font-weight: bold; padding: 5px 0;">SINGLE 1: SCARS INTO THUNDER</div>
                     </a>
@@ -1638,20 +1777,22 @@
                     <button class="copy-btn" data-goatcounter-click="copy-contact-email" data-goatcounter-title="Copied Contact Email" onclick="navigator.clipboard.writeText('contact@pupstabile.com'); alert('Copied intake gateway: contact@pupstabile.com');">Copy</button>
                 </div>
 
+                <!-- PRESS & MEDIA KIT (EPK) EMAIL REQUEST PORTAL -->
                 <div class="glass-card alias-card" style="border-color: var(--accent-purple); box-shadow: var(--glow-purple);">
                     <div>
                         <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); font-weight: bold;">Press & Media Kit (EPK)</div>
                         <div class="alias-email" style="font-size: 0.95rem;">pup.STABILE Electronic Press Kit</div>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">High-res logos, official photos, bio, and release specs for press & curators.</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">High-res logos, official photos, bio, and release specs available upon request for press &amp; curators.</div>
                     </div>
-                    <a href="https://pupstabile.com/epk" class="copy-btn" style="border-color: var(--accent-purple); color: var(--accent-purple);" target="_blank" data-goatcounter-click="access-epk-btn" data-goatcounter-title="Accessed Electronic Press Kit">Access EPK</a>
+                    <a href="mailto:contact@pupstabile.com?subject=EPK%20%26%20Press%20Materials%20Request%20%2F%2F%20pup.STABILE&body=Hello%20pup.STABILE%20Team%2C%0A%0AI%20would%20like%20to%20request%20access%20to%20the%20official%20pup.STABILE%20Electronic%20Press%20Kit%20(EPK)%20and%20media%20materials%20(high-res%20photos%2C%20logos%2C%20biography%2C%20and%20release%20assets).%0A%0AName%20%2F%20Publication%20%2F%20Outlet%3A%20%0APurpose%20of%20Request%3A%20%0A%0AThank%20you!" class="copy-btn" style="border-color: var(--accent-purple); color: var(--accent-purple);" data-goatcounter-click="request-epk-email-btn" data-goatcounter-title="Requested EPK via Email">Request EPK</a>
                 </div>
 
+                <!-- FAN CLUB SUBSCRIPTION FORM (PRE-FILLED EMAIL DISPATCH TO CONTACT@PUPSTABILE.COM) -->
                 <div class="glass-card" style="padding: 24px; border: 1px solid var(--accent-gold); box-shadow: var(--glow-gold);">
                     <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); font-weight: bold; margin-bottom: 6px;">Join the Sub-System // Fan Club</div>
                     <div style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 12px;">Subscribe for exclusive pre-release stems, secret Tallinn studio logs, and VIP LP access.</div>
-                    <form onsubmit="event.preventDefault(); if(window.goatcounter && window.goatcounter.count){ window.goatcounter.count({ path: 'fan-club-subscribe', title: 'Fan Club Subscription', event: true }); } alert('Subscribed to pup.STABILE Sub-System!');" style="display: flex; gap: 10px;">
-                        <input type="email" placeholder="enter_your_email@domain.com" required style="flex-grow: 1; padding: 10px 14px; background: rgba(5,7,12,0.85); border: 1px solid var(--border-color); border-radius: 4px; color: #fff; font-family: 'Space Mono', monospace; font-size: 0.85rem;">
+                    <form onsubmit="handleFanClubSignup(event)" style="display: flex; gap: 10px;">
+                        <input type="email" id="fanEmailInput" placeholder="enter_your_email@domain.com" required style="flex-grow: 1; padding: 10px 14px; background: rgba(5,7,12,0.85); border: 1px solid var(--border-color); border-radius: 4px; color: #fff; font-family: 'Space Mono', monospace; font-size: 0.85rem;">
                         <button type="submit" class="btn btn-primary" style="padding: 10px 18px; font-size: 0.8rem; background-color: var(--accent-gold); border-color: var(--accent-gold); color: #000; font-weight: bold;">Subscribe</button>
                     </form>
                 </div>
@@ -1682,7 +1823,7 @@
 
     <!-- JAVASCRIPT: RAINBOW MATRIX DIGITAL RAIN, HOVER LISTENERS, & GOATCOUNTER EVENT HELPER -->
     <script>
-        // 0. GOATCOUNTER CUSTOM CLICK HELPER FOR TRACKLIST ROWS
+        // 0. GOATCOUNTER CUSTOM CLICK HELPER & FAN CLUB MAILTO DISPATCHER
         function trackAndOpen(url, eventCode, eventTitle) {
             try {
                 if (window.goatcounter && typeof window.goatcounter.count === 'function') {
@@ -1696,6 +1837,35 @@
                 console.error('GoatCounter tracking error:', e);
             }
             window.open(url, '_blank');
+        }
+
+        function handleFanClubSignup(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('fanEmailInput');
+            const subscriberEmail = emailInput ? emailInput.value.trim() : '';
+            if (!subscriberEmail) return;
+
+            try {
+                if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+                    window.goatcounter.count({
+                        path: 'fan-club-subscribe',
+                        title: 'Fan Club Subscription Dispatch',
+                        event: true
+                    });
+                }
+            } catch (e) {
+                console.error('GoatCounter tracking error:', e);
+            }
+
+            const subject = encodeURIComponent('Sub-System Fan Club Signup // pup.STABILE');
+            const body = encodeURIComponent(
+                'Hello pup.STABILE Team,\n\n' +
+                'Please add my email address to the official pup.STABILE Sub-System Fan Club for exclusive pre-release stems, Tallinn studio logs, and VIP LP updates.\n\n' +
+                'Subscriber Email: ' + subscriberEmail + '\n\n' +
+                'Thank you!'
+            );
+            window.location.href = `mailto:contact@pupstabile.com?subject=${subject}&body=${body}`;
+            if (emailInput) emailInput.value = '';
         }
 
         // 1. RAINBOW MATRIX DIGITAL RAIN CANVAS SCRIPT
