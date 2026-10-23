@@ -347,6 +347,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
+            cursor: pointer;
         }
         nav ul a:hover, nav ul a.active {
             color: var(--accent-cyan);
@@ -1184,6 +1185,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 16px;
             border: 1px solid var(--border-color);
             box-shadow: var(--glow-cyan);
         }
@@ -1209,6 +1211,80 @@
             background: var(--accent-cyan);
             color: var(--bg-dark);
             box-shadow: var(--glow-cyan);
+        }
+
+        /* A&R / CURATOR ONE-SHEET MODAL OVERLAY */
+        .epk-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(3, 4, 8, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .epk-modal-overlay.active {
+            display: flex;
+        }
+        .epk-modal-box {
+            background: rgba(10, 14, 26, 0.96);
+            border: 2px solid var(--accent-purple);
+            border-radius: 12px;
+            max-width: 820px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 28px;
+            box-shadow: 0 0 35px rgba(157, 78, 221, 0.45), 0 0 20px rgba(0, 242, 242, 0.2);
+            position: relative;
+        }
+        .epk-modal-close {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            transition: all 0.25s ease;
+        }
+        .epk-modal-close:hover {
+            background: var(--accent-pink);
+            border-color: var(--accent-pink);
+            color: #fff;
+        }
+        .epk-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin: 18px 0;
+        }
+        .epk-spec-item {
+            background: rgba(5, 7, 12, 0.8);
+            border: 1px solid rgba(0, 242, 242, 0.2);
+            border-left: 3px solid var(--accent-cyan);
+            border-radius: 6px;
+            padding: 12px 14px;
+        }
+        .epk-spec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .epk-spec-val {
+            font-size: 0.9rem;
+            color: #fff;
+            font-weight: 600;
         }
 
         footer {
@@ -1248,6 +1324,8 @@
             .timeline-dot { left: 12px !important; right: auto !important; }
             .canvas-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
             .canvas-phone-mockup { max-width: 175px; }
+            .epk-spec-grid { grid-template-columns: 1fr; }
+            .alias-card { flex-direction: column; align-items: flex-start; }
         }
 
         .hero-brand-logo {
@@ -1295,6 +1373,7 @@
                     <li><a href="#transmissions">Visuals</a></li>
                     <li><a href="#biography">Relocation</a></li>
                     <li><a href="#protocol">Protocol</a></li>
+                    <li><a href="#epk-modal" onclick="openEpkModal(event)" style="color: var(--accent-purple);">A&amp;R / EPK</a></li>
                     <li><a href="#connect">Connect</a></li>
                 </ul>
             </nav>
@@ -1764,7 +1843,7 @@
         <div class="container connect-grid">
             <div>
                 <h2 class="section-title">Secure <span>Portals</span></h2>
-                <p class="section-desc">All administrative traffic and routing requests are processed through a single public intake point.</p>
+                <p class="section-desc">All administrative traffic, A&amp;R inquiries, and routing requests are processed through our secure intake gateways.</p>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 20px;">
@@ -1777,14 +1856,17 @@
                     <button class="copy-btn" data-goatcounter-click="copy-contact-email" data-goatcounter-title="Copied Contact Email" onclick="navigator.clipboard.writeText('contact@pupstabile.com'); alert('Copied intake gateway: contact@pupstabile.com');">Copy</button>
                 </div>
 
-                <!-- PRESS & MEDIA KIT (EPK) EMAIL REQUEST PORTAL -->
+                <!-- PRESS & MEDIA KIT (EPK) ONE-SHEET MODAL + EMAIL REQUEST PORTAL -->
                 <div class="glass-card alias-card" style="border-color: var(--accent-purple); box-shadow: var(--glow-purple);">
                     <div>
-                        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); font-weight: bold;">Press & Media Kit (EPK)</div>
+                        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); font-weight: bold;">A&amp;R One-Sheet &amp; Press Kit (EPK)</div>
                         <div class="alias-email" style="font-size: 0.95rem;">pup.STABILE Electronic Press Kit</div>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">High-res logos, official photos, bio, and release specs available upon request for press &amp; curators.</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">View live A&amp;R technical one-sheet or request high-res press assets via email.</div>
                     </div>
-                    <a href="mailto:contact@pupstabile.com?subject=EPK%20%26%20Press%20Materials%20Request%20%2F%2F%20pup.STABILE&body=Hello%20pup.STABILE%20Team%2C%0A%0AI%20would%20like%20to%20request%20access%20to%20the%20official%20pup.STABILE%20Electronic%20Press%20Kit%20(EPK)%20and%20media%20materials%20(high-res%20photos%2C%20logos%2C%20biography%2C%20and%20release%20assets).%0A%0AName%20%2F%20Publication%20%2F%20Outlet%3A%20%0APurpose%20of%20Request%3A%20%0A%0AThank%20you!" class="copy-btn" style="border-color: var(--accent-purple); color: var(--accent-purple);" data-goatcounter-click="request-epk-email-btn" data-goatcounter-title="Requested EPK via Email">Request EPK</a>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button type="button" class="copy-btn" style="border-color: var(--accent-cyan); color: var(--accent-cyan);" onclick="openEpkModal(event)" data-goatcounter-click="open-ar-onesheet-modal" data-goatcounter-title="Opened A&R One-Sheet Modal">View Spec Sheet</button>
+                        <a href="mailto:contact@pupstabile.com?subject=EPK%20%26%20Press%20Materials%20Request%20%2F%2F%20pup.STABILE&body=Hello%20pup.STABILE%20Team%2C%0A%0AI%20would%20like%20to%20request%20access%20to%20the%20official%20pup.STABILE%20Electronic%20Press%20Kit%20(EPK)%20and%20media%20materials%20(high-res%20photos%2C%20logos%2C%20biography%2C%20and%20release%20assets).%0A%0AName%20%2F%20Publication%20%2F%20Outlet%3A%20%0APurpose%20of%20Request%3A%20%0A%0AThank%20you!" class="copy-btn" style="border-color: var(--accent-purple); color: var(--accent-purple);" data-goatcounter-click="request-epk-email-btn" data-goatcounter-title="Requested EPK via Email">Request EPK</a>
+                    </div>
                 </div>
 
                 <!-- FAN CLUB SUBSCRIPTION FORM (PRE-FILLED EMAIL DISPATCH TO CONTACT@PUPSTABILE.COM) -->
@@ -1799,6 +1881,60 @@
             </div>
         </div>
     </section>
+
+    <!-- INTERACTIVE A&R / CURATOR ONE-SHEET MODAL -->
+    <div id="epkModal" class="epk-modal-overlay" onclick="if(event.target === this) closeEpkModal();">
+        <div class="epk-modal-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(157, 78, 221, 0.35); padding-bottom: 14px; margin-bottom: 16px;">
+                <div>
+                    <span class="mono" style="font-size: 0.72rem; color: var(--accent-purple); letter-spacing: 2px; text-transform: uppercase; font-weight: bold;">// CLASSIFIED A&amp;R &amp; CURATOR DOSSIER</span>
+                    <h3 style="font-size: 1.6rem; color: #fff; text-transform: uppercase; margin-top: 2px;">pup<span style="color: var(--accent-cyan);">.STABILE</span> — Technical One-Sheet</h3>
+                </div>
+                <button type="button" class="epk-modal-close" onclick="closeEpkModal()">[ESC // CLOSE]</button>
+            </div>
+
+            <p style="font-size: 0.92rem; color: var(--text-main); line-height: 1.6; margin-bottom: 14px;">
+                <strong>Sonic Positioning:</strong> In an electronic music market saturated by high-pitched tenors and splice vocal chops, Tallinn-based American expat producer &amp; vocalist <strong>pup.STABILE (Jeremy David Stabile)</strong> anchors driving 126–128 BPM progressive house and dark cyber-trance with a rare, close-mic <strong>E2–C#4 bass-baritone chest register</strong>—bringing the brooding weight of Dave Gahan (Depeche Mode) and Johnny Cash to peak-hour European club floors.
+            </p>
+
+            <div class="epk-spec-grid">
+                <div class="epk-spec-item">
+                    <div class="epk-spec-label">Primary Genre / Lane</div>
+                    <div class="epk-spec-val">Architectural Cyber-Trance / Progressive House / Dark Club</div>
+                </div>
+                <div class="epk-spec-item">
+                    <div class="epk-spec-label">Vocal Signature</div>
+                    <div class="epk-spec-val">Natural E2–C#4 Bass-Baritone (Dry, Close-Mic Chest Register)</div>
+                </div>
+                <div class="epk-spec-item">
+                    <div class="epk-spec-label">Tempo &amp; Production</div>
+                    <div class="epk-spec-val">126–128 BPM // 100% Self-Written, Produced &amp; Cleared</div>
+                </div>
+                <div class="epk-spec-item">
+                    <div class="epk-spec-label">Active Base / Node</div>
+                    <div class="epk-spec-val">Tallinn, Harju County, Estonia (EU)</div>
+                </div>
+            </div>
+
+            <div style="background: rgba(255, 85, 0, 0.07); border: 1px dashed var(--accent-orange); border-radius: 8px; padding: 14px; margin-bottom: 18px;">
+                <div class="mono" style="font-size: 0.72rem; color: var(--accent-orange); font-weight: bold; letter-spacing: 1.5px; margin-bottom: 6px;">// PRIORITY A&amp;R DEMO &amp; ACTIVE RELEASES</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a href="https://soundcloud.com/pupstabile/faux-respect-turn-the-lites" target="_blank" class="btn-dsp" style="border-color: var(--accent-orange); color: var(--accent-orange);">🎧 Club Demo: "Faux RESPECT (Turn the Lites Down)"</a>
+                    <a href="https://open.spotify.com/track/0OtrH7bAQAMrQ7OmDMam2y?si=3f9bc037cabb4ef0" target="_blank" class="btn-dsp sp">Single 1: Scars into Thunder</a>
+                    <a href="https://open.spotify.com/track/7fEgWI0mP3q0x1bcN6YpGU?si=dc17c4b184d64ff4" target="_blank" class="btn-dsp sp">Single 2: I'm Not Done Yet!</a>
+                    <a href="https://open.spotify.com/track/7pGreqDi9iWhasfH6oiFwu?si=66109c5d838b4ee8" target="_blank" class="btn-dsp sp">Single 3: Black Cloud</a>
+                    <a href="https://open.spotify.com/track/5il2zy8aAS8kkAYI5gGvic?si=d704fe5a11f34e96" target="_blank" class="btn-dsp sp">Single 4: Relapse</a>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 16px;">
+                <div class="mono" style="font-size: 0.78rem; color: var(--text-muted);">
+                    Stems, extended club mixes, WAV masters &amp; high-res press photos available immediately.
+                </div>
+                <a href="mailto:contact@pupstabile.com?subject=EPK%20%26%20Press%20Materials%20Request%20%2F%2F%20pup.STABILE&body=Hello%20pup.STABILE%20Team%2C%0A%0AI%20would%20like%20to%20request%20access%20to%20the%20official%20pup.STABILE%20Electronic%20Press%20Kit%20(EPK)%20and%20media%20materials%20(high-res%20photos%2C%20logos%2C%20WAV%20masters%2C%20and%20release%20assets).%0A%0AName%20%2F%20Label%20%2F%20Outlet%3A%20%0APurpose%20of%20Request%3A%20%0A%0AThank%20you!" class="btn btn-primary" style="padding: 10px 18px; font-size: 0.8rem; background-color: var(--accent-purple); border-color: var(--accent-purple);" data-goatcounter-click="modal-request-epk-email" data-goatcounter-title="Modal: Requested Full EPK via Email">✉ Request Full EPK Assets via Email</a>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
@@ -1821,9 +1957,9 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT: RAINBOW MATRIX DIGITAL RAIN, HOVER LISTENERS, & GOATCOUNTER EVENT HELPER -->
+    <!-- JAVASCRIPT: RAINBOW MATRIX DIGITAL RAIN, HOVER LISTENERS, MODAL, & GOATCOUNTER EVENT HELPER -->
     <script>
-        // 0. GOATCOUNTER CUSTOM CLICK HELPER & FAN CLUB MAILTO DISPATCHER
+        // 0. GOATCOUNTER CUSTOM CLICK HELPER, EPK MODAL CONTROLLER, & FAN CLUB MAILTO DISPATCHER
         function trackAndOpen(url, eventCode, eventTitle) {
             try {
                 if (window.goatcounter && typeof window.goatcounter.count === 'function') {
@@ -1838,6 +1974,30 @@
             }
             window.open(url, '_blank');
         }
+
+        function openEpkModal(event) {
+            if (event) event.preventDefault();
+            const modal = document.getElementById('epkModal');
+            if (modal) modal.classList.add('active');
+        }
+
+        function closeEpkModal() {
+            const modal = document.getElementById('epkModal');
+            if (modal) modal.classList.remove('active');
+            if (window.location.hash === '#epk-modal') {
+                history.replaceState(null, null, ' ');
+            }
+        }
+
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeEpkModal();
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash === '#epk-modal') {
+                openEpkModal();
+            }
+        });
 
         function handleFanClubSignup(event) {
             event.preventDefault();
