@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 // DROPPED PACKET | pup.STABILE Mainframe</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #05070c;
+            --accent-cyan: #00f2f2;
+            --accent-orange: #ff5500;
+            --accent-pink: #ff3366;
+            --text-main: #f0f3f8;
+            --text-muted: #8b9bb4;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Space Mono', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+        #matrix404 {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        .terminal-card {
+            background: rgba(10, 14, 26, 0.88);
+            border: 2px solid var(--accent-pink);
+            border-radius: 12px;
+            max-width: 580px;
+            width: 100%;
+            padding: 36px 28px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.35), 0 0 15px rgba(0, 242, 242, 0.2);
+            backdrop-filter: blur(14px);
+        }
+        .error-badge {
+            display: inline-block;
+            background: rgba(255, 51, 102, 0.12);
+            border: 1px solid var(--accent-pink);
+            color: var(--accent-pink);
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 5px 12px;
+            border-radius: 4px;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            line-height: 1;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 51, 102, 0.7);
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: var(--accent-cyan);
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.25s ease;
+        }
+        .btn-cyan {
+            background: var(--accent-cyan);
+            color: #000;
+            border: 1px solid var(--accent-cyan);
+            box-shadow: 0 0 16px rgba(0, 242, 242, 0.4);
+        }
+        .btn-cyan:hover {
+            background: transparent;
+            color: var(--accent-cyan);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-orange);
+            border: 1px solid var(--accent-orange);
+        }
+        .btn-outline:hover {
+            background: var(--accent-orange);
+            color: #000;
+            box-shadow: 0 0 16px rgba(255, 85, 0, 0.4);
+        }
+        .countdown-line {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .countdown-line span {
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix404"></canvas>
+
+    <div class="terminal-card">
+        <div class="error-badge">// STATUS_CODE: 404_DROPPED_PACKET</div>
+        <h1>404</h1>
+        <div class="subtitle">Signal Lost in the Sub-System</div>
+        <p>
+            The requested node does not exist or has been relocated to the Tallinn Mainframe. Rerouting your connection back to <strong>pup.STABILE</strong> central command.
+        </p>
+        <div class="btn-group">
+            <a href="https://pupstabile.com/" class="btn btn-cyan">⚡ Return to Mainframe</a>
+            <a href="https://pupstabile.com/#epk-modal" class="btn btn-outline">A&amp;R / Press Kit</a>
+        </div>
+        <div class="countdown-line">
+            Auto-rerouting to Mainframe in <span id="sec">10</span>s...
+        </div>
+    </div>
+
+    <script>
+        // Redirect automatically if visitor landed on /epk
+        if (window.location.pathname.toLowerCase().includes('/epk')) {
+            window.location.replace('https://pupstabile.com/#epk-modal');
+        }
+
+        // 10-Second Auto-Redirect Countdown
+        let seconds = 10;
+        const secEl = document.getElementById('sec');
+        setInterval(() => {
+            seconds--;
+            if (secEl) secEl.textContent = seconds;
+            if (seconds <= 0) {
+                window.location.href = 'https://pupstabile.com/';
+            }
+        }, 1000);
+
+        // Glitch Matrix Rain
+        const canvas = document.getElementById('matrix404');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const fontSize = 16;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(1);
+        const colors = ['#ff3366', '#00f2f2', '#ff5500', '#9d4edd'];
+
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 7, 12, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const char = Math.random() > 0.5 ? '0' : '1';
+                ctx.fillStyle = colors[i % colors.length];
+                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 40);
+    </script>
+    <script data-goatcounter="https://pupstabile.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
