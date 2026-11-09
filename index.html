@@ -1714,7 +1714,7 @@
                     </a>
                 </div>
 
-                <!-- Side-by-Side YouTube Video & SYSTEM CRASH Album Stream Grid -->
+                <!-- Side-by-Side YouTube Video & SYSTEM CRASH Full Album Playlist Grid -->
                 <div class="youtube-embeds-grid">
                     <!-- YouTube Video 1: Scars into Thunder Lyric Video -->
                     <div class="youtube-embed-card">
@@ -1726,13 +1726,13 @@
                         </div>
                     </div>
 
-                    <!-- YouTube Video 2: SYSTEM CRASH Album Stream -->
+                    <!-- YouTube Video 2: SYSTEM CRASH Full 12-Track Album Playlist Stream -->
                     <div class="youtube-embed-card album-stream">
                         <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px;">
-                            <iframe src="https://www.youtube.com/embed/mLsG_8UZYGk?si=_wL2qtIw1xVXiM0h" title="pup.STABILE - SYSTEM CRASH, Pt. 1 (Official YouTube Stream)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                            <iframe src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_nGHFWBbbNxZcpGYDl3uUBS3fkSkEgtsi8" title="pup.STABILE - SYSTEM CRASH, Pt. 1 (Full Album Playlist)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
                         </div>
                         <div style="display: flex; justify-content: center; gap: 16px; margin-top: 16px;">
-                            <a href="http://www.youtube.com/watch?v=mLsG_8UZYGk" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;" target="_blank" data-goatcounter-click="youtube-album-stream-btn" data-goatcounter-title="Stream SYSTEM CRASH on YouTube">Stream SYSTEM CRASH on YouTube</a>
+                            <a href="https://youtube.com/playlist?list=OLAK5uy_nGHFWBbbNxZcpGYDl3uUBS3fkSkEgtsi8" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;" target="_blank" data-goatcounter-click="youtube-album-playlist-btn" data-goatcounter-title="Stream SYSTEM CRASH Full Playlist on YouTube">Stream Full Album Playlist on YouTube</a>
                         </div>
                     </div>
                 </div>
@@ -2154,7 +2154,7 @@
                     const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
                     const m = Math.floor((diff / (1000 * 60) ) % 60);
                     const s = Math.floor((diff / 1000) % 60);
-                    el.innerText = `${String(d).padStart(2,'0')}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}h ${String(s).padStart(2,'0')}s`;
+                    el.innerText = `${String(d).padStart(2,'0')}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
                 }
             } catch (err) {
                 console.error('Timer error for ' + elementId, err);
